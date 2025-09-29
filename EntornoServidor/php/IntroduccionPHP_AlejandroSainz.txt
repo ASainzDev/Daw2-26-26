@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+$txt = "PHP";
+echo "I love $txt!</br>";
+?>
+
+<?php
+#Ejercicio1
+$num1 = 5;
+$num2 = 6;
+echo $num1 + $num2;
+?>
+
+<?php
+#Ejercicio1
+$num1 = 5;
+$num2 = 6;
+
+echo "</br>";
+
+if($num1 > $num2){
+	echo "El numero mayor es " . $num1 . "</br>";
+    }elseif($num1 < $num2){
+    echo "El numero menor es " .$num2 . "</br>";
+    }else{
+    echo "Los número son iguales </br>";
+    }
+?>
+
+ <?php
+$txt1 = "Hola,";
+$txt2 = " buenos días";
+echo "$txt1 $txt2 </br>";
+?> 
+
+
+<?php
+$frutas = ["Manzana","Pera","Sandia","Piña","Melocotón"];
+$resultado = $frutas[2];
+echo "$resultado</br>";
+?>
+
+ <?php
+for($x=1; $x<=5; $x++){
+	echo "$x";
+    }
+echo "</br>";
+?> 
+
+
+<?php
+	$numero1 = 12;
+    
+    if ($numero % 2 == 0){
+    	echo "El número es par </br>";
+    }else{
+    	echo "El número es impar </br>";
+    }    
+?> 
+
+ <?php
+	$texto = "Este es un texto";
+    $longitud = strlen($texto);
+    echo "La longitud de la cadena es $longitud </br>";
+
+?> 
+
+ <?php
+ $numero = 5;
+for($x = $numero - 1; $x>=1; $x--){
+	$numero = $numero * $x;
+    }
+echo "$numero</br>";
+?> 
+
+<?php
+$numeros = array(17,23,42,67,141);
+
+function valorMedio(array $numeros){
+	$sumaTotal = 0;
+    $valorPromedio = 0;
+    
+    foreach($numeros as $valor){
+    	$sumaTotal += $valor;
+    }
+    
+    $valorPromedio = $sumaTotal / count($numeros);
+    
+    echo "$valorPromedio </br>";
+}
+
+valorMedio($numeros);
+?>
+
+<?php
+$arrayNombres = array("Alejandro"=>"46","Antonio"=>"35","Raul"=>"21","Fernando"=>"26");
+
+echo "<table>";
+
+	foreach ($arrayNombres as $x => $y) {
+  		echo "<tr>";
+        
+        echo "<td>$x</td><td>$y</td>";
+        
+        echo "</tr>";
+	}
+
+echo "</table>";
+
+?> 
+
+
+</body>
+</html>

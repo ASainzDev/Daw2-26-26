@@ -4,22 +4,37 @@
     <meta charset="UTF-8" />
     <title>Carrito</title>
     <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    <meta viewport="width=device-width, initial-scale=1.0">
 </head>
 <body>
-
     <div class="main-container">
-
-        <div class="product-container">
-            <p class="encabezado1">Producto</p>
-            <p class="encabezado2">Cantidad</p>
-            <p class="encabezado3">Unidad</p>
-            <p class="encabezado4">Total</p>
+        <div class="product-table">
+            <table class="articles-table">
+                <tr class="articles-title">
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Unidad</th>
+                    <th>Total</th>
+                </tr>
+            </table>
+            
         </div>
-
-        <div class="totalprice-container">
-
+        <div class="total-price">
+            <table class="total-table">
+                <coolgroup span="2" class="total-title"></coolgroup>
+                <tr class="total-text">
+                    <th>Total</th>
+                </tr>
+                <tr>
+                    <td>TOTAL</td>
+                    <td class="precio-total">
+                        <span id="precio-total">0</span><span id="euros">€</span>    
+                    </td>
+                </tr>
+            </table>
+            
         </div>
     </div>
-    
+    <script src="./js/script.js"></script>
 </body>
 </html>

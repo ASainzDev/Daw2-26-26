@@ -1,45 +1,70 @@
+.body{
+    width:100%;
+}
+
 .main-container{
-    display: grid;
-    grid-template-columns: 8f, 4fr;
-    grid-gap:10px;
+    width:90%;
+    margin:auto;
     border: 1px solid black;
+    display: flex;
+    flex-direction: row;
 }
 
-.product-container{
-    display:grid;
-    grid-template-columns: 4fr, 3fr, 3fr, 3fr;
-    grid-column-start: 1;
-    grid-column-end:8;
-    grid-gap:10px;
-    padding-left:10px;
-    align-items: baseline;
+.product-table{
+    width:70%;
+    margin:5%;
 }
 
-.totalprice-container{
-    display:grid;
-    grid-column-start:8;
-    grid-column-end:12;
+.articles-table{
+    margin:15px;
+    width:100%;
+    text-align: left;
+    font-size: 14px;
+    font-weight:lighter;
 }
 
-.encabezado1{
-    grid-column-start: 1;
-    grid-column-end: 4;
-    border: 1px solid black;
+.articles-title th{
+    border-bottom: 1px solid black;
 }
 
-.encabezado2{
-    grid-column-start: 4;
-    grid-column-end: 7;
-    border: 1px solid black;
+.total-price{
+    width:30%;
+    margin:5%;
 }
 
-.encabezado3{
-    grid-column-start: 7;
-    grid-column-end: 10;
-    border: 1px solid black;
+.total-table{
+    margin:15px;
+    width:100%;
+    background-color: lightgray;
+    text-align: left;
 }
-.encabezado4{
-    grid-column-start: 10;
-    grid-column-end: 12;
-    border:1px solid black;
+
+.total-text{
+    font-size:18px;
+    font-weight:bold;
+    vertical-align: middle;
 }
+
+.precio-total{
+    text-align: right;   
+}
+
+#precio-total{
+    text-align: right;
+}
+
+#euros{
+    margin-right:10px;
+}
+
+
+.product-name p{
+    margin:0;
+}
+
+.product-row{
+    border-bottom: 0.5px solid black;
+}
+
+
+

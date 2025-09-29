@@ -3,7 +3,7 @@
 }
 
 .main-container{
-    width:90%;
+    width:95%;
     margin:auto;
     border: 1px solid black;
     display: flex;
@@ -11,7 +11,7 @@
 }
 
 .product-table{
-    width:70%;
+    width:75%;
     margin:5%;
 }
 
@@ -28,7 +28,7 @@
 }
 
 .total-price{
-    width:30%;
+    width:25%;
     margin:5%;
 }
 
@@ -58,13 +58,42 @@
 }
 
 
-.product-name p{
+.product-cell p{
     margin:0;
+}
+
+.product-name{
+    font-size: 1.5em;
+    font-weight:bold;
+}
+
+.product-reference{
+    font-size: 0.9em;
+    font-weight: lighter;
+    font-style: italic;
 }
 
 .product-row{
     border-bottom: 0.5px solid black;
 }
 
+.quantity-button{
+    background-color: transparent;
+    border:none;
+}
+
+.quantity{
+    display: inline-block;
+    text-align: center;
+    border:0.5px solid black;
+    width: 50px;
+    height: auto;
+    border-radius: 30%;
+    box-shadow: 2px 2px 2px grey;
+}
+
+input[number]::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+}
 
 

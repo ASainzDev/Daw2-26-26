@@ -73,9 +73,6 @@
     font-style: italic;
 }
 
-.product-row{
-    border-bottom: 0.5px solid black;
-}
 
 .quantity-button{
     background-color: transparent;
@@ -86,14 +83,16 @@
     display: inline-block;
     text-align: center;
     border:0.5px solid black;
-    width: 50px;
-    height: auto;
+    width: 30px;
+    height: 30px;
     border-radius: 30%;
     box-shadow: 2px 2px 2px grey;
 }
 
-input[number]::-webkit-inner-spin-button{
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
+    margin: 0;
 }
 
 

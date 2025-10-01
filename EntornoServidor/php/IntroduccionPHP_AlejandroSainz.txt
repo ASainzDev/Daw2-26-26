@@ -99,6 +99,10 @@ valorMedio($numeros);
 $arrayNombres = array("Alejandro"=>"46","Antonio"=>"35","Raul"=>"21","Fernando"=>"26");
 
 echo "<table>";
+	echo "<tr>";
+    echo "<th>Nombre</th>";
+    echo "<th>Edad</th>";
+    echo "</tr>";
 
 	foreach ($arrayNombres as $x => $y) {
   		echo "<tr>";
@@ -110,6 +114,52 @@ echo "<table>";
 
 echo "</table>";
 
+?> 
+
+
+<?php
+#Muevo el ultimo ejercicio aquí por que el de el fichero no me funciona 
+$numeros = array (
+  array(1,22,16),
+  array(6,15,92),
+  array(44,31,28),
+);
+
+$sumaTotal = 0;
+
+for($filas = 0; $filas <= 3; $filas++){
+	for($columnas = 0; $columnas <= 3; $columnas++){
+    	$sumaTotal += $numeros[$filas][$columnas];
+    }
+
+}
+
+echo "<h1>La suma total de los números es $sumaTotal</h1>"
+	
+?> 
+
+
+<?php
+
+#Después de un rato encuentro la solución para saber que formaction '' se llama a si mismo en vez de buscar una página a la que llamar
+echo "<form action='' method='post' enctype='multipart/form-data'>";
+  echo "Seleccione archivo para subir: </br>";
+  echo "<input type='file' name='fileToUpload' id='fileToUpload'>";
+  echo "<input type='submit' value='Upload Image' name='submit'>";
+echo "</form>";
+
+if (isset($_POST['submit'])) {
+    $resultado = validarFormato($_FILES['fileToUpload']);
+    echo $resultado;
+}
+
+#Se muestra el formulario y todo pero al dar upload siempre da error, y eso que solo intento que me devuelva el nombre del fichero por ahora
+
+function validarFormato($file){
+	$nombre = $file['name'];
+    return "<p>$nombre</p>";
+}
+	
 ?> 
 
 

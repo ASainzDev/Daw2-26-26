@@ -89,10 +89,16 @@
     box-shadow: 2px 2px 2px grey;
 }
 
-input[type=number]::-webkit-outer-spin-button,
-input[type=number]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+.price{
+    border:none;
+    text-align: rigth;
+    background-color: transparent;
+    width:6em;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 

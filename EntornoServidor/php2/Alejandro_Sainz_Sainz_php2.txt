@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+	
+    echo "<h1>Actividad 2 PHP Alejandro Sainz</h1></br>";
+    
+    #Defino el array que me pide el ejercicio
+    
+    $nombres = array ("Juan David","Alejandro","David","Aitor","Joel");
+    
+    echo "<h2>Ejercicio 1</h2>";
+    echo "</br><p>Contar los caracteres totales de todos los nombres contenidos en el 		array de nombres</p></br></br>";
+    
+    #Defino un contador para la longitud total
+    
+    $contador = 0;
+    
+    foreach($nombres as $nombre){
+    	$contador += strlen(trim($nombre));
+    }
+    
+    echo "<p>El numero total de caracteres en el array es $contador</p></br>";
+    
+    #Despues de terminar el ejercicio dos tengo en cuenta que siendo el resultado 33 quizá tenga en cuenta el espacio en blanco en el nombre de Juan David así que modifico el contenido del foreach. Después del cambio sigue siendo 33 así que supongo que no tiene en cuenta los espacios en blanco
+    
+    echo "<h2>Ejercicio 2</h2>";
+    echo "<p> Crear una función que cuente cuantas veces aparece un determinado caracter</p></br>";
+    
+    #Voy a intentar aprovechar el contador, así que lo reinicio a 0
+    
+    $contador = 0;
+    
+    #Creo la función que se pide. Le paso por parametros el array y la letra. Pense que el array como estaba definido fuera del ambito de la función podría usarle como variable global pero parece ser que no así que lo tengo que pasar como parámetro
+    
+    function contadorLetra($array, $letra){
+    
+    	#Dentro del método uso un foreach que recorra el array
+    	foreach($array as $cadena){
+        	#En cada iteración del array se pasan las cadenas a minúscula, se cuenta cuantas veces aparece la letra y el resultado se añade a contador.
+        	$contador += substr_count(strtolower($cadena), $letra);
+        }
+    
+    	echo "<p>El numero de veces que aparece la letra $letra es: $contador</p></				b>";
+    }
+    
+    #Defino una variable con el caracter a buscar y llamo al metodo
+    
+    $letra = 'a';
+    
+    contadorLetra($nombres, $letra);
+    
+    
+    echo "<h2>Ejercicio 3</h2>";
+    echo "<p> Crear una función que cuente el número de vocales y consonantes por separado</p></br>";
+    
+    
+    
+    #Defino la funcion
+    
+    function vocalesconsonantes($array){
+    
+    	#Lo primero defino dos contadores, uno por tipo
+    
+    	$vocales = 0;
+    	$consonantes = 0;
+    
+    	#Lo primero que voy a hacer es juntar todos los nombres en un solo string usando la funcion implode()
+        
+        $cadenaTotal = implode("",$array);
+        
+        #Compruebo que se haga correctamente
+        
+        echo "$cadenaTotal </br>";
+        
+        #Paso toda la cadena a minúsculas
+        
+        $cadenaTotal = strtolower($cadenaTotal);
+        
+        #Vuelvo a comprobar
+        
+        echo "$cadenaTotal </br>";
+        
+        #Defino una variable que cuente el número total de caracteres de la cadena
+        
+        $caracteresTotales = strlen($cadenaTotal);
+        
+        #Compruebo
+        
+        echo "$caracteresTotales </br>";
+ 
+        $a = substr_count($cadenaTotal, 'a');
+        $e = substr_count($cadenaTotal, 'e');
+        $i = substr_count($cadenaTotal, 'i');
+        $o = substr_count($cadenaTotal, 'o');
+        $u = substr_count($cadenaTotal, 'u');
+        
+        $vocales = $a + $e + $i + $o +$u;
+        
+        $consonantes = $caracteresTotales - $vocales;
+        
+        echo "</br><p>El número de vocales es $vocales</p></br>";
+        echo "</br><p>El número de consonantes es $consonantes</p></br>";
+        
+    }
+    
+    vocalesconsonantes($nombres);
+    
+    
+    echo "<h2>Ejercicio 4</h2>";
+    echo "<p> Crear una función que nos devuelva el nombre más largo y el más corto</p></br>";
+    
+    #defino la función
+    
+    function cortolargo($array){
+    
+    	#Lo que he pensado primero es recorrer el array de nombres e ir creando a la vez un array asociativo con nombre y longitud
+        
+        #Defino el que será el array asociativo
+        $nombreLongitud = [];
+        
+        #Defino un array que va a almacenar las longitudes que me va a servir más tarde
+        $longitudes = [];
+        
+        #Recorro el array de nombres original
+        
+        foreach($array as $elemento){
+        	#Por cada elemento lo que hago es añadir el nombre y la longitud al array
+            #Además almaceno la longitud de cada nombre en el array longitudes
+        	$nombreLongitud[$elemento] = strlen($elemento);
+            array_push($longitudes, strlen($elemento));
+        }
+        
+        #Hago un print_r para comprobar que esté bien creado el array
+        
+        print_r($nombreLongitud);
+        
+        echo "</br>";
+        
+        print_r($longitudes);
+        
+        #Después de crear el array asociativo lo que voy a intentar hacer es ordenarle por el valor de longitud
+        asort($nombreLongitud, 1);
+        
+        #ordenos según el mismo orden el array de longitudes
+        sort($longitudes);
+        
+        
+        print_r($longitudes);
+        print_r($nombreLongitud);
+        
+        #Como he comprobado antes, el array queda ordenado de menor a mayor, por lo tanto sólo tengo que imprimir el valor del array asociativo cuya key sea igual al valor del primer elemento del array longitudes y el ultimo valor del array longitudes
+        
+        #Como parece ser que no puedo insertar muchas variables al elegir un elemento de un array asociativo tengo que crear dos variables
+        
+        $longitudMasBaja = $longitudes[0];
+        $longitudMasAlta = end($longitudes);
+        
+        foreach($nombreLongitud as $clave => $valor){
+        	if($valor === $longitudMasBaja){
+            	echo "<br>El nombre con la longitud más baja es $clave : longitud $valor</br>";
+            }
+            
+            if($valor === $longitudMasAlta){
+            	echo "<br>El nombre con la longitud más alta es $clave : longitud $valor</br>";
+            }
+        }
+        
+        
+    
+    }
+    
+    cortolargo($nombres);
+    
+?>
+
+</body>
+</html>

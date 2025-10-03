@@ -2,18 +2,12 @@ export default class Carrito{
 
     
     
-    constructor(products){
-        
+    constructor(product){
+        this.products = [];
     }
 
-    updateProductUnits(sku, units){
-        this.sellQuantity = units;
+    addProduct(product){
+        this.products.push(product);
     }
 
-    getInfoProduct(sku){
-        return {
-            this:sku,
-            this:this.sellQuantity
-        }
-    }
 }

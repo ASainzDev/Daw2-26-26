@@ -13,6 +13,16 @@ document.addEventListener("DOMContentLoaded",(event)); {
 
     initializeTableProductos();
 
+    const product = {
+        sku : "",
+        title : "",
+        price : 0
+    }
+
+    const carrito = new Carrito(product);
+
+    
+
     function initializeTableProductos() {
 
         dato.products.forEach(producto => {
@@ -55,6 +65,7 @@ document.addEventListener("DOMContentLoaded",(event)); {
             const total = document.createElement("input");
             total.type = "number";
             total.readOnly = true;
+            total.defaultValue = 0;
             cell4.appendChild(total);
             total.classList.add("price");
             cell4.appendChild(euros);
@@ -96,10 +107,19 @@ document.addEventListener("DOMContentLoaded",(event)); {
             buttonPlus.textContent = "+";
             buttonPlus.classList.add("quantity-button");
             buttonPlus.addEventListener('click', ()=>{
+                
                 if(quantity.value == 25){
                     buttonPlus.disabled = true;
                     alert("No te vamos a dejar comprar más de 25. Pida presupuesto");
                 }else {
+
+                    product.sku = productReference;
+                    product.title = productName;
+                    product.price = unitPrice.valueAsNumber;
+
+                    carrito.addProduct(product);
+                    
+
                     buttonPlus.disabled = false;
                     quantity.value++;
                     total.valueAsNumber = quantity.valueAsNumber * unitPrice.valueAsNumber;

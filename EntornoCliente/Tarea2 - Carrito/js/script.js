@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded",(event)); {
     let precioTotalProductos = 0;
 
     const precioFinal = document.getElementById("precio-total");
+    const tableFinalPrice = document.getElementsByClassName("total-table");
 
     initializeTableProductos();
 
@@ -19,7 +20,7 @@ document.addEventListener("DOMContentLoaded",(event)); {
         price : 0
     }
 
-    const carrito = new Carrito(product);
+    const carrito = new Carrito();
 
     
 
@@ -95,7 +96,6 @@ document.addEventListener("DOMContentLoaded",(event)); {
                     quantity.value--;
                     total.valueAsNumber = quantity.valueAsNumber * unitPrice.valueAsNumber;
                     precioTotalProductos -= unitPrice.valueAsNumber;
-                    precioFinal.textContent = precioTotalProductos.toFixed(2);
                     buttonPlus.disabled = false;
                 }
                 
@@ -113,18 +113,20 @@ document.addEventListener("DOMContentLoaded",(event)); {
                     alert("No te vamos a dejar comprar más de 25. Pida presupuesto");
                 }else {
 
-                    product.sku = productReference;
-                    product.title = productName;
+                    product.sku = productReference.textContent;
+                    product.title = productName.textContent;
                     product.price = unitPrice.valueAsNumber;
+                    product.quantiyt = quantity.valueAsNumber;
 
-                    carrito.addProduct(product);
+                    carrito.addProduct(product.sku, product);
+
+                    renderCart(carrito.products);
                     
 
                     buttonPlus.disabled = false;
                     quantity.value++;
                     total.valueAsNumber = quantity.valueAsNumber * unitPrice.valueAsNumber;
                     precioTotalProductos += unitPrice.valueAsNumber;
-                    precioFinal.textContent = precioTotalProductos.toFixed(2);
                     buttonMinus.disabled = false;
                 }
                 
@@ -141,6 +143,39 @@ document.addEventListener("DOMContentLoaded",(event)); {
     }
 
 
-    
+    function renderCart(array){
+
+        let collection = carrito.obtainCollection;
+
+        for(let [key, value] of collection){
+
+            console.log(elemento);
+
+            const row = document.createElement("tr");
+            const cell1 = document.createElement("td");
+            const cell2 = document.createElement("td");
+            const cell3 = document.createElement("td");
+
+            const nombreProducto = document.createElement('p');
+            const sku = document.createElement('p');
+            const precioProducto = document.createElement('p');
+            const cantidadProducto = document.createElement('p');
+
+            nombreProducto.textContent = elemento.title;
+            sku.textContent = elemento.sku;
+            precioProducto.textContent = elemento.precioProducto;
+            cantidadProducto.textContent = elemento.cantidad;
+
+            cell1.append(nombreProducto, sku);
+            cell2.append(precioProducto);
+            cell3.append(cantidadProducto);
+            row.append(cell1, cell2, cell3);
+
+            precioFinal.textContent += parseInt(precioProducto)*elemento.cantidad;
+            tableFinalPrice.item(0).append(row);
+
+        };
+
+    }
 
 }

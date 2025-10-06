@@ -2,12 +2,18 @@ export default class Carrito{
 
     
     
-    constructor(product){
-        this.products = [];
+    constructor(){
+        this.products = new Map;
     }
 
-    addProduct(product){
-        this.products.push(product);
+    addProduct(key,product){
+        this.products.set(key, product);
     }
+
+    obtainCollection(){
+        return this.products;
+    }
+
+    
 
 }

@@ -7,7 +7,15 @@ export default class Carrito{
     }
 
     addProduct(key,product){
-        this.products.set(key, product);
+
+        if(product.quantity == 0){
+            this.products.delete(key);
+        }else{
+            this.products.set(key, product);
+        }
+
+        
+       
     }
 
     obtainCollection(){

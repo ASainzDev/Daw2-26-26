@@ -6,27 +6,28 @@ document.addEventListener("DOMContentLoaded",(event)); {
 
 
     const tablaDeProductos = document.getElementsByClassName("articles-table");
-
-    let precioTotalProductos = 0;
+    const containerTotal = document.getElementsByClassName("total-price");
 
     const precioFinal = document.getElementById("precio-total");
-    const tableFinalPrice = document.getElementsByClassName("total-table");
-
-    initializeTableProductos();
-
-    const product = {
-        sku : "",
-        title : "",
-        price : 0
-    }
 
     const carrito = new Carrito();
 
-    
+    const productMap = new Map();
+
+    fetch('https://jsonblob.com/api/jsonBlob/1425066176043737088')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        //data.products.forEach(product => {
+            //productMap.set(product.SKU, product);
+        //});
+    });
+
+    initializeTableProductos();    
 
     function initializeTableProductos() {
 
-        dato.products.forEach(producto => {
+        productMap.forEach((producto, sku) => {
 
             const row = document.createElement("tr");
             const cell1 = document.createElement("td");
@@ -94,8 +95,22 @@ document.addEventListener("DOMContentLoaded",(event)); {
                 }else{
                     buttonMinus.disable = false;
                     quantity.value--;
-                    total.valueAsNumber = quantity.valueAsNumber * unitPrice.valueAsNumber;
-                    precioTotalProductos -= unitPrice.valueAsNumber;
+
+                    const product = {
+                        sku : "",
+                        title : "",
+                        price : 0
+                    }
+
+                    product.sku = productReference.textContent;
+                    product.title = productName.textContent;
+                    product.price = unitPrice.valueAsNumber;
+                    product.quantity = quantity.valueAsNumber;
+
+                    carrito.addProduct(product.sku, product);
+
+                    renderCart(carrito.products);
+
                     buttonPlus.disabled = false;
                 }
                 
@@ -112,11 +127,18 @@ document.addEventListener("DOMContentLoaded",(event)); {
                     buttonPlus.disabled = true;
                     alert("No te vamos a dejar comprar más de 25. Pida presupuesto");
                 }else {
+                    quantity.value++;
+
+                    const product = {
+                        sku : "",
+                        title : "",
+                        price : 0
+                    }
 
                     product.sku = productReference.textContent;
                     product.title = productName.textContent;
                     product.price = unitPrice.valueAsNumber;
-                    product.quantiyt = quantity.valueAsNumber;
+                    product.quantity = quantity.valueAsNumber;
 
                     carrito.addProduct(product.sku, product);
 
@@ -124,9 +146,8 @@ document.addEventListener("DOMContentLoaded",(event)); {
                     
 
                     buttonPlus.disabled = false;
-                    quantity.value++;
+                    
                     total.valueAsNumber = quantity.valueAsNumber * unitPrice.valueAsNumber;
-                    precioTotalProductos += unitPrice.valueAsNumber;
                     buttonMinus.disabled = false;
                 }
                 
@@ -143,38 +164,111 @@ document.addEventListener("DOMContentLoaded",(event)); {
     }
 
 
-    function renderCart(array){
+    function renderCart(productsMap){
 
-        let collection = carrito.obtainCollection;
+        const containerCart = document.getElementsByClassName("cart");
+        containerCart.item(0).innerHTML = "";
 
-        for(let [key, value] of collection){
+        let valorTotal = 0;
+
+        productsMap.forEach((elemento,sku) => {
 
             console.log(elemento);
 
-            const row = document.createElement("tr");
-            const cell1 = document.createElement("td");
-            const cell2 = document.createElement("td");
-            const cell3 = document.createElement("td");
+            const elementDisplay = document.createElement("div");
+            elementDisplay.classList.add("element-display");
+            const productTitle = document.createElement("p");
+            const productQuantity = document.createElement("input");
+            productQuantity.type = "number";
+            productQuantity.readOnly = true;
+            productQuantity.classList.add("price");
+            const totalProductPrice = document.createElement("input");
+            totalProductPrice.readOnly = true;
+            totalProductPrice.classList.add("price");
+            const divQuantityControls = document.createElement("div");
+            divQuantityControls.classList.add("quantity-controls");
+            const buttonMinus = document.createElement("button");
+            buttonMinus.textContent = "-";
+            buttonMinus.classList.add("quantity-button");
+            buttonMinus.addEventListener('click', ()=>{
+                
+                if(productQuantity.value == 0){
+                    buttonMinus.disabled = true;
+                }else {
+                    productQuantity.value--;
 
-            const nombreProducto = document.createElement('p');
-            const sku = document.createElement('p');
-            const precioProducto = document.createElement('p');
-            const cantidadProducto = document.createElement('p');
+                    const product = {
+                        sku : "",
+                        title : "",
+                        price : 0
+                    }
 
-            nombreProducto.textContent = elemento.title;
-            sku.textContent = elemento.sku;
-            precioProducto.textContent = elemento.precioProducto;
-            cantidadProducto.textContent = elemento.cantidad;
+                    product.sku = sku;
+                    product.title = elemento.title;
+                    product.price = elemento.price;
+                    product.quantity = productQuantity.valueAsNumber;
 
-            cell1.append(nombreProducto, sku);
-            cell2.append(precioProducto);
-            cell3.append(cantidadProducto);
-            row.append(cell1, cell2, cell3);
+                    carrito.addProduct(product.sku, product);
 
-            precioFinal.textContent += parseInt(precioProducto)*elemento.cantidad;
-            tableFinalPrice.item(0).append(row);
+                    renderCart(carrito.products);
+                    
 
-        };
+                    buttonPlus.disabled = false;
+                
+                    buttonMinus.disabled = false;
+                }
+                
+            });
+
+
+
+            const buttonPlus = document.createElement("button");
+            buttonPlus.textContent = "+";
+            buttonPlus.classList.add("quantity-button");
+            buttonPlus.addEventListener('click', ()=>{
+                
+                if(productQuantity.value == 25){
+                    buttonPlus.disabled = true;
+                    alert("No te vamos a dejar comprar más de 25. Pida presupuesto");
+                }else {
+                    productQuantity.value++;
+
+                    const product = {
+                        sku : "",
+                        title : "",
+                        price : 0
+                    }
+
+                    product.sku = sku;
+                    product.title = elemento.title;
+                    product.price = elemento.price;
+                    product.quantity = productQuantity.valueAsNumber;
+
+                    carrito.addProduct(product.sku, product);
+
+                    renderCart(carrito.products);
+                    
+
+                    buttonPlus.disabled = false;
+                
+                    buttonMinus.disabled = false;
+                }
+                
+            });
+            divQuantityControls.append(buttonPlus, buttonMinus);
+
+            productTitle.textContent = elemento.title;
+            productQuantity.value = elemento.quantity;
+            totalProductPrice.value = (elemento.price * elemento.quantity).toFixed(2) + " " + dato.currency;
+            valorTotal += elemento.price * elemento.quantity;
+
+            elementDisplay.append(productTitle, productQuantity, totalProductPrice, divQuantityControls);
+            containerCart.item(0).append(elementDisplay);
+
+
+        });
+
+        precioFinal.textContent = valorTotal.toFixed(2);
 
     }
 

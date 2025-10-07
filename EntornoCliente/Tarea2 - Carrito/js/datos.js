@@ -4,7 +4,6 @@ export const
     dato = {
 
     currency: "€",
-    total : 0,
     products: [
         {
             SKU: "0K3QOSOV4V",

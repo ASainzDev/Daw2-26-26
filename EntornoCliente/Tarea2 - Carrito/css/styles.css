@@ -30,6 +30,8 @@
 .total-price{
     width:25%;
     margin:5%;
+    display: flex;
+    flex-direction: column;
 }
 
 .total-table{
@@ -47,6 +49,16 @@
 
 .precio-total{
     text-align: right;   
+}
+
+.cart{
+    display:flex;
+    flex-direction: column;
+}
+
+.element-display{
+    display:flex;
+    flex-direction: row;
 }
 
 #precio-total{
@@ -87,6 +99,13 @@
     height: 30px;
     border-radius: 30%;
     box-shadow: 2px 2px 2px grey;
+}
+
+.quantity-controls{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .price{

@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded",(event)); {
     fetch('https://68e53fab21dd31f22cc120de.mockapi.io/carrito/api/products')
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        
         data.forEach(product => {
             productMap.set(product.SKU, product);
         });
@@ -53,10 +53,9 @@ document.addEventListener("DOMContentLoaded",(event)); {
             //Añado el precio unitario de cada producto. También la moneda
 
             const unitPrice = document.createElement("input");
-            unitPrice.type = "number"
-            unitPrice.contentEditable = false;
-            unitPrice.readOnly = true;
+            cartInputStyle(unitPrice);
             unitPrice.value = producto.price;
+            unitPrice.style.backgroundColor = "transparent";
             unitPrice.classList.add("price");
 
             const euros = document.createElement("span");
@@ -66,10 +65,8 @@ document.addEventListener("DOMContentLoaded",(event)); {
             //Añado ahora el campo de la celda precio total
 
             const total = document.createElement("input");
-            total.type = "number";
-            total.readOnly = true;
-            total.defaultValue = 0;
-            cell4.appendChild(total);
+            cartInputStyle(total);
+            cell4.append(total);
             total.classList.add("price");
             cell4.appendChild(euros);
 
@@ -179,92 +176,23 @@ document.addEventListener("DOMContentLoaded",(event)); {
 
             const elementDisplay = document.createElement("div");
             elementDisplay.classList.add("element-display");
+
             const productTitle = document.createElement("p");
+
             const productQuantity = document.createElement("input");
-            productQuantity.type = "number";
-            productQuantity.readOnly = true;
-            productQuantity.classList.add("price");
+            cartInputStyle(productQuantity);
+            
+            
             const totalProductPrice = document.createElement("input");
             totalProductPrice.readOnly = true;
-            totalProductPrice.classList.add("price");
-            const divQuantityControls = document.createElement("div");
-            divQuantityControls.classList.add("quantity-controls");
-            const buttonMinus = document.createElement("button");
-            buttonMinus.textContent = "-";
-            buttonMinus.classList.add("quantity-button");
-            buttonMinus.addEventListener('click', ()=>{
-                
-                if(productQuantity.value == 0){
-                    buttonMinus.disabled = true;
-                }else {
-                    productQuantity.value--;
-
-                    const product = {
-                        sku : "",
-                        title : "",
-                        price : 0
-                    }
-
-                    product.sku = sku;
-                    product.title = elemento.title;
-                    product.price = elemento.price;
-                    product.quantity = productQuantity.valueAsNumber;
-
-                    carrito.addProduct(product.sku, product);
-
-                    renderCart(carrito.products);
-                    
-
-                    buttonPlus.disabled = false;
-                
-                    buttonMinus.disabled = false;
-                }
-                
-            });
-
-
-
-            const buttonPlus = document.createElement("button");
-            buttonPlus.textContent = "+";
-            buttonPlus.classList.add("quantity-button");
-            buttonPlus.addEventListener('click', ()=>{
-                
-                if(productQuantity.value == 25){
-                    buttonPlus.disabled = true;
-                    alert("No te vamos a dejar comprar más de 25. Pida presupuesto");
-                }else {
-                    productQuantity.value++;
-
-                    const product = {
-                        sku : "",
-                        title : "",
-                        price : 0
-                    }
-
-                    product.sku = sku;
-                    product.title = elemento.title;
-                    product.price = elemento.price;
-                    product.quantity = productQuantity.valueAsNumber;
-
-                    carrito.addProduct(product.sku, product);
-
-                    renderCart(carrito.products);
-                    
-
-                    buttonPlus.disabled = false;
-                
-                    buttonMinus.disabled = false;
-                }
-                
-            });
-            divQuantityControls.append(buttonPlus, buttonMinus);
+            cartInputStyle(totalProductPrice);
 
             productTitle.textContent = elemento.title;
             productQuantity.value = elemento.quantity;
-            totalProductPrice.value = (elemento.price * elemento.quantity).toFixed(2) + " " + dato.currency;
+            totalProductPrice.value = (elemento.price * elemento.quantity).toFixed(2);
             valorTotal += elemento.price * elemento.quantity;
 
-            elementDisplay.append(productTitle, productQuantity, totalProductPrice, divQuantityControls);
+            elementDisplay.append(productTitle, productQuantity, totalProductPrice);
             containerCart.item(0).append(elementDisplay);
 
 
@@ -272,6 +200,14 @@ document.addEventListener("DOMContentLoaded",(event)); {
 
         precioFinal.textContent = valorTotal.toFixed(2);
 
+    }
+
+    function cartInputStyle(input){
+        input.type = "number";
+        input.classList.add("inputs");
+        input.contentEditable = false;
+        input.defaultValue = 0;
+        
     }
 
 }

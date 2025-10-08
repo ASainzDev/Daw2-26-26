@@ -23,6 +23,14 @@
     font-weight:lighter;
 }
 
+.articles-table tr:nth-child(odd){
+    background-color: lightblue;
+}
+
+.articles-table tr:nth-child(even){
+    background-color:lightgray;
+}
+
 .articles-title th{
     border-bottom: 1px solid black;
 }
@@ -32,6 +40,7 @@
     margin:5%;
     display: flex;
     flex-direction: column;
+    border: 1px solid-black;
 }
 
 .total-table{
@@ -56,9 +65,13 @@
     flex-direction: column;
 }
 
+
 .element-display{
     display:flex;
     flex-direction: row;
+    box-sizing: border-box;
+    padding : 15px;
+    justify-content: space-between;
 }
 
 #precio-total{
@@ -99,25 +112,22 @@
     height: 30px;
     border-radius: 30%;
     box-shadow: 2px 2px 2px grey;
-}
-
-.quantity-controls{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.price{
-    border:none;
-    text-align: rigth;
     background-color: transparent;
-    width:6em;
 }
+
 
 input[type=number] {
   -moz-appearance: textfield;
   appearance: textfield;
 }
+
+.inputs{
+    text-align: center;
+    max-width: 30%;
+    border:none;
+    background-color: transparent;    
+}
+
+
 
 

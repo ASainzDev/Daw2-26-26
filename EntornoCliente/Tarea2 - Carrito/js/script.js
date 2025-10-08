@@ -14,16 +14,17 @@ document.addEventListener("DOMContentLoaded",(event)); {
 
     const productMap = new Map();
 
-    fetch('https://jsonblob.com/api/jsonBlob/1425066176043737088')
+    fetch('https://68e53fab21dd31f22cc120de.mockapi.io/carrito/api/products')
     .then(response => response.json())
     .then(data => {
         console.log(data);
-        //data.products.forEach(product => {
-            //productMap.set(product.SKU, product);
-        //});
+        data.forEach(product => {
+            productMap.set(product.SKU, product);
+        });
+        initializeTableProductos();
     });
 
-    initializeTableProductos();    
+        
 
     function initializeTableProductos() {
 
@@ -79,7 +80,6 @@ document.addEventListener("DOMContentLoaded",(event)); {
             const quantity = document.createElement("input");
             quantity.readOnly = true;
             quantity.min = 0;
-            quantity.max = 10;
             quantity.defaultValue = 0;
             quantity.type = "number";
             quantity.classList.add("quantity");
@@ -110,6 +110,8 @@ document.addEventListener("DOMContentLoaded",(event)); {
                     carrito.addProduct(product.sku, product);
 
                     renderCart(carrito.products);
+
+                    total.valueAsNumber = quantity.valueAsNumber * unitPrice.valueAsNumber;
 
                     buttonPlus.disabled = false;
                 }

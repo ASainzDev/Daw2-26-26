@@ -13,9 +13,7 @@ export default class Carrito{
         }else{
             this.products.set(key, product);
         }
-
-        
-       
+  
     }
 
     obtainCollection(){

@@ -1,0 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Actividad Definitiva</title>
+</head>
+<body>
+
+	<header>
+		<h1>EJERCICIO DEFINITIVO</h1>
+	</header>
+	
+	<div>
+		<h2>Comprobemos si es mayor de edad</h2>
+		<form method="post" id="formularioentrada">
+			<label for="entrada">Inserte su edad</label>
+			<input type="number" name="entrada" min= 0 max = 99 class="edad">
+			<input type="submit" value="Comprobar">
+		</form>
+	</div>
+	
+	
+	
+
+</body>
+</html>

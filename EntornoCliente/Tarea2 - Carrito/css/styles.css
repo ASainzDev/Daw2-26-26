@@ -18,10 +18,16 @@
 .articles-table{
     margin:15px;
     width:100%;
-    text-align: left;
+    text-align: center;
     font-size: 14px;
     font-weight:lighter;
+    box-shadow: 10px 10px 10px darkgrey;
 }
+
+.articles-table th{
+    border-radius:10px;
+}
+
 
 .articles-table tr:nth-child(odd){
     background-color: lightblue;
@@ -61,14 +67,14 @@
 }
 
 .cart{
-    display:flex;
-    flex-direction: column;
+    display:table;
+    width: 100%;
+    border: 1px solid black;
 }
 
 
 .element-display{
-    display:flex;
-    flex-direction: row;
+    display:table-row;
     box-sizing: border-box;
     padding : 15px;
     justify-content: space-between;

@@ -1,31 +1,32 @@
-import { dato } from "./datos.js";
 import Carrito from "./Carrito.js";
 
-document.addEventListener("DOMContentLoaded",(event)); {
+//Declaro lo primero un mapa, es en el que voy a almacenar los artículos. Luego como en este mapa solo voy a almacenar los artículos tengo que crear una variable para la moneda
+const productMap = new Map();
+let moneda = "";
 
+//Cargamos el evento DomContentLoaded, dentro de el realizamos el fetch
+document.addEventListener("DOMContentLoaded",() => {
+    fetch('http://localhost:8080/api/carrito')
+    .then(response => response.json())
+    .then(data => {
+        //Almacenamos los datos de currency en la variable y el array de productos en nuestro propio mapa.
+        moneda = data.currency;
+        data.products.forEach(product => {
+            productMap.set(product.sku, product);
+        });
+        console.log(moneda);
+        initializeTableProductos();
+    }).catch(console.log('Error al cargar los datos desde el servidor de datos'));
+});
 
-
+    //Genero las diferentes variables que necesito para los diferentes elementos de mi código html, sólo aquellos que realmente voy a necesitar aqui
     const tablaDeProductos = document.getElementsByClassName("articles-table");
-    const containerTotal = document.getElementsByClassName("total-price");
 
     const precioFinal = document.getElementById("precio-total");
 
     const carrito = new Carrito();
 
-    const productMap = new Map();
-
-    fetch('https://68e53fab21dd31f22cc120de.mockapi.io/carrito/api/products')
-    .then(response => response.json())
-    .then(data => {
-        
-        data.forEach(product => {
-            productMap.set(product.SKU, product);
-        });
-        initializeTableProductos();
-    });
-
-        
-
+    //Defino la funcion initializeTableProductos que es la que gestiona lo que se hace en la página al cargar los productos desde el back.
     function initializeTableProductos() {
 
         productMap.forEach((producto, sku) => {
@@ -38,28 +39,27 @@ document.addEventListener("DOMContentLoaded",(event)); {
         
             //A partir de aquí voy agregando los elementos. Primero el nombre y la referencia del producto
 
+            //Voy creando los diferentes elementos. Les doy una clase aunque normalmente no me hace falta
             const productName = document.createElement("p");
             productName.classList.add("product-name");
             productName.textContent = producto.title;
-            cell1.appendChild(productName);
+            cell1.append(productName);
 
             const productReference = document.createElement("p");
             productReference.classList.add("product-reference");
-            productReference.textContent = producto.SKU;
-            cell1.appendChild(productReference);
+            productReference.textContent = sku;
+            cell1.append(productReference);
 
-            cell1.classList.add("product-cell");
 
             //Añado el precio unitario de cada producto. También la moneda
 
             const unitPrice = document.createElement("input");
             cartInputStyle(unitPrice);
             unitPrice.value = producto.price;
-            unitPrice.style.backgroundColor = "transparent";
             unitPrice.classList.add("price");
 
             const euros = document.createElement("span");
-            euros.textContent = dato.currency;
+            euros.textContent = moneda;
             cell3.append(unitPrice, euros);
 
             //Añado ahora el campo de la celda precio total
@@ -68,20 +68,15 @@ document.addEventListener("DOMContentLoaded",(event)); {
             cartInputStyle(total);
             cell4.append(total);
             total.classList.add("price");
-            cell4.appendChild(euros);
-
+            cell4.append(euros);
 
             //Por ultimo añado el cuadro de la cantidad y los botones para aumentar y disminuir los productos
-
-
             const quantity = document.createElement("input");
             quantity.readOnly = true;
             quantity.min = 0;
             quantity.defaultValue = 0;
             quantity.type = "number";
             quantity.classList.add("quantity");
-
-            
 
             const buttonMinus = document.createElement("button");
             buttonMinus.textContent = "-";
@@ -116,7 +111,6 @@ document.addEventListener("DOMContentLoaded",(event)); {
             });
 
             
-
             const buttonPlus = document.createElement("button");
             buttonPlus.textContent = "+";
             buttonPlus.classList.add("quantity-button");
@@ -157,7 +151,7 @@ document.addEventListener("DOMContentLoaded",(event)); {
 
             row.append(cell1, cell2, cell3, cell4);
 
-            tablaDeProductos.item(0).appendChild(row);
+            tablaDeProductos.item(0).append(row);
 
         });
     }
@@ -178,12 +172,15 @@ document.addEventListener("DOMContentLoaded",(event)); {
             elementDisplay.classList.add("element-display");
 
             const productTitle = document.createElement("p");
+            productTitle.style.display = "table-cell";
 
             const productQuantity = document.createElement("input");
             cartInputStyle(productQuantity);
+            productQuantity.style.display = "table-cell";
             
             
             const totalProductPrice = document.createElement("input");
+            totalProductPrice.style.display = "table-cell";
             totalProductPrice.readOnly = true;
             cartInputStyle(totalProductPrice);
 
@@ -210,4 +207,4 @@ document.addEventListener("DOMContentLoaded",(event)); {
         
     }
 
-}
+

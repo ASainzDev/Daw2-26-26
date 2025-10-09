@@ -1,0 +1,88 @@
+html{
+    background-color: black;
+}
+
+.window{
+    width:90vw;
+    max-height: auto;
+    box-sizing: border-box;
+    color:white;
+    font-family: 'Courier New', Courier, monospace;
+    background-color:#7287fd;
+    margin: auto;
+    border-radius: 10%;
+    box-sizing: border-box;
+    box-shadow: 6px 6px 6px rgb(4, 165, 229, 0.7);
+}
+
+img{
+    max-width: 15%;
+    max-height:15%;
+    margin: 2%;
+    border:5px inset #df8e1d;
+    border-radius: 40%;
+}
+
+h1{
+    text-align: center;
+    width:50%;
+    margin:auto;
+    font-style: italic;
+    font-weight: bold;
+}
+
+h2{
+    max-width: 50vw;
+    max-height: fit-content;
+    text-align: center;
+    margin:auto;
+}
+
+p{
+    max-width: 50vw;
+    max-height: fit-content;
+    text-align: center;
+    margin:auto;
+}
+
+ul{
+    max-width: 50vw;
+    max-height: fit-content;
+    text-align: center;
+    margin:auto;
+    list-style:none;
+    margin-bottom:5%;
+}
+
+.bottom{
+    max-width: 75vw;
+    max-height: auto;
+    border: 3px inset #df8e1d;
+    margin: auto;
+    color:white;
+}
+
+.social{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+    vertical-align: center;
+    list-style: none;
+}
+
+.social svg{
+    margin-right:5%;
+}
+
+
+a:any-link{
+    color:white;
+}
+
+a:hover{
+    color:aqua;
+}
+
+a:visited{
+    color:yellow;
+}

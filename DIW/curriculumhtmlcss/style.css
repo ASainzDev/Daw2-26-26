@@ -1,0 +1,215 @@
+/* Catppuccin Mocha palette */
+:root {
+    --rosewater: #f5e0dc;
+    --flamingo:  #f2cdcd;
+    --pink:      #f5c2e7;
+    --mauve:     #cba6f7;
+    --red:       #f38ba8;
+    --maroon:    #eba0ac;
+    --peach:     #fab387;
+    --yellow:    #f9e2af;
+    --green:     #a6e3a1;
+    --teal:      #94e2d5;
+    --sky:       #89dceb;
+    --sapphire:  #74c7ec;
+    --blue:      #89b4fa;
+    --lavender:  #b4befe;
+  
+    --text:      #cdd6f4;
+    --subtext1:  #bac2de;
+    --subtext0:  #a6adc8;
+  
+    --overlay2:  #9399b2;
+    --overlay1:  #7f849c;
+    --overlay0:  #6c7086;
+  
+    --surface2:  #585b70;
+    --surface1:  #45475a;
+    --surface0:  #313244;
+  
+    --base:      #1e1e2e;
+    --mantle:    #181825;
+    --crust:     #11111b;
+  }
+  
+  /* Reset mínimo */
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", "DejaVu Sans", sans-serif;
+    color: var(--text);
+    background:
+      radial-gradient(1200px 800px at 20% 10%, rgba(203,166,247,0.06), transparent 60%),
+      radial-gradient(900px 600px at 80% 30%, rgba(137,180,250,0.06), transparent 60%),
+      radial-gradient(700px 500px at 50% 90%, rgba(148,226,213,0.05), transparent 60%),
+      var(--base);
+  }
+  
+  /* Barra superior estilo Hyprland/Waybar */
+  .bar {
+    position: sticky; /* se queda arriba al hacer scroll */
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 34px;
+    padding: 0 12px;
+    background: color-mix(in oklab, var(--mantle) 92%, transparent);
+    color: var(--text);
+    border-bottom: 1px solid var(--surface0);
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+    z-index: 100;
+    letter-spacing: 0.2px;
+  }
+  .bar-left, .bar-center, .bar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+  .bar-center {
+    justify-content: center;
+    flex: 1 1 auto;
+    font-weight: 600;
+    color: var(--subtext1);
+  }
+  .bar-left { color: var(--overlay1); }
+  .bar-right { color: var(--subtext0); }
+  
+  /* Ventana/Panel central tipo tiling window */
+  .window {
+    max-width: 920px;
+    margin: 36px auto 48px;
+    padding: 28px 28px 24px;
+    background: rgba(30, 30, 46, 0.60); /* base con alpha */
+    border: 1px solid var(--surface0);
+    border-radius: 14px;
+    box-shadow:
+      0 10px 30px rgba(0,0,0,0.35),
+      0 2px 0 0 rgba(203,166,247,0.20) inset; /* sutil acento mauve */
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+  }
+  
+  /* Tipografías y jerarquía */
+  h1, h2 { margin: 0 0 10px; line-height: 1.25; }
+  h1 {
+    font-size: 2rem;
+    color: var(--mauve);
+    text-shadow: 0 1px 0 rgba(0,0,0,0.25);
+  }
+  h2 {
+    margin-top: 22px;
+    font-size: 1.25rem;
+    color: var(--blue);
+  }
+  p {
+    margin: 0 0 14px;
+    color: var(--subtext0);
+  }
+  
+  /* Avatar */
+  .avatar {
+    display: block;
+    width: clamp(96px, 18vw, 140px);
+    height: auto;
+    border-radius: 12px;
+    border: 2px solid var(--sapphire);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+    margin: 6px 0 18px;
+  }
+  
+  /* Listas */
+  .list {
+    padding-left: 20px;
+    margin: 6px 0 14px;
+  }
+  .list li { margin: 6px 0; color: var(--subtext0); }
+  .list li::marker { color: var(--mauve); }
+  
+  /* Redes sociales */
+  .social {
+    list-style: none;
+    padding: 0;
+  }
+  .social li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0;
+  }
+  .social img {
+    width: 18px;
+    height: 18px;
+    filter: drop-shadow(0 1px 0 rgba(0,0,0,0.3));
+  }
+  a {
+    color: var(--blue);
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--mauve);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+  
+  /* “Bordes activos/inactivos” inspirados en Hyprland */
+  .window {
+    --active1: var(--mauve);
+    --active2: var(--blue);
+    outline: 1px solid color-mix(in oklab, var(--overlay0) 85%, transparent);
+    background-image:
+      linear-gradient(135deg, rgba(203,166,247,0.25), rgba(137,180,250,0.20)),
+      linear-gradient(0deg, transparent, transparent);
+  }
+  .window:focus-within,
+  .window:hover {
+    outline-color: color-mix(in oklab, var(--mauve) 35%, var(--overlay0));
+    box-shadow:
+      0 12px 34px rgba(0,0,0,0.45),
+      0 0 0 1px color-mix(in oklab, var(--active1) 40%, transparent),
+      0 0 0 3px color-mix(in oklab, var(--active2) 20%, transparent);
+  }
+
+  /* Overrides: footer como panel debajo de la ventana principal */
+.waybar-bottom {
+    position: static;            /* ya no fijo */
+    left: auto; right: auto; bottom: auto;
+    height: auto;                /* alto según contenido */
+    max-width: 920px;            /* igual que la ventana */
+    margin: 0 auto 40px;         /* centrado + margen inferior */
+    padding: 10px 14px;          /* relleno interior */
+    border-radius: 14px;         /* igual que .window */
+    border: 1px solid var(--surface0);
+    /* fondo translúcido + mismo blur que la ventana */
+    background: rgba(30, 30, 46, 0.60);
+    box-shadow:
+      0 10px 30px rgba(0,0,0,0.35),
+      0 2px 0 0 rgba(203,166,247,0.20) inset;
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+  }
+  .waybar-bottom nav { width: 100%; }
+  .waybar-bottom .social {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;     /* centrar items */
+    gap: 14px;                   /* más separación */
+  }
+  .waybar-bottom .social a {
+    background: rgba(24,24,37,0.55);
+  }
+  
+  /* Responsivo */
+  @media (max-width: 720px) {
+    .window {
+      margin: 20px 10px 32px;
+      padding: 20px 16px;
+    }
+    .bar { height: 32px; }
+    h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.1rem; }
+  }

@@ -1,0 +1,21 @@
+.tabla {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tabla, .tabla th, .tabla td {
+    border: 1px solid #000;
+}
+
+
+.lista{
+    list-style-type:decimal;
+}
+
+.sublista{
+    list-style-type:circle;
+}
+
+.tercera{
+    list-style-type:square;
+}

@@ -1,4 +1,5 @@
 
+//Este archivo en principio no hace falta, ya que ahora los datos se obtienen de otra forma
 
 export const 
     dato = {

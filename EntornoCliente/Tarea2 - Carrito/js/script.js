@@ -78,6 +78,8 @@ document.addEventListener("DOMContentLoaded",() => {
             quantity.type = "number";
             quantity.classList.add("quantity");
 
+            /*Añadimos un eventlistener a los botones a la vez que los creamos para que desempeñen la función que queremos. Estas funciones son las de actualizar los elementos en pantalla y añadir esos elementos a nuestro carrito */
+
             const buttonMinus = document.createElement("button");
             buttonMinus.textContent = "-";
             buttonMinus.classList.add("quantity-button");
@@ -88,29 +90,38 @@ document.addEventListener("DOMContentLoaded",() => {
                     buttonMinus.disable = false;
                     quantity.value--;
 
+                    /*Después de actualizar el valor del campo quantity lo que hacemos es definir un objeto con los valores que queramos.
+                    Luego después, le añadiremos un nuevo atributo que será el valor de quantity.*/
                     const product = {
                         sku : "",
                         title : "",
                         price : 0
                     }
 
+                    //Actualizamos los valores de los atributos de nuestro objeto
+
                     product.sku = productReference.textContent;
                     product.title = productName.textContent;
                     product.price = unitPrice.valueAsNumber;
                     product.quantity = quantity.valueAsNumber;
 
+                    //Lamamos a nuestra función para añadir elementos a nuestro carrito
                     carrito.addProduct(product.sku, product);
 
+                    //Llamamos a la función que nos actualiza y nos crea los elementos de carrito
                     renderCart(carrito.products);
 
+                    //Actualizamos el valor de nuestro campo total
                     total.valueAsNumber = quantity.valueAsNumber * unitPrice.valueAsNumber;
 
+                    //Esto lo hice en su momento para no permitir ciertas operaciones con los botones. En principio no lo toco ni lo quito
                     buttonPlus.disabled = false;
                 }
                 
             });
 
             
+            //A partir de aquí es lo mismo que para el boton menos
             const buttonPlus = document.createElement("button");
             buttonPlus.textContent = "+";
             buttonPlus.classList.add("quantity-button");
@@ -157,6 +168,7 @@ document.addEventListener("DOMContentLoaded",() => {
     }
 
 
+    //Definimos la función que renderiza el carrito.
     function renderCart(productsMap){
 
         const containerCart = document.getElementsByClassName("cart");

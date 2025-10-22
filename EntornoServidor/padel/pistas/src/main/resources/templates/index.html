@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Pistas de Pádel</title>
+</head>
+<body>
+    <h1>Gestión de Pistas de Pádel</h1>
+    
+    <!-- Formulario para añadir nueva pista -->
+    <h2>Añadir Nueva Pista</h2>
+    <form action="/addPista" method="post">
+        <div>
+            <label for="nombrePista">Nombre de la pista:</label>
+            <input type="text" id="nombrePista" name="nombrePista" required>
+        </div>
+        <div>
+            <label for="horasDisponibles">Horas disponibles (separadas por comas):</label>
+            <input type="text" id="horasDisponibles" name="horasDisponibles" required>
+        </div>
+        <button type="submit">Añadir Pista</button>
+    </form>
+
+    <!-- Listado de pistas disponibles -->
+    <h2>Pistas Disponibles</h2>
+    <ul>
+        <li th:each="pista : ${pistas}">
+            <strong th:text="${pista.nombrePista}">Nombre</strong>
+            <span th:text="${pista.horasDisponibles}">Horas</span>
+        </li>
+        <li th:if="${pistas.isEmpty()}">No hay pistas disponibles</li>
+    </ul>
+
+    
+    <p>
+        <a href="/api/pistas" target="_blank">Ver pistas en formato JSON</a>
+    </p>
+</body>
+</html>

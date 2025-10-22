@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+#Lo primero que tenemos que hacer es definir un array que almacene los números
+	$numeros = array(4,17,46,92,23);
+    
+    #Vamos a identificar el ejercicio para que se pueda ver al ejecutar
+    
+    echo "<h1>Ejercicio 1. Operaciones con arrays y números</h1></br>";
+    
+    #Lo primero que debería de hacer es ordenar el array, eso me va a dar mayor facilidad a la hora de elegir el mayor y el menor
+    sort($numeros);
+    
+    #Ahora puedo obetner el menor con la primera posición y el mayor con las ultima posicion.
+    
+    $numeromasbajo = $numeros[0];
+    $numeromasalto = end($numeros);
+    
+    echo "<p>El numero mas bajo es $numeromasbajo</p></br>";
+    
+    echo "<p>El numero mas alto es $numeromasalto</p></br>";
+    
+    #Me he dado cuenta de que esto lo podía haber hecho con min y max, lo pongo para que se sepa
+    
+    $numeromasbajo = min($numeros);
+    $numeromasalto = max($numeros);
+    
+    echo "<p>El numero mas bajo es $numeromasbajo</p></br>";
+    
+    echo "<p>El numero mas alto es $numeromasalto</p></br>";
+    
+    #Vamos a calcular el valor medio de todos, para eso voy a usar un for
+    
+    $valormedio = 0;
+    
+    $sumatotal = 0;
+    
+    $totalelementos = 0;
+    
+    #Voy a calcular primero la suma total, ya que despues me sirve para el valormedio.
+    
+    foreach($numeros as $numero){
+    	$sumatotal += $numero;
+        $totalelementos++;
+    }
+    
+    $valormedio = $sumatotal / $totalelementos;
+    
+    echo "</p>La suma total de los números es $sumatotal</p></br>";
+    
+    echo "</p>El valor medio de los números es $valormedio</p></br>";
+    
+    
+    #Vamos con el ejercicio2
+    
+    echo "<h1>Ejercicio 2. Dados y operaciones</h1></br>";
+    
+    #Defino las variables para los dados inicializándolas a un valor aleatorio
+    $dado1 =  rand(1,6);
+    $dado2 = rand(1,6);
+    
+    #Muestro los valores
+    
+    echo "<p>El valor del dado 1 es $dado1</p></br>";
+    
+    echo "<p>El valor del dado 2 es $dado2</p></br>";
+    
+    #Variable para la suma
+    
+    $suma = $dado1 + $dado2;
+    
+    echo "<p>La suma de los dados es $suma</p></br>";
+    
+    #Comprobamos si son iguales o no
+    
+    if($dado1 == $dado2){
+    	echo "<p>El valor de los dados es doble</p></br>";
+    }else{
+    	echo "<p>El valor de los no es doble</p></br>";
+    }
+    
+    #Vamos con el ejercicio3
+    
+    echo "<h1>Ejercicio 3. Array Asociativo</h1></br>";
+    
+    #Creo el array asociativo como se pide
+    
+    $notas = array("Ana"=>8.5, "Luis"=>6.2, "Marta"=>9.1, "Pedro"=>4.8);
+    
+    #Defino variables que creo que voy a necesitar
+    $notamedia = 0;
+    $sumanotas = 0;
+    $contadoralumnos = 0;
+    $contadoraprovados = 0;
+    $notamasalta = 0;
+    
+    #Para todo esto deberia de poder hacerlo con un foreach de cada uno, haciendo todas las operaciones que crea convenientes.
+    
+    #Ordeno el array en orden ascendente según el valor
+    asort($notas);
+    #Tengo que buscar para obtener el último valor, que es la nota mas alta
+    $notamasalta = end($notas);
+    
+    
+    #Como ya tengo la nota más alta, ahora lo que voy a hacer es con un foreach recorrerlo todo para realizar diferentes operaciones
+    
+    foreach($notas as $clave => $valor){
+    	
+        #Evaluo el valor para poder mostrar el alumno con la nota más alta
+        if($valor == $notamasalta){
+        	echo "<p>El alumno con la nota más alta es $clave : nota $valor</p></br>";
+        }
+        
+        if($valor >= 5){
+        	$contadoraprovados++;
+        }
+        #Actualizo valores de contadoralumnos y sumanotas
+        $contadoralumnos++;
+        $sumanotas += $valor;
+    }
+    
+    #Una vez terminado esto mostramos lo que queda por pantalla
+    
+    echo "<p>El numero de alumnos que han aprobado es $contadoraprovados</p></br>";
+    $notamedia = $sumanotas / $contadoralumnos;
+    echo "<p>La nota media de los alumnos es $notamedia</p></br>";
+    
+    
+    #Seguimos con el ejercicio 4
+    
+    echo "<h1>Ejercicio 4. Numeros pares e impares</h1></br>";
+    
+    #Lo primero que voy a hacer es definir un array
+    
+    $numeros2 = array();
+    
+    #Hay que llenarlo con 20 valores aleatorios entre 1 y 100
+    
+    for($i = 1; $i <= 100; $i++){
+    	array_push($numeros2, rand(1,100));
+    }
+    
+    #Una vez lleno debo de crear contadores para pares e impares. Además debo de calcular valores medios de cada. Declaro variables que me hagan falta
+    
+    $contadorpares = 0;
+    $contadorimpares = 0;
+    
+    $sumatotalpares = 0;
+    $sumatotalimpares = 0;
+    
+    $mediapares = 0;
+    $mediaimpares = 0;
+    
+    $valorespares = array();
+    $valoresimpares = array();
+    
+    
+    #Vamos a recorrer el array con un foreach para ir haciendo las operaciones necesarias
+    
+    foreach($numeros2 as $valores){
+    	
+        #Ahora tengo que evaluar y hacer operaciones dependiendo de el resultado
+        if($valores%2 == 0){
+        	$contadorpares++;
+            $sumatotalpares += $valores;
+            array_push($valorespares,$valores);
+        }else{
+        	$contadorimpares++;
+            $sumatotalimpares += $valores;
+            array_push($valoresimpares, $valores);
+        }
+    }
+    
+    #Con esto en principio tengo todo lo que necesito
+    
+    echo "<p>El valor total de numeros pares es de $contadorpares</p></br>";
+    #Muestro los valores pares
+    foreach($valorespares as $par){
+    	echo "<span>$par  </span>";
+    }
+    
+    #Ahora los impares
+    echo "<p>El valor total de numeros impares es de $contadorimpares</p></br>";
+    foreach($valoresimpares as $impar){
+    	echo "<span>$impar  </span>";
+    }
+    
+    #Hago las medias
+    $mediapares = $sumatotalpares / $contadorpares;
+    echo "<p>El valor medio de los numeros pares es $mediaspares</p></br>";
+    
+    $mediaimpares = $sumatotalimpares / $contadorimpares;
+    echo "<p>El valor medio de los numeros pares es $mediasimpares</p></br>";
+    
+    #Seguimos con el ejercicio largo
+    
+    echo "<h1>Ejercicio 5. Ejercicio Final</h1></br>";
+    
+    $alumnos = [
+    	"Ana" => ["PHP" => 8.5,"HTML"=>9.0,"CSS"=>7.5],
+        "Luis" => ["PHP" => 4.8,"HTML"=>6.2,"CSS"=>5.9],
+        "Marta" => ["PHP" => 9.1,"HTML"=>8.8,"CSS"=>9.5],
+        "Pedro" => ["PHP" => 5.2,"HTML"=>4.1,"CSS"=>5.0],
+    ];
+    
+    #Esto es ya de gente retorcida, pero bueno. Si no me equivoco esto es un array de arrays arrays asociativos compuestos por arrays asociativos. Ya te vale.
+    
+    #Tengo que definir variables
+    $contadorasignaturas = 0;
+    $nombrealumno = "";
+    $sumatotal = 0;
+    $notamedia = 0;
+    
+    $notatotalphp = 0;
+    $notatotalhtml = 0;
+    $notatotalcss = 0;
+    
+    $contadoralumno = count($alumnos);
+    
+    
+    foreach($alumnos as $alumno => $notas){
+    		$nombrealumno = $alumno;
+    	foreach($notas as $asignatura => $nota){
+    		
+            #Comparo las asignaturas para poder calcular luego las medias
+            if(strcmp($asignatura, "PHP") == 0){
+            	$notatotalphp += $nota;
+                
+            }elseif(strcasecmp($asignatura, "HTML") == 0){
+            	$notatotalhtml += $nota;
+            }elseif(strcasecmp($asignatura, "CSS") == 0){
+            	$notatotalcss += $nota;
+                
+            }
+            
+            $contadorasignaturas++;
+            $sumatotal += $nota;
+        }
+    	
+        #calculo la media y la muestro, además de indicar luego si el alumno está aprobado
+        $notamedia = number_format($sumatotal / $contadorasignaturas,2);
+        
+        echo "<p>La nota media del alumno $nombrealumno es de $notamedia </p></br>";
+        
+        if($notamedia >= 5){
+        	echo "<p>Este alumno esta APROBADO</p></br>";
+        }else{
+        	echo "<p>Este alumno esta SUSPENSO</p></br>";
+        }
+        
+        #reinicio los contadores
+        $sumatotal = 0;
+        $contadorasignaturas = 0;
+    }
+    
+    
+    
+    #Calculo las medias por asignaturas
+    $mediaphp = number_format($notatotalphp / $contadoralumno,2);
+    $mediahtml = number_format($notatotalhtml / $contadoralumno,2);
+    $mediacss = number_format($notatotalcss / $contadoralumno,2);
+    
+    #Mostramos por pantalla
+    echo "<p>Las notas medias por asignatura son : PHP => $mediaphp, HTML => $mediahtml, CSS => $mediacss</p></br>";
+?> 
+
+</body>
+</html>

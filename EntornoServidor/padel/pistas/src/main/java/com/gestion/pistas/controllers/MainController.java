@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
@@ -38,12 +39,12 @@ public class MainController {
     }
 
     @PostMapping("/addPista")
-    public String agregarPista(
+    public RedirectView agregarPista(
             @RequestParam String nombrePista,
             @RequestParam String horasDisponibles) {
         
         almacenamiento.addPista(nombrePista, horasDisponibles);
-        return "redirect:/";
+        return new RedirectView("/");
     }
 
     @GetMapping("/api/pistas")

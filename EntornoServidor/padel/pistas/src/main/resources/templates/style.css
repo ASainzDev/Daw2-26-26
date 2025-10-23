@@ -1,0 +1,244 @@
+/* ======================================
+   eDEX-UI Complete Theme (TRON Inspired)
+   ====================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+/* Global Background and Layout */
+body {
+    background-color: #000;
+    color: #00ffff;
+    font-family: 'Share Tech Mono', monospace;
+    margin: 0;
+    height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-image:
+        radial-gradient(rgba(0, 255, 255, 0.15) 1px, transparent 1px),
+        radial-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+}
+
+/* Flickering Neon Effects */
+@keyframes flicker {
+
+    0%,
+    18%,
+    22%,
+    25%,
+    53%,
+    57%,
+    100% {
+        opacity: 1;
+    }
+
+    20%,
+    24%,
+    55% {
+        opacity: 0.4;
+    }
+}
+
+/* Glowing Frames */
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+    }
+
+    50% {
+        box-shadow: 0 0 20px #00ffee, 0 0 40px #00ffee;
+    }
+
+    100% {
+        box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+    }
+}
+
+/* Headings */
+h1,
+h2 {
+    text-transform: uppercase;
+    text-shadow: 0 0 15px #00ffff;
+    animation: flicker 3s infinite;
+}
+
+h1 {
+    font-size: 2.6em;
+    border-bottom: 2px solid #00ffff;
+    padding-bottom: 10px;
+    margin-top: 30px;
+}
+
+h2 {
+    font-size: 1.8em;
+    margin-top: 40px;
+    border-left: 3px solid #00ffff;
+    padding-left: 10px;
+}
+
+/* Panel Containers */
+form,
+ul {
+    background-color: rgba(0, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 25px;
+    width: 70%;
+    margin: 20px auto;
+    animation: glow 3s infinite alternate;
+    position: relative;
+    backdrop-filter: blur(3px);
+}
+
+/* Grid Overlay */
+form::before,
+ul::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+form>*,
+ul>* {
+    position: relative;
+    z-index: 1;
+}
+
+/* Labels and Inputs */
+label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #00eaff;
+}
+
+input {
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid #00ffff;
+    color: #00ffff;
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 1em;
+    box-shadow: 0 0 10px #00ffff33 inset;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 15px #00ffff, inset 0 0 6px #00ffee;
+}
+
+/* Buttons */
+button {
+    display: inline-block;
+    border: 2px solid #00ffee;
+    background: transparent;
+    color: #00ffee;
+    text-transform: uppercase;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: glow 4s infinite alternate;
+}
+
+button:hover {
+    color: #0a0a0a;
+    background: #00ffee;
+    text-shadow: none;
+}
+
+/* List Styles */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+strong {
+    color: #00ffff;
+    text-shadow: 0 0 5px #00ffff;
+}
+
+span {
+    color: #00ffee;
+}
+
+/* Links and Footer */
+a {
+    color: #00ffee;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: 0.3s;
+    display: inline-block;
+    margin-top: 30px;
+    text-align: center;
+}
+
+a:hover {
+    color: #ff00ff;
+    border-bottom: 1px solid #ff00ff;
+    text-shadow: 0 0 10px #ff00ff;
+}
+
+/* HUD-like Top Bar */
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 255, 255, 0.05);
+    border-bottom: 1px solid #00ffff44;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    color: #00ffff;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    z-index: 10;
+}
+
+/* Glowing corners decoration */
+form::after,
+ul::after {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    border: 2px solid transparent;
+    border-image: linear-gradient(60deg, #00ffff, #0033ff, #00ffff) 1;
+    border-radius: 10px;
+    animation: glow 6s infinite alternate;
+}

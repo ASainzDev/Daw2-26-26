@@ -1,0 +1,18 @@
+<div class ="container d-flex flex-column w-75 mt-5">
+    
+    <form [formGroup]="formulario" (ngSubmit)="submitForm()">
+        <div class="mb-3 d-flex flex-column">
+            <label for="titulo" class="form-label">Titulo del Articulo</label>
+            <input type="text" formControlName="titulo" class="form-control-lg" id="titulo" placeholder="Introduzca el título del artículo">
+        </div>
+        <div class="mb-3 d-flex flex-column">
+            <label for="url" class="form-label">Inserte URL de la imagen</label>
+            <input type="text" formControlName="url" class="form-control-lg" id="url" placeholder="Introduzca el título del artículo">
+        </div>
+        <div class="mb-3 d-flex flex-column">
+            <label for="contenido" class="form-label">Contenido del artículo</label>
+            <textarea class="form-control-lg" formControlName="contenido" id="contenido" rows="3" placeholder="Inserte aquí el contenido del artículo"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid">Subir</button>
+    </form>    
+</div>

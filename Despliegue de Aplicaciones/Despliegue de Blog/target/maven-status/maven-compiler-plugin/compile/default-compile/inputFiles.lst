@@ -1,0 +1,5 @@
+/home/alex/Documentos/blog/blog/blogback/back/src/main/java/com/blog/back/BackApplication.java
+/home/alex/Documentos/blog/blog/blogback/back/src/main/java/com/blog/back/controllers/MainController.java
+/home/alex/Documentos/blog/blog/blogback/back/src/main/java/com/blog/back/model/Articulo.java
+/home/alex/Documentos/blog/blog/blogback/back/src/main/java/com/blog/back/repositories/RepositorioDatos.java
+/home/alex/Documentos/blog/blog/blogback/back/src/main/java/com/blog/back/services/ServicioArticulos.java

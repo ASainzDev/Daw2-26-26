@@ -1,0 +1,5 @@
+com/blog/back/model/Articulo.class
+com/blog/back/BackApplication.class
+com/blog/back/services/ServicioArticulos.class
+com/blog/back/repositories/RepositorioDatos.class
+com/blog/back/controllers/MainController.class

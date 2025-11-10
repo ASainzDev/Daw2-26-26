@@ -1,0 +1,2 @@
+INSERT INTO articulo (titulo, url, contenido, fecha_publicacion) VALUES
+('Muchas IA de vídeo están aprendiendo a imitar el mundo. Y todo apunta a un “saqueo” sin precedentes de YouTube', 'https://i.blogs.es/ab5240/ia-datos-youtube-entrenamiento-1/1200_800.jpeg', 'Una plaza, turistas, un camarero moviéndose entre mesas, una bici que pasa al fondo o un periodista en un plató. Las IA de vídeo ya pueden generar escenas en un pispás.', 931323132120);

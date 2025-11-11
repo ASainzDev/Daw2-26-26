@@ -15,6 +15,8 @@ export class App {
 
   articuloNuevo: Articulo;
 
+  rol : number;
+
   constructor(){
     this.articuloNuevo = {
       id : 0,
@@ -23,11 +25,17 @@ export class App {
       contenido : '',
       fecha : '00-00-0000',
     };
+
+    this.rol = 2;
   }
 
   handleLanzarArticulo($event: any) {
     this.articuloNuevo = $event;
     console.log('mensaje recibido del hijo');
+  }
+
+  administrarRol($event : any){
+    this.rol = $event;
   }
 
   protected readonly title = signal('blogSimple');

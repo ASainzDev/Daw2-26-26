@@ -17,6 +17,8 @@ listaArticulos : Articulo [] = [];
 
 articulo : Articulo;
 
+@Input() rol : number;
+
 @Input() articuloNuevo : Articulo;
 
 @Output() lanzarArticulo = new EventEmitter();
@@ -37,6 +39,7 @@ articulo : Articulo;
         contenido: 'Esto se nos va de las manos',
         fecha: '01-01-2000',
       },
+
     ];
 
     this.articuloNuevo = {
@@ -54,6 +57,8 @@ articulo : Articulo;
       contenido: '',
       fecha: '00-00-0000',
     }
+
+    this.rol = 2;
      
   }
 

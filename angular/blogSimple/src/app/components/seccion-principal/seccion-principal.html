@@ -7,7 +7,7 @@
                 <input type="text" id="titulo" class="form-control m-1" placeholder="Inserte el título" [(ngModel)]="articulo.titulo">
 
                 <label for="url" class="form-label m-1">URL</label>
-                <input type="text" id="url" class="form-control m-1" placeholder="Inserte la URL" [(ngModel)]="articulo.url">
+                <input type="url" id="url" class="form-control m-1" placeholder="Inserte la URL" [(ngModel)]="articulo.url">
 
                 <div class="input-group mb-2 mt-2">
                     <span class="input-group-text">Contenido</span>
@@ -40,12 +40,17 @@
 
         <!-- Columna derecha -->
         <div class="col-md-8 col-12">
-            <div class="d-flex flex-column m-3 bg-white rounded shadow-sm p-3">
-                <h2>{{articuloNuevo.titulo}}</h2>
-                <p class="text-muted">{{articuloNuevo.fecha}}</p>
-                <img [src]="articuloNuevo.url" [alt]="articuloNuevo.titulo" class="img-fluid mb-3 rounded img-safe img-full">
-                <p>{{articuloNuevo.contenido}}</p>
-            </div>
+            @if(articuloNuevo.id == 0){
+                <p>No hay seleccionado ningún artículo</p>
+            }@else {
+                <div class="d-flex flex-column m-3 bg-white rounded shadow-sm p-3">
+                    <h2>{{articuloNuevo.titulo}}</h2>
+                    <p class="text-muted">{{articuloNuevo.fecha}}</p>
+                    <img [src]="articuloNuevo.url" [alt]="articuloNuevo.titulo" class="img-fluid mb-3 rounded img-safe img-full">
+                    <p>{{articuloNuevo.contenido}}</p>
+                </div>
+            }
+            
         </div>
     </div>
 </div>

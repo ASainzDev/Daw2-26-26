@@ -15,10 +15,9 @@
                 </li>
             </ul>
             <div class="d-flex align-items-center">
-                <select class="form-select ms-3" aria-label="Selecciona una opción">
-                    <option selected>Cual es su Rol</option>
+                <select class="form-select ms-3" aria-label="Selecciona una opción" (input) = "seleccionarUsuario($event)">
                     <option value="1">Administrador</option>
-                    <option value="2">Usuario</option>
+                    <option value="2" selected>Usuario</option>
                 </select>
             </div>
         </div>

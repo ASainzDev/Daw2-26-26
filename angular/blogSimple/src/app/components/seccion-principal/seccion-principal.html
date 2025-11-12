@@ -1,5 +1,6 @@
 <div class="container">
     <div class="row g-4">
+<<<<<<< HEAD
         <!-- Columna izquierda -->
         <div class="col-md-4 col-12 p-3 bg-white rounded shadow-sm">
             <div class="d-flex flex-column">
@@ -18,12 +19,39 @@
                 <input type="date" id="fecha" class="form-control mb-2 mt-1" [(ngModel)]="articulo.fecha">
 
                 <button class="btn btn-primary" (click)="guardarElemento()">Guardar</button>
+=======
+        @if(selectedUser == 'Admin'){
+            <div class="col-12">
+                <app-formulario-component></app-formulario-component>
+>>>>>>> 580f17a (Martes mañana)
             </div>
+            <div class="col-12">
+                <div class="p-3 bg-white rounded shadow-sm">
+                    <h3 class="mb-3">Lista de Artículos</h3>
+                        <table class="table table-striped">
+                            <tr>
+                                <th>ID</th>
+                                <th>Título</th>
+                                <th>Url</th>
+                            </tr>
+                            @for(articulo of listaArticulos; track articulo.id){
+                                <app-lista-administrador-component [articulo]="articulo"></app-lista-administrador-component>
+                            }@empty {
+                                <tr><td colspan="3"><h3>TODAVIA NO TENEMOS MATERIAL DE LECTURA</h3></td></tr>
+                        }
+                        </table>
+                </div>
+            </div>
+        }@else if(selectedUser == 'User'){
+            <span>{{selectedUser}}</span>
+        }
+        
+        
 
             <hr>
 
             <!-- Lista de artículos -->
-            <div class="">
+            <!-- <div class="">
                 @for (articulo of listaArticulos; track articulo.id) {
                 <div class="card mb-3">
                     <div class="card-body overflow-hidden">
@@ -35,9 +63,10 @@
                     </div>
                 </div>
                 }
-            </div>
+            </div> -->
         </div>
 
+<<<<<<< HEAD
         <!-- Columna derecha -->
         <div class="col-md-8 col-12">
             @if(articuloNuevo.id == 0){
@@ -52,7 +81,9 @@
             }
             
         </div>
+=======
+>>>>>>> 580f17a (Martes mañana)
     </div>
-</div>
+
   
 

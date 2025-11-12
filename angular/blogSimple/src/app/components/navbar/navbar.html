@@ -6,6 +6,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<<<<<<< HEAD
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
@@ -18,6 +19,12 @@
                 <select class="form-select ms-3" aria-label="Selecciona una opción" (input) = "seleccionarUsuario($event)">
                     <option value="1">Administrador</option>
                     <option value="2" selected>Usuario</option>
+=======
+            <div class="d-flex align-items-center ms-auto">
+                <select class="form-select ms-3" aria-label="Selecciona una opción" name="Rol" [(ngModel)]="selectedRole" (change)="handleSelectChange()">
+                    <option value="Admin">Administrador</option>
+                    <option value="User" selected>Usuario</option>
+>>>>>>> 580f17a (Martes mañana)
                 </select>
             </div>
         </div>

@@ -20,61 +20,11 @@ export class SeccionPrincipal implements OnInit {
   listaArticulos: Articulo[] = [];
   articulo! : Articulo;
 
-<<<<<<< HEAD
-listaArticulos : Articulo [] = [];
-
-articulo : Articulo;
-
-@Input() rol : number;
-
-@Input() articuloNuevo : Articulo;
-
-@Output() lanzarArticulo = new EventEmitter();
-
-  constructor(){
-    this.listaArticulos = [
-      {
-        id: 1,
-        titulo: 'Artículo de Prueba',
-        url: 'www.google.es',
-        contenido: 'Menuda locura que me está dando esta mierda',
-        fecha: '01-01-2001',
-      },
-      {
-        id: 2,
-        titulo: 'Segundo Artículo',
-        url: 'www.marca.es',
-        contenido: 'Esto se nos va de las manos',
-        fecha: '01-01-2000',
-      },
-
-    ];
-
-    this.articuloNuevo = {
-      id: 0,
-      titulo: '',
-      url: '',
-      contenido: '',
-      fecha: '00-00-0000',
-    }
-
-    this.articulo = {
-      id: 0,
-      titulo: '',
-      url: '',
-      contenido: '',
-      fecha: '00-00-0000',
-    }
-
-    this.rol = 2;
-     
-=======
   get selectedUser() : string{
     return this.blogServicio.getSelectedUser();
   }
 
   constructor(){
->>>>>>> 580f17a (Martes mañana)
   }
 
   ngOnInit():void{

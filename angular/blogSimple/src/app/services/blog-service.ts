@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 })
 export class BlogService {
   
-  private selectedUser : string;
+  selectedUser : string;
 
   private arrayArticulos: Articulo[];
 

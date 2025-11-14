@@ -1,0 +1,55 @@
+body {
+  background-color: #1e1e2e;
+  color: #e0e6ed;
+  font-family: Consolas, "Courier New", monospace;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ventanas con borde y título estilo Hyprland */
+.window {
+  background-color: #2a2a3b;
+  border: 1px solid #44475a;
+  border-radius: 8px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.window-title {
+  background-color: #383a59;
+  color: #d0d8e0;
+  font-size: 0.9rem;
+  padding: 6px 12px;
+  border-bottom: 1px solid #44475a;
+  text-align: left;
+}
+
+.square {
+  width: 150px;
+  height: 150px;
+  border-radius: 6px;
+}
+
+/* Paleta pastel inspirada en Hyprland */
+.bg-pastel-blue { background-color: #8aadf4; }
+.bg-pastel-pink { background-color: #f5a9b8; }
+.bg-pastel-green { background-color: #a3be8c; }
+.bg-pastel-yellow { background-color: #ebcb8b; }
+.bg-pastel-purple { background-color: #b48ead; }
+.bg-pastel-cyan { background-color: #88c0d0; }
+
+/* Navbar adaptado */
+.navbar {
+  background-color: #313244 !important;
+  border: 1px solid #45475a;
+  border-radius: 8px;
+}
+
+.nav-link:hover {
+  color: #89b4fa !important;
+}
+
+a {
+  text-decoration: none;
+}

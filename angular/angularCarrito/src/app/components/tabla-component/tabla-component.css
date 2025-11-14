@@ -1,0 +1,6 @@
+/* Pruebo a dar estilos adicionales a las celdas para que tengan todas el mismo tamaño */
+
+.celda{
+    height: 10vh;
+    box-sizing: border-box;
+}

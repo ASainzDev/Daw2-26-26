@@ -1,0 +1,5 @@
+
+.app-wrapper {padding: 0.5rem}
+
+.hidden-mobile {display: inline}
+@media (max-width:768px){ .hidden-mobile {display:none} }

@@ -1,0 +1,14 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg px-4">
+    <div class="container">
+        <span class="navbar-brand mb-0 h1 fw-bold">BAJO EL TRONO IMPERIAL</span>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex align-items-center ms-auto">
+                <span class="text-white fst-italic fw-lighter">Seleccione Usuario</span>
+                <select class="form-select ms-3" aria-label="Selecciona una opción" name="Rol" [(ngModel)]="selectedRole" (change)="handleSelectChange()">
+                    <option value="Admin">Administrador</option>
+                    <option value="User" selected>Usuario</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</nav>

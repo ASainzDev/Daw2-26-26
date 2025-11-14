@@ -1,0 +1,27 @@
+<div class=" col-12 p-3 bg-white rounded shadow-sm">
+            <div class="d-flex flex-column">
+                <label for="titulo" class="form-label m-1">Título</label>
+                <input type="text" id="titulo" class="form-control m-1" placeholder="Inserte el título" [(ngModel)]="articulo.titulo" (change)="onInputChange()">
+
+                <label for="url" class="form-label m-1">URL</label>
+                <input type="text" id="url" class="form-control m-1" placeholder="Inserte la URL" [(ngModel)]="articulo.url" (change)="onInputChange()">
+
+                <div class="input-group mb-2 mt-2">
+                    <span class="input-group-text">Contenido</span>
+                    <textarea class="form-control" aria-label="With textarea" [(ngModel)]="articulo.contenido" (change)="onInputChange()"></textarea>
+                </div>
+
+                <label for="fecha" class="form-label m-1">Fecha</label>
+                <input type="date" id="fecha" class="form-control mb-2 mt-1" [(ngModel)]="articulo.fecha" (change)="onInputChange()">
+                @if(!formularioValido){
+                    <div class="alert alert-warning">
+                        Por favor, complete todos los campos del formulario antes de guardar.
+                    </div>
+                }@else {
+                    <div class="alert alert-success">
+                        Campos correctamente cumplimentados.
+                    </div>
+                }
+
+                <button class="btn btn-primary" [disabled] ="!formularioValido" (click)="guardarElemento()">Guardar</button>
+            </div>

@@ -1,36 +1,84 @@
-<div class="container">
+<div class="container-fluid bg-body-secondary">
     <div class="row g-4">
         @if(selectedUser == 'Admin'){
-            <div class="col-12">
-                <app-formulario-component></app-formulario-component>
+        <div class="col-12">
+            <app-formulario-component></app-formulario-component>
+        </div>
+        <div class="col-12">
+            <div class="p-3 bg-white rounded shadow-sm">
+                <h3 class="mb-3">Lista de Artículos</h3>
+                <table class="table table-striped">
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Url</th>
+                    </tr>
+                    <!-- En un principio el for en cada iteración llamaba a un componente (lista-administrador)
+                             pero por comodidad y para qu ela lista quede mejor estructurada lo dejo aqui.
+                             No elimino el componente, simplemente lo dejo y no lo llamo. Lo quito de los imports de aquí -->
+                    @for(articulo of listaArticulos; track articulo.id){
+                    <tr>
+                        <td>{{articulo.id}}</td>
+                        <td>{{articulo.titulo}}</td>
+                        <td>{{articulo.url}}</td>
+                    </tr>
+                    }@empty {
+                    <tr>
+                        <td colspan="3">
+                            <h3>TODAVIA NO TENEMOS MATERIAL DE LECTURA</h3>
+                        </td>
+                    </tr>
+                    }
+                </table>
             </div>
-            <div class="col-12">
-                <div class="p-3 bg-white rounded shadow-sm">
-                    <h3 class="mb-3">Lista de Artículos</h3>
-                        <table class="table table-striped">
-                            <tr>
-                                <th>ID</th>
-                                <th>Título</th>
-                                <th>Url</th>
-                            </tr>
-                            @for(articulo of listaArticulos; track articulo.id){
-                                <app-lista-administrador-component [articulo]="articulo"></app-lista-administrador-component>
-                            }@empty {
-                                <tr><td colspan="3"><h3>TODAVIA NO TENEMOS MATERIAL DE LECTURA</h3></td></tr>
-                        }
-                        </table>
+        </div>
+        }@else if(selectedUser == 'User'){
+        <div class=" container m-2">
+            <div class=" row col-12">
+                <div class="col-2 col-md-2 columna-izquierda">
+                    @for(articulo of listaArticulos; track articulo.id){
+                    <!-- Por cada artículo una card. Tengo que añadir clases adicionales para evitar
+                    que los tamaños de la imagen y del texto se vayan de madre y sea todo muy grande -->
+
+                    <div class="card shadow-lg mx-auto bg-secondary text-white">
+                        <img [src]="articulo.url" class="card-img-top imagen" [alt]="articulo.url">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold text-decoration-underline">{{articulo.titulo}}</h5>
+                            <span>{{articulo.fecha}}</span>
+                            <p class="card-text contenido">{{articulo.contenido}}</p>
+                            <button class="btn btn-danger" (click)="handleLeerMas(articulo)">Leer Más</button>
+                        </div>
+                    </div>
+                    }
+                </div>
+
+                <!-- Aquí también voy a tener que añadir alguna clase propia, ya que no todas las imágenes van a ser
+                 del mismo tamaño. -->
+                <div class="col-10 col-md-10">
+                    @if(articuloSeleccionado.id != 0){
+                        <div class="container mx-auto p-1 bg-secondary text-white rounded shadow-lg">
+                            <h1 class="mx-auto fw-bolder text-warning text-capitalize text-center">{{articuloSeleccionado.titulo }}</h1>
+                            <p class="text-center fst-italic fw-lighter">{{articuloSeleccionado.fecha}}</p>
+                            <img class="img-fluid my-1 imagen-articuloComp" [src]="articuloSeleccionado.url" [alt]="articuloSeleccionado.url">
+                            <p class="fst-italic px-2">{{articuloSeleccionado.contenido }}</p>
+                        </div>
+                    }@else {
+                        <h3 class="text-center fst-italic fw-lighter mt-5">Seleccione un artículo de la izquierda para leerlo</h3>
+                        <p class="fst-italic px-2 text-center">Los inquisidores están buscando articulos de confianza que no profanen el credo Imperial.</p>
+                        <img class ="img-fluid d-block mx-auto mt-3 imagen-inquisicion" src="https://www.belloflostsouls.net/wp-content/uploads/2016/09/inquisitor-pilgrim-hat-horz.jpg" alt="https://www.belloflostsouls.net/wp-content/uploads/2016/09/inquisitor-pilgrim-hat-horz.jpg">
+                        
+                    }
                 </div>
             </div>
-        }@else if(selectedUser == 'User'){
-            <span>{{selectedUser}}</span>
+        </div>
         }
-        
-        
 
-            <hr>
 
-            <!-- Lista de artículos -->
-            <!-- <div class="">
+
+        <hr>
+
+        <!-- Lista de artículos -->
+        <!-- <div class="">
                 @for (articulo of listaArticulos; track articulo.id) {
                 <div class="card mb-3">
                     <div class="card-body overflow-hidden">
@@ -43,9 +91,11 @@
                 </div>
                 }
             </div> -->
-        </div>
 
+        <!-- Este código en la parte superior lo creé antes de ver los servicios. Lo dejo ahí porque está bien para
+             saber lo que había hecho. Aunque como se dijo en clase podía ser un concepto de rosco.
+             Voy a tratar de crear ahora la parte que correspondería a User, que está más arriba. Esta parte creo que la voy a dejar
+             para un footer. -->
     </div>
 
-  
-
+</div>

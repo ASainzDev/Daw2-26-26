@@ -2,3 +2,61 @@
 .card {border-radius: 8px}
 .rounded {border-radius: 8px}
 .text-muted {color: #6b7280}
+
+/*line clamp marca un warning, no se porque es. Si intento que VS arregle el error no hace nada
+Dice algo de definir el base clamp si no he entendido mal, pero tampoco se como hacerlo*/
+
+.contenido {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* esto lo he buscado en mdn y en internet, para controlar el número
+                        de lineas de la miniatura, para que no se vaya muy largo. Además, con 
+                        overflow hidden hago que no se muestre nada más. No se si tendrán las dos cosas
+                        el mismo efecto pero a mi me ha servido y me queda bien*/
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  
+}
+
+/*Tocando las clases que vienen abajo controlo todo el tamaño de las imagenes y de los
+elementos de cada card, para que quede todo mejor colocado.*/
+
+.card {
+  width: 300px;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px gray;
+  margin: 15px;
+}
+
+/*Con el object fit tuve algún problema. Con cover se ajusta bien pero cortada, con contain sale completa
+pero pequeña. Para gustos.*/
+.imagen {
+  width: 100%;
+  height: 100px;
+  object-fit: contain;
+  display: block;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+/*La clase border de bs no se porque no me aplicaba borde a la columna. Así que defino
+una clase y le doy shadow aquí. No es un borde, pero queda mejor que uno*/
+.columna-izquierda {
+  border-radius: 2%;
+  box-shadow: 2px 2px 8px gray;
+}
+
+.imagen-articuloComp {
+  max-height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.imagen-inquisicion{
+    height:auto;
+    width: 100%;
+    object-fit: cover;
+}
+

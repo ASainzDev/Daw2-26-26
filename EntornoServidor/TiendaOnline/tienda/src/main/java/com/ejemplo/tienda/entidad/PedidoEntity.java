@@ -1,8 +1,8 @@
-
-
 package com.ejemplo.tienda.entidad;
 
 import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,9 +17,10 @@ public class PedidoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     String nombre_cliente;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(nullable = false)
     LocalDateTime fecha_pedido;
 
@@ -29,62 +30,48 @@ public class PedidoEntity {
     @Column(nullable = false)
     String estado;
 
-    public String getId;
-    
-
-    public PedidoEntity(){
+    public PedidoEntity() {
 
     }
-
 
     public Long getId() {
         return id;
     }
 
-
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public String getNombre_cliente() {
         return nombre_cliente;
     }
 
-
     public void setNombre_cliente(String nombre_cliente) {
         this.nombre_cliente = nombre_cliente;
     }
-
 
     public LocalDateTime getFecha_pedido() {
         return fecha_pedido;
     }
 
-
     public void setFecha_pedido(LocalDateTime fecha_pedido) {
         this.fecha_pedido = fecha_pedido;
     }
-
 
     public double getImporte_total() {
         return importe_total;
     }
 
-
     public void setImporte_total(double importe_total) {
         this.importe_total = importe_total;
     }
-
 
     public String getEstado() {
         return estado;
     }
 
-
     public void setEstado(String estado) {
         this.estado = estado;
     }
 
-    
 }

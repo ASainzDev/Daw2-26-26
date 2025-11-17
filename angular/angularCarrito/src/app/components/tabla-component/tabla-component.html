@@ -12,20 +12,7 @@
         <!-- Dentro del tbody recorro el array de productos y los voy añadiendo a la tabla. -->
         <tbody>
             @for(producto of arrayProductos; track producto.sku){
-                <tr>
-                    <td class="d-flex flex-column celda">
-                        <span>{{producto.title}}</span>
-                        <span>{{producto.sku}}</span>
-                    </td>
-                    <td><span>{{producto.price}}</span></td>
-                    <td class="d-flex flex-row justify-content-evenly">
-                        <button class="btn btn-outline-secondary">-</button>
-                        <span>0</span>
-                        <button class="btn btn-outline-secondary">+</button>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
+                <app-row-product [producto] = "producto"></app-row-product>
             }
         </tbody>
     </table>

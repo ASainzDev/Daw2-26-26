@@ -14,6 +14,9 @@ export class SCarritoService {
   // Definimos un array de productos, lo inicializo despues
   arrayProductos : IProduct[];
 
+  //No se si estará bién, pero lo que voy a hacer es crear un array que será para los productos comprados
+  carritoProductos : any[];
+
   currency : string;
 
   constructor(){
@@ -32,12 +35,14 @@ export class SCarritoService {
       },
       {
         sku: 'a',
-        title: '1producto',
-        price: '500,00'
+        title: '2producto',
+        price: '400,00'
       },
     ]
 
     this.currency = '€';
+
+    this.carritoProductos = [];
   }
 
   getListadoProductos () : IProduct[]{

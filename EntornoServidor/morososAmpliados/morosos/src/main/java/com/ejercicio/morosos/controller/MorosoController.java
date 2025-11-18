@@ -3,7 +3,6 @@ package com.ejercicio.morosos.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,15 +20,15 @@ public class MorosoController {
 
 
     @Autowired
-    private final MorosoService morosoService;
+    private MorosoService morosoService;
 
     public MorosoController(MorosoService morosoService) {
         this.morosoService = morosoService;
     }
 
     @GetMapping
-    public ResponseEntity<List<Moroso>> getAll() {
-        return ResponseEntity.ok(morosoService.devolverListadoMoroso());
+    public List<Moroso> getAll() {
+        return morosoService.devolverListadoMoroso();
     }
 
     @GetMapping("/{id}")

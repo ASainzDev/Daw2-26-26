@@ -1,12 +1,34 @@
-<div class="container row">
-    <div class="col-4">
+<div class="container d-flex flex-column justify-content-center text-center shadow mb-2">
+    <div class="container bg-dark text-light my-2 shadow">
+        <h4>CARRITO</h4>
+    </div>
+    
+    @for(producto of carritoCompra; track producto.sku){
+        <div class="container d-flex flex-row shadow my-1">
+            <div class="col-6 pt-1">
+                <p>{{producto.title}}</p>
+                <p>{{producto.sku}}</p>
+            </div>
+            <div class="col-3">
+                <p>{{producto.quantity}}</p>
+            </div>
+            <div class="col-3 d-flex flex-row">
+                <p>{{(producto.price*producto.quantity).toFixed(2)}}</p>
+                <p>{{this.sCarrito.getCurrency()}}</p>
+            </div>
+        </div>
+    }@empty {
+        <p>No hay artículos en el carrito</p>
+    }
 
-    </div>
-    <div class="col-4">
+    @if(precioTotal != "0,00"){
+        <div class="container bg-danger text-light my-2">
+            <h3>TOTAL</h3>
+            <h3>{{this.sCarrito.getPrecioTotal()}}</h3>
+        </div>
+    }
+    
 
-    </div>
-    <div class="col-4">
-        
-    </div>
+    <button class="btn btn-warning" (click)="deleteCart()">Borrar Compra</button>
 
 </div>

@@ -15,7 +15,7 @@ export class MiniaturaComponent {
 
   @Input()  producto: IProduct;
 
-  quantity : number;
+  quantity! : number;
 
   currency! : string;
 
@@ -26,11 +26,12 @@ export class MiniaturaComponent {
       price : ''
     }
 
-    this.quantity = 0;
   }
 
   ngOnInit() : void {
     this.currency = this.sCarrito.getCurrency();
+
+    this.quantity = this.sCarrito.getInitialQuantity();
   }
 
 incrementarCantidad() {
@@ -38,7 +39,7 @@ incrementarCantidad() {
   let productoComprado = {
     sku: this.producto.sku,
     title: this.producto.title,
-    price: this.producto.price,
+    price: Number(this.producto.price),
     quantity: this.quantity
   };
 
@@ -49,10 +50,11 @@ reducirCantidad() {
   if(this.quantity > 0){
     this.quantity--;
   }
+
   let productoComprado = {
     sku: this.producto.sku,
     title: this.producto.title,
-    price: this.producto.price,
+    price: Number(this.producto.price),
     quantity: this.quantity
   };
   this.sCarrito.removeProductCart(productoComprado);

@@ -12,12 +12,16 @@ export class SCarritoService {
   producto! : IProduct;
 
   // Definimos un array de productos, lo inicializo despues
-  arrayProductos : IProduct[];
+  private arrayProductos : IProduct[];
 
   //No se si estará bién, pero lo que voy a hacer es crear un array que será para los productos comprados
-  carritoProductos : any[];
+  private carritoProductos : any[];
 
-  currency! : string;
+  private currency! : string;
+
+  private precioTotal : number
+
+  private initialQuantity : number;
 
   constructor(){
 
@@ -36,6 +40,10 @@ export class SCarritoService {
     });
 
     this.carritoProductos = [];
+
+    this.precioTotal = 0;
+
+    this.initialQuantity = 0;
   }
 
 
@@ -53,7 +61,7 @@ export class SCarritoService {
       this.carritoProductos.push(producto);
     }
     
-    console.log(this.carritoProductos);
+    this.precioTotal += producto.price;
   }
 
   removeProductCart(producto : any) : void {
@@ -69,7 +77,7 @@ export class SCarritoService {
       
     }
 
-    console.log(this.carritoProductos);
+    this.precioTotal -= producto.price;
   }
 
   getCurrency() : string {
@@ -78,5 +86,37 @@ export class SCarritoService {
 
   getCarritoProducts() : any[] {
     return this.carritoProductos;
+  }
+
+  getPrecioTotal() : string{
+    return this.precioTotal.toFixed(2);
+  }
+
+  eliminarCompra() {
+    this.carritoProductos.splice(0,this.carritoProductos.length);
+    this.precioTotal = 0;
+  }
+
+  getInitialQuantity() : number{
+    return this.initialQuantity;
+  }
+
+  resetInitialQuantity() : void{
+    this.initialQuantity = 0;
+  }
+
+  filtrarListaPrecio(rango: any) {
+    let arrayAuxiliar = [];
+
+    arrayAuxiliar = this.arrayProductos;
+
+    this.arrayProductos.sort();
+    const indice = this.arrayProductos.findIndex((prod) => Number(prod.price) > rango);
+
+    if(indice != -1){
+      this.arrayProductos.splice(indice, this.arrayProductos.length);
+    }
+
+    this.arrayProductos = arrayAuxiliar;
   }
 }

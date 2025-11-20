@@ -11,16 +11,14 @@
 
   <!-- Aquí es donde voy a tener la sección principal. La llamo main. Lo que voy a hacer es definir aquí un container y otro div de la clase row que ocupe todo el ancho. Dentro de este div insertaré los dos componentes, la tabla principal y el contenedor del carrito. -->
   <main>
-    <div class="container mx-auto bg-tertiary shadow">
-      <div class="row col-8">
+    
+    <div class="mx-auto bg-light-subtle row">
+      <div class="col-8">
         <app-listado-component></app-listado-component>
       </div>
 
       <div class="col-4">
-        @for(producto of carritoProductos; track producto.sku){
-            <app-carrito-component [producto]="producto"></app-carrito-component>
-        }
-
+        <app-carrito-component></app-carrito-component>
       </div>
     </div>
   </main>

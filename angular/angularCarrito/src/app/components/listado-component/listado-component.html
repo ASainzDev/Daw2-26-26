@@ -1,0 +1,7 @@
+<section class="container my-2 shadow-lg d-flex flex-row flex-wrap justify-content-center">
+    
+        @for(producto of arrayProductos; track producto.sku){
+            <app-miniatura-component [producto]="producto"></app-miniatura-component>
+        }
+    
+</section>

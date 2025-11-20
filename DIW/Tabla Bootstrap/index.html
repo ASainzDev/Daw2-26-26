@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+        
+    <div class="container my-2 table-responsive">
+        <!-- Cojo el código base de una tabla de la página de bootstrap. Luego la iré modificando para que se parezca al ejemplo que tenemos.
+        Doy las clases que necesito para la table, como que tenga borde, que sea oscuro, responsividad y que tenga un titulo superior 
+        también alineo verticalmente el texto con align-middle, eso se nota en la celda que ocupa dos filas.-->
+        <table class="table table-warning border-danger caption-top align-middle table-striped-columns">
+            <!-- Como he añadido un caption le doy clases para darle estilo -->
+            <caption class="text-bg-success bg-opacity-50 text-center fw-bolder text-black">Características</caption>
+            <!-- Doy algún estilo al table head -->
+            <thead class="table-light">
+                <!-- Alineo el texto al centro en la row de título. -->
+                <tr class="text-center">
+                    <!-- Sigo necesitando trabajar con colspan para maquetar la tabla. No he encontrado nada en bootstrap -->
+                    <th colspan="4">Tabla Fusionada</th>
+                </tr>
+            </thead> 
+            <!-- Añado un divider al tbody para separarlo del thead. El problema es que tengo que cambiar color de tabla para que se vea.-->
+            <tbody class="table-group-divider">
+                <tr>
+                    <td></td>
+                    <td colspan="2">Media</td>
+                    <td rowspan="2">Ojos Rojos</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Altura</td>
+                    <td>Peso</td>
+                </tr>
+                <tr>
+                    
+                    <td>Machos</td>
+                    <td>1.9</td>
+                    <td>0.003</td>
+                    <!-- Coloco aquí otra celda vacia porque si no no se dibuja el borde derecho -->
+                    <td></td>
+                </tr>
+                <tr>
+                    <!-- Esto es un ataque a la vista pero sirve para probar coloración distinta de celdas en la misma fila -->
+                    <td class="table-primary">Hembras</td>
+                    <td class="table-info">1.7</td>
+                    <td class="table-success">0.002</td>
+                    <!-- Coloco aquí otra celda vacia porque si no no se dibuja el borde derecho -->
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>

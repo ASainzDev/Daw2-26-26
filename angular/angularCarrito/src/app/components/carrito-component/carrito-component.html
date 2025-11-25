@@ -24,7 +24,7 @@
     @if(precioTotal != "0,00"){
         <div class="container bg-danger text-light my-2">
             <h3>TOTAL</h3>
-            <h3>{{this.sCarrito.getPrecioTotal()}}</h3>
+            <h3>{{this.sCarrito.getPrecioTotal()}}{{this.sCarrito.getCurrency()}}</h3>
         </div>
     }
     

@@ -76,22 +76,28 @@ export class SCarritoService {
       }
       
     }
-
-    this.precioTotal -= producto.price;
+    if(this.precioTotal - producto.price >= 0){
+      this.precioTotal -= producto.price;
+    }
+    
   }
 
+  // Obtengo la currency
   getCurrency() : string {
     return this.currency;
   }
 
+  // Obtengo los productos que hay en el carrito
   getCarritoProducts() : any[] {
     return this.carritoProductos;
   }
 
+  // Retornamos el precio del carrito, como string, para poder devolverlo con dos decimales
   getPrecioTotal() : string{
     return this.precioTotal.toFixed(2);
   }
 
+  // Con este botón vacio en carrito de la compra.
   eliminarCompra() {
     this.carritoProductos.splice(0,this.carritoProductos.length);
     this.precioTotal = 0;
@@ -100,6 +106,8 @@ export class SCarritoService {
   getInitialQuantity() : number{
     return this.initialQuantity;
   }
+
+  // Con este método intento reiniciar la cantidad que se muestra en las miniaturas de productos, pero no funciona como esperaba
 
   resetInitialQuantity() : void{
     this.initialQuantity = 0;

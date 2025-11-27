@@ -7,12 +7,7 @@ import { Injectable } from '@angular/core';
 })
 export class BlogService {
   
-<<<<<<< HEAD
-=======
-  
-  // Aunque la he cambiado para que sea public, sigue sin actualizarse en la seccion-principal.
-  // Supongo que será por la forma en la que hago las cosas. Así que voy a dejarlo como me funcionaba.
->>>>>>> 3ea8438 (Cambios de Casa Viernes)
+
   selectedUser : string;
 
   private arrayArticulos: Articulo[];

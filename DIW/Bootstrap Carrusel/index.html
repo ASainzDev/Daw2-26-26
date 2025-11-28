@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Carrusel Bootstrap Responsive</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<!-- Definimos el esqueleto. Voy dando clases personalizadas para jugar con los estilos. Sobre todo por 
+ cambiar los estilos básicos de BS -->
+<body class="cuerpo">
+
+    <!-- Container principal de la página -->
+  <div class="container my-5 fondo">
+    <!-- Debo definir row y cols para que sea responsiva, de otra forma va a quedar mal. Se irán ajustando
+     los tamaños según vaya probando. -->
+    <div class="row">
+      <div class="col-12 col-md-10 col-lg-8 mx-auto">
+
+        <!-- CARRUSEL. La id la necesito para que se pueda complementar con las flechas y los indicators. Container fluid
+         lo puse para probar, pero no hace nada en general. -->
+        <div id="carruselEjemplo" class="carousel slide container-fluid" data-bs-ride="carousel">
+
+          <!-- INDICADORES. De normal son puntos pero juego con estilos por enredar. -->
+          <div class="carousel-indicators">
+            <!-- En los indicators y en las flechas, al igual que en las imágenes siempre tiene que existir un 
+             elemento active, para que sea el que está seleccionado por defecto. Como en los arrays y colecciones
+             se empieza a contar desde 0. Las etiquetas aria suelen estar por defecto en algunos elementos de BS
+             para los screenreaders y elementos parecidos. Ni los toco. -->
+            <button type="button"
+                    data-bs-target="#carruselEjemplo"
+                    data-bs-slide-to="0"
+                    class="active"
+                    aria-current="true"
+                    aria-label="Imagen 1"></button>
+
+            <button type="button"
+                    data-bs-target="#carruselEjemplo"
+                    data-bs-slide-to="1"
+                    aria-label="Imagen 2"></button>
+
+            <button type="button"
+                    data-bs-target="#carruselEjemplo"
+                    data-bs-slide-to="2"
+                    aria-label="Imagen 3"></button>
+          </div>
+
+          <!-- IMÁGENES -->
+          <div class="carousel-inner">
+
+            <div class="carousel-item active">
+                <!-- Para probar con imágenes distintas, en este voy a buscar una imagen horizontal, un rectángulo. -->
+              <img src="https://www.warhammer.com/ur4mtvpiojcu/6YCeGJ4j3nSQCNMau1aJpq/3859c0422ff021bed6b1d484a0b8225f/Filter_-_Armies_of_the_Imperium.png?fm=webp&w=1920&h=580"
+                   class="d-block w-100"
+                   alt="Imagen horizontal">
+            </div>
+
+            <div class="carousel-item">
+                <!-- Trato de buscar una imagen vertical para este. El problema es que recorta la imagen. No se si será así. -->
+              <img src="https://preview.redd.it/warhammer-40k-hot-takes-v0-brmb35p9bdwe1.jpeg?auto=webp&s=c561d722b2d1ffc60fbee8c8146b97ba0d00c0a4"
+                   class="d-block w-100"
+                   alt="Imagen vertical">
+            </div>
+
+            <div class="carousel-item">
+                <!-- Para este trato de buscar una imagen cuadrada o aproximada. Esta es lo más aproximado que he encontrado. -->
+              <img src="https://i.pinimg.com/736x/c9/96/b0/c996b01946b55e506e17ae0b226433fe.jpg"
+                   class="d-block w-100"
+                   alt="Imagen cuadrada">
+            </div>
+
+          </div>
+
+          <!-- FLECHA ANTERIOR -->
+          <button class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#carruselEjemplo"
+                  data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+          </button>
+
+          <!-- FLECHA SIGUIENTE -->
+          <button class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#carruselEjemplo"
+                  data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+          </button>
+
+        </div>
+        <!-- /CARRUSEL -->
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

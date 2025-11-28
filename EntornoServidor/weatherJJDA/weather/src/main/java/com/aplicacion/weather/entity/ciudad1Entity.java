@@ -4,17 +4,19 @@ import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="ciudad1")
+@Table(name="registros_meteorologicos")
 public class ciudad1Entity {
     
+    // Identity para que sepa que es la id, de que es auto se encarga sql
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     int registry_id;
 
     @Column(nullable = false)
@@ -38,6 +40,10 @@ public class ciudad1Entity {
     @Column(nullable = false)
     LocalDate fecha;
 
+    // El @Enumerated es para que guarde el valor del enum como string, a veces si no lo guarda como
+    // número y puede dar problemas. Así además nos aseguramos que los valores sean los mismos que
+    // los del enum de sql.
+    @Enumerated(jakarta.persistence.EnumType.STRING)
     @Column(nullable = false)
     FenomenosAtmosfericosEnum fenomenos_atmos;
 

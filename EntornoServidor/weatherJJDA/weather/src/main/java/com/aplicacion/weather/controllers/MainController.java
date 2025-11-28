@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,7 +39,7 @@ public class MainController {
     }
 
     // En el siguiente método voy a devolver los datos referentes a una ciudad concreta
-    @GetMapping("ciudad")
+    @GetMapping("/ciudad")
     public List<ciudad1Entity> getRegistrosCiudad(@RequestParam String nombreCiudad) {
         // Por ahora lo dejo así, luego ya haré la consulta personalizada en el service y el
         // repository.
@@ -47,7 +49,7 @@ public class MainController {
     //La siguiente simplemente me la tengo que imaginar, para no hacer yo tambien lo de postman
     //Por la tarde lo miramos entre los tres a ver si funciona bien. Es lo mismo que la anterior
     //pero con requestbody en vez de requestparam. Esta está pensada en caso de que exista un filtro
-    @GetMapping("ciudad")
+    @GetMapping("/ciudadFormulario")
     public List<ciudad1Entity> getRegistrosCiudadBody(@RequestBody String nombreCiudad) {
         // Por ahora lo dejo así, luego ya haré la consulta personalizada en el service y el
         // repository.
@@ -59,6 +61,12 @@ public class MainController {
     @GetMapping("/registros/fechas")
     public List<ciudad1Entity> filtrarPorFechas(@RequestBody String fechaDesde, String fechaHasta) {
         return service1.filtradoPorFechas(fechaDesde, fechaHasta);
+    }
+
+    @PutMapping("/{id}/actualizartemperatura")
+    public void modificarRegistro(@RequestBody double temperatura, @PathVariable int id){
+
+        service1.modificarTemperatura(temperatura, id);
     }
     
 

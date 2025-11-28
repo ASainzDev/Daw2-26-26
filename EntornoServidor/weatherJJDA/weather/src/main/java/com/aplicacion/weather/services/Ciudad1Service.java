@@ -55,4 +55,12 @@ public class Ciudad1Service {
         }
     }
 
+    public void modificarTemperatura(double temp, int id) {
+        ciudad1Entity city = interface1.findById(id).orElse(null);
+        city.setTemp_max(temp);
+
+        interface1.save(city);
+        
+    }
+
 }

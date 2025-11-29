@@ -57,14 +57,22 @@ public class MainController {
     }
 
     // Voy a intentar dejar uno preparado que filtre por dos fechas. Con requestbody en vez de
-    // requestparam. Si vemos que hay que cambiarlo, lo cambiamos.
+    // requestparam. Si vemos que hay que cambiarlo, lo cambiamos. Vale, encontré el problema aquí. Con request
+    //body SpringBoot tiene el problema de que normalmente espera un parámetro solo, así que me detecta el primero
+    // pero la segunda fecha me la ve como un null, así que voy a cambiar @RequestBody por @RequestParam y pasarselas
+    //en la barra de direcciones.
     @GetMapping("/registros/fechas")
-    public List<ciudad1Entity> filtrarPorFechas(@RequestBody String fechaDesde, String fechaHasta) {
-        return service1.filtradoPorFechas(fechaDesde, fechaHasta);
+    public List<ciudad1Entity> filtrarPorFechas(@RequestParam String fecha_desde, @RequestParam String fecha_hasta) {
+        return service1.filtradoPorFechas(fecha_desde, fecha_hasta);
     }
 
+    // Aquí estoy teniendo otro problema como en el anterior de las fechas. Leyendo por ahí, parece ser
+    // que SpringBoot tiene problemas con datos primitivos que llegan en al body si no son Strings o Enums.
+    // Así que lo que tengo que hacer aquí es, o uso @RequestParam para asegurar o mantengo @RequestBody, valido
+    // el tipo de dato recibido y, si es un doble lo paso al servicio, si es un string, lo parseo y lo
+    //  paso al servicio. Voy a asegurar y tiro por requestParam
     @PutMapping("/{id}/actualizartemperatura")
-    public void modificarRegistro(@RequestBody double temperatura, @PathVariable int id){
+    public void modificarRegistro( @PathVariable int id, @RequestParam double temperatura){
 
         service1.modificarTemperatura(temperatura, id);
     }

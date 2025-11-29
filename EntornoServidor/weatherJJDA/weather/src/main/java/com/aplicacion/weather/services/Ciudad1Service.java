@@ -15,6 +15,10 @@ public class Ciudad1Service {
     @Autowired
     private Ciudad1Interface interface1;
 
+    // Buscando ejemplos de como hacer querys en JPA encontré que JPA en principio, salvo que uses
+    // @query no las hace y tengo que buscarme la forma de filtrar yo. Con los streams de java si
+    // lo puedo hacer. Además las funciones de stream, se pueden buscar las que son equivalentes
+    // a claúsulas de SQL
     public List<String> getListadoCiudades(){
 
         // https://www.arquitecturajava.com/java-stream/
@@ -39,11 +43,15 @@ public class Ciudad1Service {
         .toList();
     }
 
-    //Lo dejo como creo que puede funcionar el filtrado por fechas, luego probamos en clase
+    //Lo dejo como creo que puede funcionar el filtrado por fechas, luego probamos en clase.
+    // Vale, esto tengo que reconocerlo. Todo el rato me devolvía un array vacio, y no sabía porque
+    // Aquí he tenido que tirar del amigo IA. La forma en la que estaba al principio hace que las fechas
+    // desde y hasta, tal y como estaban evaluadas, fuesen excluyentes, no entraban dentro del filtro
+    // así que no salía nada. Tuve que cambiarla.
     public List<ciudad1Entity> filtradoPorFechas(String fechaDesde, String fechaHasta){
         return interface1.findAll()
         .stream()
-        .filter(ciudad -> ciudad.getFecha().isAfter(LocalDate.parse(fechaDesde)) && ciudad.getFecha().isBefore(LocalDate.parse(fechaHasta)))
+        .filter(ciudad -> !ciudad.getFecha().isAfter(LocalDate.parse(fechaHasta)) && !ciudad.getFecha().isBefore(LocalDate.parse(fechaDesde)))
         .toList();
     }
 
@@ -55,6 +63,9 @@ public class Ciudad1Service {
         }
     }
 
+    // Este método en principio es fácil. Teníamos un ejemplo anterior de un ejercicio que hicimos
+    // El problema me ha venido en el controller y en la forma en la que se gestionan las entradas
+    // de datos desde postman. Ahí estuvo la dificultad.
     public void modificarTemperatura(double temp, int id) {
         ciudad1Entity city = interface1.findById(id).orElse(null);
         city.setTemp_max(temp);

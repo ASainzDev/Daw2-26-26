@@ -1,0 +1,10 @@
+<app-formulario-filtros></app-formulario-filtros>
+
+    <section class="container my-2 shadow-lg d-flex flex-row flex-wrap justify-content-evenly">
+        <!-- Con un for sobre mi colección voy generando un nuevo componente por iteración al que voy mandando contenido gracias a un Input. -->
+        @for(producto of listadoProductos; track producto.id){
+        <app-product-card [producto]="producto"></app-product-card>
+        }@empty {
+        <p class="text-center my-5 fw-bolder fs-6">No tenemos ningún artículo para leer todavia.</p>
+        }
+    </section>

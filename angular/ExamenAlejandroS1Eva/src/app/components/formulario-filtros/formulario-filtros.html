@@ -1,0 +1,51 @@
+<section>
+    <p>
+        <a class="btn btn-primary col-12" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+            aria-controls="collapseExample">
+            Filtros
+        </a>
+    </p>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            <div class="container mx-auto my-2 d-flex flex-column">
+                <h6>Seleccione las opciones de búsqueda</h6>
+                <div class="container-fluid my-2 d-flex flex-column">
+                    
+                    <form novalidate #formularioFiltro="ngForm" (ngSubmit)="onSubmit(formularioFiltro.value)">
+                        <div class="row d-flex flex-column justify-content-center">
+                            <label for="name" class="my-1">Nombre</label>
+                            <input type="text" id="name" name="name" class="my-1" [(ngModel)]="filtro.name" (onChange)="filtrarPorNombre()">
+                        </div>
+                        
+                        <div class="row d-flex flex-column justify-content-center">
+                            <select class="form-select my-1" aria-label="Default select example" name="category" [(ngModel)]="filtro.category">
+                                <option selected>Categoria</option>
+                                <option value="hombre">Hombre</option>
+                                <option value="mujer">Mujer</option>
+                                <option value="niño">Niño</option>
+                            </select>
+                        </div>
+                        
+                
+                        <div class="row d-flex flex-column justify-content-center">
+                            <label for="precio" class="my-1">Precio Máximo</label>
+                            <input type="number" id="precio" size="6" min="0" max="1000" value="1000" class="my-1" name="price" [(ngModel)]="filtro.price">
+                        </div>
+
+
+                        <div class="row d-flex flex-column justify-content-center">
+                            <label for="active" class="my-1">Stock?</label>
+                            <input type="checkbox" id="active" class="my-1" name="active" [(ngModel)]="filtro.active">
+                        </div>
+
+                        <input type="submit" value="Filtrar" class="btn btn-primary">
+                        <input type="reset" value="Limpiar Filtros" class="btn btn-warning">
+                    </form>
+            
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</section>

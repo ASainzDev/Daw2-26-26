@@ -1,6 +1,6 @@
 <div class="container my-4">
 
-@if(articulo){
+@if(producto){
     <!-- Imagen del artículo -->
   <div class="text-center mb-3">
     <img class="img-fluid rounded" [src]="articulo.urlImagen" alt="Imagen del artículo">
@@ -14,18 +14,6 @@
     <p class="mb-1"><strong>Fecha:</strong> {{ articulo.fecha }}</p>
   </div>
 
-  <!-- Contenido del artículo -->
-  <div class="mb-3">
-    <p>{{ articulo.parrafo1 }}</p>
-
-    @if(articulo.parrafo2){
-        <p>{{articulo.parrafo2}}</p>
-    }
-    
-    @if(articulo.parrafo3){
-        <p>{{articulo.parrafo3}}</p>
-    }
-  </div>
 
   <!-- Botón volver a home -->
   <div class="text-center mt-4">
@@ -33,7 +21,7 @@
   </div>
 
 }@else {
-    <p>Ha ocurrido algún error y no hemos encontrado el artículo</p>
+    <p>Ha ocurrido algún error y no hemos encontrado el Producto</p>
     <button class="btn btn-warning" routerLink = 'home'>Home</button>
 }
 

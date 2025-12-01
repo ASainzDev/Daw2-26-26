@@ -1,0 +1,28 @@
+input.ng-pristine.ng-touched {
+    border-bottom: 2px solid blue;
+}
+
+input.ng-dirty.ng-invalid {
+    border-bottom: 2px solid red;
+}
+
+input.ng-valid {
+    border-bottom: 2px solid green;
+}
+
+.texto-informativo {
+    font-size: 0.75em;
+    font-weight: lighter;
+}
+
+.pristine {
+    color: blue;
+}
+
+.invalid {
+    color: red;
+}
+
+.valid {
+    color: green;
+}

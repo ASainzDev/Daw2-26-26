@@ -1,0 +1,19 @@
+
+    <div class="card my-2 shadow" style="width: 20rem;">
+        <img class="card-img-top mt-2 imagen-stilo" [src]="producto.image" alt="Imagen del producto" />
+        <div class="card-body text-center fw-bolder">
+            <h4 class="card-title">{{producto.name}}</h4>
+            <p class="card-text">{{producto.category}}</p>
+            <p class="card-text">{{producto.description}}</p>
+            <span>{{producto.price}}</span>
+            <input type="checkbox" [(ngModel)]="producto.active">
+            <span></span>
+        </div>
+        <div class="container d-flex justify-content-evenly my-2">
+            <button class="btn btn-success" (click)="verCompleto(producto.id)">Leer Mas</button>
+            <button class="btn btn-success" (click)="eliminarProducto(producto)">Eliminar</button>
+            <button class="btn btn-success" (click)="pasarDatosFormulario(producto.id)">Editar Datos</button>
+        </div>
+    </div>
+
+

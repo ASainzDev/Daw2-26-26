@@ -1,0 +1,28 @@
+<div class="container my-4">
+
+    @if(product){
+    <!-- Imagen del artículo -->
+    <div class="text-center mb-3">
+        <img class="img-fluid rounded" [src]="product.image" alt="Imagen del artículo">
+    </div>
+
+    <!-- Información general -->
+    <div class="mb-3">
+        <h1 class="fw-bold">{{ product.name }}</h1>
+        <h4 class="text-muted">{{ product.description }}</h4>
+        <p class="mb-1"><strong>Precio: </strong> {{ product.price }}</p>
+        <p class="mb-1"><strong>Categoria: </strong> {{ product.category }}</p>
+    </div>
+
+
+    <!-- Botón volver a home -->
+    <div class="text-center mt-4">
+        <button class="btn btn-primary" routerLink="home">Volver a Home</button>
+    </div>
+
+    }@else {
+    <p>Ha ocurrido algún error y no hemos encontrado el Producto</p>
+    <button class="btn btn-warning" routerLink='home'>Home</button>
+    }
+
+</div>

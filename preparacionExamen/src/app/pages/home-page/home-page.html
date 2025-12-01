@@ -1,0 +1,11 @@
+<section>
+    <div class="container-fluid">
+        <div class="row col-12">
+            @for(articulo of listadoArticulos; track articulo.uuid){
+                <app-miniatura-component [articulo]="articulo"></app-miniatura-component>
+            }@empty {
+                <p class="text-center my-5 fw-bolder fs-6">No tenemos ningún artículo para leer todavia.</p>
+            }
+        </div>
+    </div>
+</section>

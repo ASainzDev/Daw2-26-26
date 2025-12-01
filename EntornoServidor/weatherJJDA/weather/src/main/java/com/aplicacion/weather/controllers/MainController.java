@@ -3,6 +3,7 @@ package com.aplicacion.weather.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -61,6 +62,8 @@ public class MainController {
     //body SpringBoot tiene el problema de que normalmente espera un parámetro solo, así que me detecta el primero
     // pero la segunda fecha me la ve como un null, así que voy a cambiar @RequestBody por @RequestParam y pasarselas
     //en la barra de direcciones.
+    // Al final tanto aclarar en el service que era por error de validaciones, resulta que se me va la pinza y en
+    // postman no tengo los mismos nombres de las variables que espera recibir este @GetMapping. Increible.
     @GetMapping("/registros/fechas")
     public List<ciudad1Entity> filtrarPorFechas(@RequestParam String fecha_desde, @RequestParam String fecha_hasta) {
         return service1.filtradoPorFechas(fecha_desde, fecha_hasta);
@@ -86,5 +89,11 @@ public class MainController {
         //genera sql.
         nuevoRegistro.setRegistry_id(0);
         service1.addRegistro(nuevoRegistro);
+    }
+
+    // Creo el método que nos sirve para eliminar un registro
+    @DeleteMapping("/{id}/eliminarRegistro")
+    public void removeRegistro(@PathVariable int id){
+        service1.removeRegistro(id);
     }
 }

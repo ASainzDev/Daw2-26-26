@@ -74,4 +74,8 @@ public class Ciudad1Service {
         
     }
 
+    public void removeRegistro(int id) {
+        interface1.deleteById(id);
+    }
+
 }

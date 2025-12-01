@@ -1,0 +1,87 @@
+<section class="container-fluid my-5 mx-2">
+    <!-- formulario-articulo.component.html -->
+<form [formGroup]="articuloForm" class="container mt-4" (ngSubmit)="guardarForm()">
+  <div class="mb-3">
+    <label for="titulo" class="form-label">Título</label>
+    <input type="text" id="titulo" class="form-control" formControlName="titulo" placeholder="Introduce el título">
+
+    @if(articuloForm.get('titulo')?.pristine){
+      <p class="texto-informativo pristine">{{obtenerPristine()}}</p>
+    }@else if (articuloForm.get('titulo')?.dirty && articuloForm.get('titulo')?.invalid) {
+      <p class="texto-informativo invalid">{{obtenerUnvalid()}}</p>
+    }@else if (articuloForm.get('titulo')?.valid) {
+      <p class="texto-informativo valid">{{obtenerValid()}}</p>
+    }
+  </div>
+
+  <div class="mb-3">
+    <label for="subtitulo" class="form-label">Subtítulo</label>
+    <input type="text" id="subtitulo" class="form-control" formControlName="subtitulo" placeholder="Introduce el subtítulo">
+    @if(articuloForm.get('subtitulo')?.pristine){
+      <p class="texto-informativo pristine">{{obtenerPristine()}}</p>
+    }@else if (articuloForm.get('subtitulo')?.dirty && articuloForm.get('titulo')?.invalid) {
+      <p class="texto-informativo invalid">{{obtenerUnvalid()}}</p>
+    }@else if (articuloForm.get('subtitulo')?.valid) {
+      <p class="texto-informativo valid">{{obtenerValid()}}</p>
+    }
+  </div>
+
+  <div class="mb-3">
+    <label for="autor" class="form-label">Autor</label>
+    <input type="text" id="autor" class="form-control" formControlName="autor" placeholder="Nombre del autor">
+    @if(articuloForm.get('autor')?.pristine){
+      <p class="texto-informativo pristine">{{obtenerPristine()}}</p>
+    }@else if (articuloForm.get('autor')?.dirty && articuloForm.get('titulo')?.invalid) {
+      <p class="texto-informativo invalid">{{obtenerUnvalid()}}</p>
+    }@else if (articuloForm.get('autor')?.valid) {
+      <p class="texto-informativo valid">{{obtenerValid()}}</p>
+    }
+  </div>
+
+  <div class="mb-3">
+    <label for="fecha" class="form-label">Fecha</label>
+    <input type="date" id="fecha" class="form-control" formControlName="fecha">
+    @if(articuloForm.get('fecha')?.pristine){
+      <p class="texto-informativo pristine">{{obtenerPristine()}}</p>
+    }@else if (articuloForm.get('fecha')?.dirty && articuloForm.get('titulo')?.invalid) {
+      <p class="texto-informativo invalid">{{obtenerUnvalid()}}</p>
+    }@else if (articuloForm.get('fecha')?.valid) {
+      <p class="texto-informativo valid">{{obtenerValid()}}</p>
+    }
+  </div>
+
+  <div class="mb-3">
+    <label for="parrafo1" class="form-label">Párrafo 1</label>
+    <textarea id="parrafo1" rows="3" class="form-control" formControlName="parrafo1" placeholder="Primer párrafo"></textarea>
+  </div>
+
+  <div class="mb-3">
+    <label for="parrafo2" class="form-label">Párrafo 2</label>
+    <textarea id="parrafo2" rows="3" class="form-control" formControlName="parrafo2" placeholder="Segundo párrafo"></textarea>
+  </div>
+
+  <div class="mb-3">
+    <label for="parrafo3" class="form-label">Párrafo 3</label>
+    <textarea id="parrafo3" rows="3" class="form-control" formControlName="parrafo3" placeholder="Tercer párrafo"></textarea>
+  </div>
+
+  <div class="mb-3">
+    <label for="urlImagen" class="form-label">URL de la imagen</label>
+    <input type="url" id="urlImagen" class="form-control" formControlName="urlImagen" placeholder="https://ejemplo.com/imagen.jpg">
+    @if(articuloForm.get('urlImagen')?.pristine){
+      <p class="texto-informativo pristine">{{obtenerPristine()}}</p>
+    }@else if (articuloForm.get('urlImagen')?.dirty && articuloForm.get('titulo')?.invalid) {
+      <p class="texto-informativo invalid">{{obtenerUnvalid()}}</p>
+    }@else if (articuloForm.get('urlImagen')?.valid) {
+      <p class="texto-informativo valid">{{obtenerValid()}}</p>
+    }
+  </div>
+
+  <button type="submit" class="btn btn-primary mt-3" [disabled]="articuloForm.invalid">
+    Guardar Artículo
+  </button>
+
+  <button type="button" class="btn btn-danger mt-3 mx-3" routerLink="home" routerLinkActive="active">Home</button>
+</form>
+
+</section>

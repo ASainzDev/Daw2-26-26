@@ -1,0 +1,17 @@
+<div class="row col-12 mx-3 my-2">
+    <div class="card">
+        <img class="card-img-top imagen-stilo" [src]="articulo.urlImagen" alt="Imagen" />
+        <div class="card-body card-img-overlay text-center fw-bolder">
+            <h4 class="card-title">{{articulo.titulo}}</h4>
+            <p class="card-text">{{articulo.subtitulo}}</p>
+            <p class="card-text">{{articulo.autor}}</p>
+            <span>{{articulo.fecha}}</span>
+        </div>
+    </div>
+    <div class="container-fluid d-flex justify-content-evenly mt-2">
+        <button class="btn btn-success"  (click)="verCompleto('vista', articulo.uuid)">Leer Mas</button>
+        <button class="btn btn-success" (click) ="eliminarArticulo(articulo)">Eliminar</button>
+        <button class="btn btn-success" (click) ="pasarDatosFormulario(articulo.uuid)">Editar Datos</button>
+    </div>
+</div>
+

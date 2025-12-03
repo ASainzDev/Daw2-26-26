@@ -1,0 +1,65 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  color: #5a3e2b;
+}
+
+.navbar {
+  background-color: #4f8f6a;
+}
+
+.nav-link,
+.navbar-brand,
+.navbar .btn {
+  color: #5a3e2b;
+}
+
+.logo-box {
+  width: 32px;
+  height: 32px;
+  background-color: #d7ede1;
+  border-radius: 4px;
+}
+
+.logo-text {
+  font-weight: 500;
+}
+
+.hero-carousel,
+.hero-carousel .carousel-item {
+  height: 300px;
+  background-color: #d7ede1;
+  border-radius: 6px;
+}
+
+.placeholder-img {
+  height: 140px;
+  background-color: #e2e2e2;
+}
+
+.accordion-button {
+  background-color: #d7ede1;
+  color: #5a3e2b;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #4f8f6a;
+  color: #5a3e2b;
+}
+
+.footer {
+  background-color: #4f8f6a;
+  color: #5a3e2b;
+  padding: 2rem 0;
+}
+
+.footer a {
+  display: block;
+  color: #5a3e2b;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.login-box {
+  max-width: 420px;
+  width: 100%;
+}

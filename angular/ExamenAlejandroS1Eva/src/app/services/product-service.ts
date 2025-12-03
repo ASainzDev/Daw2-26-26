@@ -91,13 +91,10 @@ export class ProductService {
   // Voy a probar solo con values sin crear nuevo objeto.
   filtrarListado(filtro : Filtro){
     
-      this.listadoFiltrado = this.listadoProductos;
 
       this.listadoProductos = this.listadoProductos.filter((producto) => producto.active === filtro.active &&
         (!filtro.category || producto.category === filtro.category) && producto.price <= filtro.price
         && (!filtro.name || producto.name.includes(filtro.name)));
-
-        console.log(this.listadoProductos);
 
   }
 

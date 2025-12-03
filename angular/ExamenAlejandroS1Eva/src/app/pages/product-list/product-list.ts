@@ -18,6 +18,8 @@ export class ProductList {
 
   servicioProductos = inject(ProductService);
 
+
+
   constructor(){
 
     //Inicializo lo que necesite por ahora
@@ -32,11 +34,14 @@ export class ProductList {
       "image": '',
       "active": false,
     }
+
   }
 
   ngOnInit(): void {
 
-    //Lo primero que tengo que hacer es hidratar mi coleccion
-    this.listadoProductos = this.servicioProductos.obtenerListadoProductos();
+      //Lo primero que tengo que hacer es hidratar mi coleccion
+      this.listadoProductos = this.servicioProductos.obtenerListadoProductos();
+    
+    
   }
 }

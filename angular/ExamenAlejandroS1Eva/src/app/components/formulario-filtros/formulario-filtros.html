@@ -14,7 +14,7 @@
                     <form novalidate #formularioFiltro="ngForm" (ngSubmit)="onSubmit(formularioFiltro.value)">
                         <div class="row d-flex flex-column justify-content-center">
                             <label for="name" class="my-1">Nombre</label>
-                            <input type="text" id="name" name="name" class="my-1" [(ngModel)]="filtro.name" (onChange)="filtrarPorNombre()">
+                            <input type="text" id="name" name="name" class="my-1" [(ngModel)]="filtro.name">
                         </div>
                         
                         <div class="row d-flex flex-column justify-content-center">

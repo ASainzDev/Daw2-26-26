@@ -12,10 +12,15 @@ export class ProductService {
 
   private listadoProductos : Products[];
 
+  private listadoFiltrado : Products[];
+
   // Defino el constructor
   constructor(){
 
-    this.listadoProductos = []
+    this.listadoProductos = [];
+
+    this.listadoFiltrado = [];
+
 
     // Algo he pensado mal al hacer el planteamiento. Tal y como lo habia hecho no se me actualizaba la lista bien, por lo tanto el fetch aquí. No me gusta nada, prefería en la función que tenía declarada, pero bueno, si me da tiempo le doy una vuelta y lo arreglo.
     fetch('http://localhost:8080/api/products')
@@ -82,28 +87,20 @@ export class ProductService {
     }
   }
 
+
   // Voy a probar solo con values sin crear nuevo objeto.
   filtrarListado(filtro : Filtro){
     
-    if(filtro.name !== undefined){
-      this.listadoProductos.filter((producto) => producto.name === filtro.name || producto.name.includes(filtro.name));
-    }
+      this.listadoFiltrado = this.listadoProductos;
 
-    if(filtro.category != ''){
-      this.listadoProductos.filter((producto) => producto.category === filtro.category);
-    }
+      this.listadoProductos = this.listadoProductos.filter((producto) => producto.active === filtro.active &&
+        (!filtro.category || producto.category === filtro.category) && producto.price <= filtro.price
+        && (!filtro.name || producto.name.includes(filtro.name)));
 
-    if(filtro.price >= 0){
-      this.listadoProductos.filter((producto) => producto.price <= filtro.price);
-    }
-    
-
-    this.listadoProductos.filter((producto) => producto.active === filtro.active);
+        console.log(this.listadoProductos);
 
   }
 
-  filtrarPorNombre(name: string) {
-    this.listadoProductos.filter((producto)=> producto.name.includes(name));
-  }
+  
 
 }

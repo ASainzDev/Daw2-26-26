@@ -1,0 +1,111 @@
+
+/* Aquí es jugar con todo. tipo de letra y colores elegidos */
+body {
+  font-family: 'Roboto', sans-serif;
+  color: #5a3e2b;
+}
+
+/* El navbar con el color elegidos */
+.navbar {
+  background-color: #4f8f6a;
+}
+
+/* Los links del otro color elegidos, aunque quedan un poco así. */
+.nav-link,
+.navbar-brand,
+.navbar .btn {
+  color: #5a3e2b;
+}
+
+/* La caja del logo, aunque la he cambiado algo, era tamaño pequeño. Me servía de referencia para ver como iba */
+.logo-box {
+  width: 32px;
+  height: 32px;
+  background-color: #d7ede1;
+  border-radius: 4px;
+}
+
+/* Para el texto de prueba del logo */
+.logo-text {
+  font-weight: 500;
+}
+
+/* El Carrusel, medidas de imágenes, anchura. */
+.hero-carousel,
+.hero-carousel .carousel-item {
+  height: 300px;
+  background-color: #d7ede1;
+  border-radius: 6px;
+}
+/* Aqui más propiedades de la imagen */
+
+.placeholder-img {
+  height: 140px;
+  background-color: #e2e2e2;
+}
+
+/* Los botones del acordeon. No sabía muy bien de que color ponerlos, al final es como un contraste complicado */
+.accordion-button {
+  background-color: #d7ede1;
+  color: #5a3e2b;
+}
+
+/* Los botones no collapsados llevan otro comportamiento */
+.accordion-button:not(.collapsed) {
+  background-color: #4f8f6a;
+  color: #5a3e2b;
+}
+
+/* Propiedades del footer */
+.footer {
+  background-color: #4f8f6a;
+  color: #5a3e2b;
+  padding: 2rem 0;
+}
+
+/* Los links del footer. Su color y su display */
+.footer a {
+  display: block;
+  color: #5a3e2b;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+/* Aquí las dimensiones finales del logo. Estuve haciendo pruebas, y al final me quedo esta en vez de lo de arriba. */
+.login-box {
+  max-width: 420px;
+  width: 100%;
+}
+/* Jugando con las imágenes de carrusel, Una de ellas no ajusta bien */
+.imagen-carrusel{
+  object-fit:contain;
+}
+
+/* Con estos cambios ajusto las imágenes de las cards. Tengo que asegurarme de añadir la clase a todas */
+.img-album{
+  width: 15rem;
+  height:15rem;
+  object-fit: cover;
+}
+/* Para dar colorido. Otro marrón */
+button:hoover{
+  background-color: brown;
+  box-shadow:2px 2px 2px darkgreen;
+}
+
+/* Cambios para las imágenes de las cards de index . Aquí no juego con el width, ya tengo w-100 en la página*/
+.img-index{
+  
+  height: 12rem;
+  object-fit: cover;
+}
+
+/* Con este selector indico que los a dentro de una card, el color de texto sea brown, por usar un poco más ese color. Aunque ya digo, es un contraste dificil */
+.card a{
+  color:brown;
+  box-shadow: 1px 1px 1px brown;
+}
+
+footer a:hoover{
+  color:yellow;
+}

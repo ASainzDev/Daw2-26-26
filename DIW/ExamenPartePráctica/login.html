@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Aquí no me voy a estender. Es copiar lo que tenía de index. Por consistencia. -->
+
+<nav class="navbar">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <a class="navbar-brand" href="index.html">
+        <img src="/resources/Logo1.png" width="80" height="80" alt="Logo de Animalia">
+      </a>
+    </a>
+    <ul class="navbar-nav align-items-lg-center d-flex flex-row">
+        <li class="nav-item me-3">
+          <a class="nav-link" href="#">Contacto</a>
+        </li>
+        <!-- Botón para linkear con album -->
+        <li class="nav-item me-2">
+          <a href="album.html" class="btn btn-outline-light btn-sm">Album</a>
+        </li>
+      </ul>
+  </div>
+</nav>
+
+<!-- No me complico, es un formulario sencillito. Sin más, para cumplir la funcionalidad y que se vea un formulario correcto. -->
+<section class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="login-box">
+    <h2 class="text-center mb-4">Formulario de Registro</h2>
+
+    <form>
+      <div class="mb-3">
+        <input class="form-control" placeholder="Username">
+      </div>
+      <div class="mb-3">
+        <input class="form-control" placeholder="Email">
+      </div>
+      <div class="mb-4">
+        <input type="password" class="form-control" placeholder="Password">
+      </div>
+      <button class="btn btn-success w-100 mb-2">Sign up</button>
+      <!-- Aquí cambio algo del wireframe. Añado el botón de volver aquí abajo ya que me parece que hay espacio de sobra. -->
+      <a href="index.html" class="btn btn-outline-dark col-12 btn-success text-light btn-sm">Volver</a>
+    </form>
+
+    <p class="text-center text-muted small mt-3">
+      Registrandose, acepta nuestros términos y condiciones.
+    </p>
+    
+  </div>
+</section>
+
+<!-- Como lo demás, el footer, copiar y pegar. Nada del otro mundo. -->
+<footer class="footer mt-5">
+  <div class="container">
+    <div class="row text-center text-md-start">
+      <div class="col-md-4 mb-3">
+        <h6>Quienes somos</h6>
+        <a href="index.html">Animalia</a>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h6>Que nos gusta</h6>
+        <a href="album.html">Las Serpientes</a>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h6>Te interesa?</h6>
+        <a href="login.html">Unete</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

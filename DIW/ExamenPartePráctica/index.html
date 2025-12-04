@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Landing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <a class="navbar-brand" href="index.html">
+        <img src="/resources/Logo1.png" width="80" height="80" alt="Logo de Animalia">
+      </a>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+      <form class="d-flex ms-auto me-3">
+        <input class="form-control form-control-sm" type="search">
+      </form>
+
+      <ul class="navbar-nav align-items-lg-center">
+        <li class="nav-item me-3">
+          <a class="nav-link" href="#">Contacto</a>
+        </li>
+
+        <!-- Para crear la funcionalidad, como cambio sobre el wireframe, debo de añadir un botón que vaya a album. -->
+        <li class="nav-item me-2">
+          <a href="album.html" class="btn btn-outline-light btn-sm">Album</a>
+        </li>
+        <li class="nav-item me-2">
+          <a href="login.html" class="btn btn-outline-light btn-sm">Sign In</a>
+        </li>
+        <li class="nav-item">
+          <a href="login.html" class="btn btn-light btn-sm">Sign Up</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container my-5">
+  <div class="row">
+    <aside class="col-lg-3 mb-4">
+      <div class="accordion" id="filters">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#f1">
+              Tipos de Serpientes
+            </button>
+          </h2>
+          <div id="f1" class="accordion-collapse collapse show">
+            <div class="accordion-body">Especies</div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#f2">
+              Como cuidar Serpientes
+            </button>
+          </h2>
+          <div id="f2" class="accordion-collapse collapse">
+            <div class="accordion-body">Consejos</div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#f3">
+              Especies Venenosas
+            </button>
+          </h2>
+          <div id="f3" class="accordion-collapse collapse">
+            <div class="accordion-body">Precauciones</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="aside-text mt-4">
+        <p class="mb-2">Lorem ipsum dolor sit amet consectetur.</p>
+        <p class="text-muted small">Comentarios, notas u otra información secundaria.</p>
+      </div>
+    </aside>
+
+    <main class="col-lg-9">
+      <!-- Este es un carrusel que he querido hacer. Ya lo tenía en el wireframe. Debo de jugar con los tamaños de las imágenes. -->
+      <div id="heroCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+        <!-- Según bootstrap los indicators van aquí arriba aunque luego se vean abajo. Veremos a ver. Al final me dan error. Si puedo los arreglo al final-->
+        <!-- <ol class="carousel-indicators">
+          <li data-target="#heroCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#heroCarousel" data-slide-to="1"></li>
+          <li data-target="#heroCarousel" data-slide-to="2"></li>
+        </ol> -->
+        <div class="carousel-inner hero-carousel">
+          <div class="carousel-item active">
+            <!-- Las imágenes para estos elementos siempre me dan problemas, pués cambian muy brusco de tamaño. Así que les doy una clase propia para modificar en css, por si acaso. -->
+            <img class="d-block w-100 imagen-carrusel" src="/resources/serpiente5.jpg" alt="Serpiente Venenosa">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100 imagen-carrusel" src="/resources/serpiente3.webp" alt="Serpiente Simpática">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100 imagen-carrusel" src="/resources/serpiente9.jpg" alt="Zapatos Nuevos">
+          </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+<!-- De la misma forma que en el album, debo de jugar con el style y el width de las cards y las imágenes. Si no se va todo de madre. Por eso aquí style, y en css una clase para las imágenes, propia de las de index. Las pongo w-100 a las imágnes, para que ocupen todo el ancho de la card. Doy shadow a la card -->
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 shadow" style="width:15rem ;">
+            <img class="card-img-top img-index w-100" src="/resources/serpiente6.jpg" alt="Card image cap">
+            <div class="card-body">
+              <p>Texto principal</p>
+              <p class="text-muted small">Texto secundario</p>
+              <a href="#" class="btn btn-outline-secondary btn-sm">Botón</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 shadow" style="width:15rem ;">
+            <img class="card-img-top img-index w-100" src="/resources/serpiente7.jpg" alt="Card image cap">
+            <div class="card-body">
+              <p>Texto principal</p>
+              <p class="text-muted small">Texto secundario</p>
+              <a href="#" class="btn btn-outline-secondary btn-sm">Botón</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 shadow" style="width:15rem ;">
+            <img class="card-img-top img-index w-100" src="/resources/serpiente8.jpg" alt="Card image cap">
+            <div class="card-body">
+              <p>Texto principal</p>
+              <p class="text-muted small">Texto secundario</p>
+              <a href="#" class="btn btn-outline-secondary btn-sm">Botón</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 shadow" style="width:15rem ;">
+            <img class="card-img-top img-index w-100" src="/resources/serpiente4.avif" alt="Card image cap">
+            <div class="card-body">
+              <p>Texto principal</p>
+              <p class="text-muted small">Texto secundario</p>
+              <a href="#" class="btn btn-outline-secondary btn-sm">Botón</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- footer. Algo redundante pero tiene la funcionalidad de los botones. -->
+<footer class="footer mt-5">
+  <div class="container">
+    <div class="row text-center text-md-start">
+      <div class="col-md-4 mb-3">
+        <h6>Quienes somos</h6>
+        <a href="index.html">Animalia</a>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h6>Que nos gusta</h6>
+        <a href="album.html">Las Serpientes</a>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h6>Te interesa?</h6>
+        <a href="login.html">Unete</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

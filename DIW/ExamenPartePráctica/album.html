@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Opto por traer los elementos de bootstrap, para mí es más cómodo. Aunque quite algo de puntos. Aunque no lo vaya a usar importo también los icons de bootstrap, por si me da timepo.-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Album</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Para que sea más fácil, tengo una hoja de estilos común para las tres páginas. -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- Tengo que insertar una navbar igual a las otras dos páginas, por mantener un estilo coherente. Todo esto dentro de un header para ser semántico-->
+<header>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <!-- Aquí lo que intento es que todo esté más o menos alineado al centro, aunque eveidentemente, según la anchura de la barra de búsqueda y del logo puede parecer que está desplazado. Eso sí, los botones de signIn y SingUp los quiero más cerca de la derecha. -->
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <!-- Aquí debo de insertar el logo en todas las páginas. Le doy la funcionalidad de volver a inicio.-->
+                <a class="navbar-brand" href="index.html">
+                    <img src="/resources/Logo1.png" width="80" height="80" alt="Logo de Animalia">
+                </a>
+            </a>
+    
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navMenu">
+                <form class="d-flex ms-auto me-3">
+                    <input class="form-control form-control-sm" type="search">
+                </form>
+                
+                <!-- Lista que actua como botones, me suele gustar más que los botones para el elemento de navbar. Yo los botones los veo más para otros elementos. -->
+                <ul class="navbar-nav align-items-lg-center">
+                    <li class="nav-item me-3">
+                        <a class="nav-link" href="#">Contacto</a>
+                    </li>
+                    <!-- A diferencia de las otras páginas, aquí arriba voy a poner un botón de Home, para que vuelva a inicio. -->
+
+                    <li class="nav-item me-2">
+                        <a href="index.html" class="btn btn-outline-light btn-sm">Home</a>
+                    </li>
+
+                    <li class="nav-item me-2">
+                        <a href="login.html" class="btn btn-outline-light btn-sm">Sign In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="login.html" class="btn btn-light btn-sm">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Para la zona intermedía voy a incluir un sectión. No se si sería mejor un article, pero esta me parece buena solución. Me aseguro de darle el margen necesario. Creo que un my-2 será suficiente. -->
+ <section class="container-fluid my-2">
+    <!-- Como solución más practica dentro de este section crearé tres containers que sean row, uno por fila requerida. Lo que tengo que hacer es asegurarme de que sean responsivos. Creo que en este caso intentaré hacer que en páginas pequeñas cada card ocupe col-12 y luego dependiendo del breakpoint vaya cambiando. Para la primera fila ancho de 100, flex, en row y que se repartan bien el espacio. Algo de margen vertical para crear espaciado.-->
+     <div class="row w-100 d-flex flex-row justify-content-evenly my-3">
+        <!-- Doy una clase extra a la card para luego trabajar con ella en css. También a la imagen para controlar el espacio que ocupa y no se vaya de madre. -->
+        <div class="card card-album" style="width: 18rem;">
+            <!-- Aquí una JPG com imágen -->
+            <img class="card-img-top img-album" src="/resources/serpiente1.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                    content.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+<!-- Segunda. -->
+        <div class="card card-album" style="width: 18rem;">
+            <!-- Aquí la Webp -->
+            <img class="card-img-top img-album" src="/resources/serpiente2.webp" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                    content.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+        <!-- Tercera -->
+        <div class="card card-album" style="width: 18rem;">
+            <!-- Aquí la AVIF, no estoy seguro de si me dará problemas. No me los dá, pero como siempre el tema del tamaño que siempre lo mueve todo. Tendré que jugar con ello en css. -->
+            <img class="card-img-top img-album" src="/resources/serpiente4.avif" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                    content.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+     </div>
+
+     <!-- Mismo contenedor que antes, pero como solo hay una carta debe de ser justify content center -->
+    <div class="row w-100 d-flex flex-row justify-content-center my-3">
+        <div class="card card-album" style="width: 18rem;">
+            <img class="card-img-top img-album" src="/resources/serpiente5.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                    content.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Como este serán dos cartas volvemos a justify-content-evenly -->
+    <div class="row w-100 d-flex flex-row justify-content-evenly my-3">
+
+        <div class="card card-album" style="width: 18rem;">
+            <img class="card-img-top img-album" src="/resources/serpiente6.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                    content.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+
+        <div class="card card-album" style="width: 18rem;">
+            <img class="card-img-top img-album" src="/resources/serpiente7.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                    content.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+
+    </div>
+ </section>
+
+<!-- Para mantener la consistencia añado un footer como los que ya tengo en las otras páginas. Modifico los links de ejemplo que a veces en cuentras es elementos antiguos de bootstrap para que las columnas y sus elementos redirijan a las diferentes páginas.-->
+<footer class="footer mt-5">
+    <div class="container">
+        <div class="row text-center text-md-start">
+            <div class="col-md-4 mb-3">
+                <h6>Quienes somos</h6>
+                <a href="index.html">Animalia</a>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h6>Que nos gusta</h6>
+                <a href="album.html">Las Serpientes</a>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h6>Te interesa?</h6>
+                <a href="login.html">Unete</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

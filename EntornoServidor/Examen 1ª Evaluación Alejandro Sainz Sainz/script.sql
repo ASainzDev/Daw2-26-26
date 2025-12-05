@@ -1,12 +1,20 @@
 -- Creación de la base de datos
+DROP DATABASE IF EXISTS examen_spring_dwes;
 CREATE DATABASE IF NOT EXISTS examen_spring_dwes
 CHARACTER SET utf8mb4
 COLLATE utf8mb4_unicode_ci;
 USE examen_spring_dwes;
 
 -- Yo siempre creo un usuario, me es más fácil a la hora de añadir la configuración a aplicatión properties
+drop user if exists 'zidane'@'localhost';
 create user if not exists 'zidane'@'localhost' identified by '1234';
-grant all privileges on examen_sping_dwes.* to 'zidane'@'localhost';
+grant all privileges on examen_spring_dwes.* to 'zidane'@'localhost';
+FLUSH PRIVILEGES;
+
+DROP TABLE IF EXISTS partidos;
+DROP TABLE IF EXISTS jugadores;
+DROP TABLE IF EXISTS arbitros;
+DROP TABLE IF EXISTS equipos;
 
 -- Tabla EQUIPOS
 CREATE TABLE IF NOT EXISTS equipos (
@@ -38,9 +46,9 @@ UNIQUE KEY uk_jugadores_equipo_dorsal (equipo_id, dorsal)
 
 -- Tabla ÁRBITROS
 CREATE TABLE IF NOT EXISTS arbitros (
-id CHAR(36) NOT NULL, -- UUID (ID de colegiado)
+id VARCHAR(100) NOT NULL, -- UUID (ID de colegiado)
 nombre VARCHAR(100) NOT NULL,
-4apellido1 VARCHAR(100) NOT NULL,
+apellido1 VARCHAR(100) NOT NULL,
 apellido2 VARCHAR(100) NOT NULL,
 rol ENUM('PRINCIPAL', 'ASISTENTE') NOT NULL,
 PRIMARY KEY (id)

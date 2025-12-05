@@ -45,8 +45,13 @@ public class ServiceEmpresaEmpleados {
     // Como desde el método que me han proporcionado en el controller se pide que este retorne un Empleado
     // habrá que hacerlo.
     public Empleado save(Empleado empleado) {
-        empRepo.save(empleado);
-        return empleado;
+        //empRepo.save(empleado);
+        //return empleado;
+
+        //Mejor hacerlo en una linea
+        return empRepo.save(empleado);
+        //Esto me devuelve el objeto con la id generada. Si lo hubiese dejado como antes no devolvería la
+        //id.
     }
 
 }

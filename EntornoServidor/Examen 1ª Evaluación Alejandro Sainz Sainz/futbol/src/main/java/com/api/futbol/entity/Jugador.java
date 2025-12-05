@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -31,6 +32,7 @@ public class Jugador {
     @Column(nullable = false)
     private String apellido2;
 
+    @Enumerated(jakarta.persistence.EnumType.STRING)
     @Column(nullable=false)
     private Posicion posicion;
 

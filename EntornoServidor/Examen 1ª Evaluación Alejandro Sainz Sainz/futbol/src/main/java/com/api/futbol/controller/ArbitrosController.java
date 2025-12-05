@@ -22,11 +22,6 @@ import com.api.futbol.services.PrimaryService;
 
 
 
-/**
- *
- * @author daw2
- */
-
 @RestController
 @RequestMapping("/arbitros")
 public class ArbitrosController {

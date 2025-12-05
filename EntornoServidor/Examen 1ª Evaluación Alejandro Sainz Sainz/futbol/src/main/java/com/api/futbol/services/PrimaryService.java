@@ -2,6 +2,7 @@
 package com.api.futbol.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,9 +10,11 @@ import org.springframework.stereotype.Service;
 import com.api.futbol.entity.Arbitros;
 import com.api.futbol.entity.Equipo;
 import com.api.futbol.entity.Jugador;
+import com.api.futbol.entity.Partidos;
 import com.api.futbol.repository.ArbitrosRepository;
 import com.api.futbol.repository.EquiposInterface;
 import com.api.futbol.repository.JugadorRepository;
+import com.api.futbol.repository.PartidosRepository;
 
 // Me aseguro de la notación
 @Service
@@ -25,6 +28,9 @@ public class PrimaryService {
 
     @Autowired
     private ArbitrosRepository aRepo;
+
+    @Autowired
+    private PartidosRepository pRepo;
 
 // Metodo que llama al repositorio para obtener todos los equipos
     public List<Equipo> obtenerEquipos() {
@@ -98,5 +104,15 @@ public class PrimaryService {
 
     public void deleteArbitro(String id) {
         aRepo.deleteById(id);
+    }
+
+    public void guardarPartido(Partidos partido) {
+        
+            pRepo.save(partido);
+        
+    }
+
+    public Partidos obtenerPartido(String id) {
+        return pRepo.findById(id).orElse(null);
     }
 }

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
+import { ClientesInterface } from '../../interfaces/clientes-interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-client-component',
@@ -8,4 +10,16 @@ import { Component } from '@angular/core';
 })
 export class CardClientComponent {
 
+
+  @Input() cliente! : ClientesInterface;
+
+  ruta = inject(Router)
+
+  constructor(){
+    
+  }
+
+  detailedView(_id: string) {
+    this.ruta.navigate(['vista', _id]);
+  }
 }

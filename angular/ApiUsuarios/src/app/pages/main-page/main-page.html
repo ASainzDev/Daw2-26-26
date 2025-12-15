@@ -1,1 +1,17 @@
-<p>main-page works!</p>
+<div class="container d-flex flex-column max-vh-100">
+    <div class="row d-flex flex-row justify-content-around mt-3">
+        
+            <span class="col-6 text-black-100 fw-bolder text-decoration-underline">USUARIOS</span>
+        
+            <button class="btn btn-success btn-sm col-2">AÑADIR +</button>
+        
+    </div>
+
+    <div class="container w-100 d-flex flex-wrap justify-content-evenly">
+        @for(cliente of clientes; track cliente._id){
+            <app-card-client-component [cliente]="cliente"></app-card-client-component>
+        }@empty {
+            <p>No exiten usuarios en la lista</p>
+        }
+    </div>
+</div>

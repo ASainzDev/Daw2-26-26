@@ -28,4 +28,8 @@ export class ClientesService {
     });
     return this.clientes;
   }
+
+  getClienteById(_id : string) : Promise<ClientesInterface>{
+    return lastValueFrom(this.httpRequest.get<ClientesInterface>('https://peticiones.online/api/users' + '/' + _id));
+  }
 }

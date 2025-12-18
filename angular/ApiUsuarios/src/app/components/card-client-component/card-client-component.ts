@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 })
 export class CardClientComponent {
 
-
   @Input() cliente! : ClientesInterface;
 
   ruta = inject(Router)
@@ -21,5 +20,10 @@ export class CardClientComponent {
 
   detailedView(_id: string) {
     this.ruta.navigate(['vista', _id]);
+  }
+
+  editUserData(_id: string) {
+    console.log('[CardClient] editUserData called with id:', _id);
+    this.ruta.navigate(['form', _id]);
   }
 }

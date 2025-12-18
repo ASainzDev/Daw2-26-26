@@ -1,12 +1,16 @@
-<div class="card mt-3">
-    <img [src]=cliente.image class="card-img-top imagen-carta" [alt]=cliente.image>
-    <div class="card-body">
-        <h5 class="card-title text-center">{{cliente.first_name}}</h5>
-        <h5 class="text-center">{{cliente.last_name}}</h5>
-        <p class="card-text text-center">{{cliente.email}}</p>
-        <div class="d-flex flex-row justify-content-evenly">
-            <a href="#" class="btn btn-primary text-sm-center col-4">Modificar</a>
-            <a href="#" class="btn btn-primary text-sm-center col-4">Eliminar</a>
+<div class="container-fluid">
+    <div class="card mt-3 shadow p-3 mb-5 bg-body rounded full-view-card">
+        <img [src]=cliente.image class="card-img-top imagen-carta">
+        <div class="card-body d-flex flex-column justify-content-center">
+            <h5 class="card-title text-center fs-1 fw-bold">{{cliente.first_name}}</h5>
+            <h5 class="text-center fs-1 fw-bold">{{cliente.last_name}}</h5>
+            <p class="card-text text-center fst-italic fs-3">{{cliente.username}}</p>
+            <p class="card-text text-center fst-italic fs-3">{{cliente.email}}</p>
+            <div class="d-flex flex-row justify-content-evenly mt-3">
+                <a class="btn btn-primary text-sm-center col-3" (click)="editUserData(cliente._id)">Modificar</a>
+                <a class="btn btn-primary text-sm-center col-3">Eliminar</a>
+            </div>
+                <a class="btn btn-primary text-sm-center col-3 my-4 mx-auto" routerLink="home">Volver</a>
         </div>
     </div>
 </div>

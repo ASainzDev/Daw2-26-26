@@ -8,5 +8,6 @@ export const routes: Routes = [
     {path:'main', component: MainPage},
     {path:'form', component: FormComponent},
     {path:'vista/:_id', component: DetailedViewPage},
+    {path:'form/:_id', component: FormComponent},
     {path:'**', redirectTo:'main'}
 ];

@@ -1,0 +1,15 @@
+.full-view-card {
+    width: 120rem;
+    height:55rem;
+    margin: auto;
+}
+
+.imagen-carta {
+    width: 25rem;
+    height: 25rem;
+    display: block;
+    margin: auto;
+    border-radius: 35%;
+    border:2px solid #9482823f;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+}

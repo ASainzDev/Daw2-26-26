@@ -1,13 +1,13 @@
-<div class="card mt-3" style="width: 22rem; height: 25rem;">
+<div class="card mt-3" style="width: 18rem; height: 25rem;">
     <img [src]=cliente.image class="card-img-top imagen-carta" [alt]=cliente.image>
     <div class="card-body">
         <h5 class="card-title text-center">{{cliente.first_name}}</h5>
         <h5 class="text-center">{{cliente.last_name}}</h5>
         <p class="card-text text-center">{{cliente.email}}</p>
         <div class="d-flex flex-row justify-content-evenly">
-            <a class="btn btn-primary text-sm-center col-4" (click)="detailedView(cliente._id)">Ver</a>
-            <a href="#" class="btn btn-primary text-sm-center col-4">Modificar</a>
-            <a href="#" class="btn btn-primary text-sm-center col-4">Eliminar</a>
+            <a class="btn btn-primary text-sm-center col-4 fw-6" (click)="detailedView(cliente._id)">Ver</a>
+            <a class="btn btn-primary text-sm-center col-4 fw-6" (click)="editUserData(cliente._id)">Modificar</a>
+            <a class="btn btn-primary text-sm-center col-4 fs-6">Eliminar</a>
         </div>
     </div>
 </div>

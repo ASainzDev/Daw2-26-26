@@ -5,5 +5,6 @@ export interface ClientesInterface {
     "last_name":string,
     "username":string,
     "email":string,
-    "image":string
+    "image":string,
+    "password":string
 }

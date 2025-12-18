@@ -46,7 +46,7 @@ export class DetailedViewPage {
 
   // La tenía hecha porque a veces el routerLink no me funcionaba, pero en esta caso va bien.
   volver() {
-    this.ruta.navigate(['/home']);
+    this.ruta.navigate(['home']);
   }
 
   editUserData(_id: string) {

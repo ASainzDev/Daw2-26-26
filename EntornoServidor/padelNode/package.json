@@ -1,0 +1,16 @@
+{
+  "name": "padelnode",
+  "version": "1.0.0",
+  "description": "",
+  "license": "UNLICENSED",
+  "author": "",
+  "type": "commonjs",
+  "main": "app.ts",
+  "scripts": {
+    "test": "start",
+    "start": "ts-node src/server.ts"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

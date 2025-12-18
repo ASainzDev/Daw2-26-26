@@ -21,11 +21,14 @@ export class FormComponent {
 
   cliente! : ClientesInterface;
 
+  nuevoUsuario : boolean;
+
+
   constructor(){
     this.clientesForm = new FormGroup({
-      _id: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      _id: new FormControl(''),
       id: new FormControl(''),
-      first_name: new FormControl(''),
+      first_name: new FormControl('', [Validators.required, Validators.minLength(3)]),
       last_name: new FormControl(''),
       username: new FormControl(''),
       email: new FormControl(''),
@@ -33,6 +36,8 @@ export class FormComponent {
       password: new FormControl(''),
       confirmPassword: new FormControl(''),
     });
+
+    this.nuevoUsuario = true;
   }
 
   ngOnInit(){
@@ -56,6 +61,7 @@ export class FormComponent {
               password: this.cliente.password,
               confirmPassword: this.cliente.password,
             });
+            this.nuevoUsuario = false;
           }else{
             console.warn('[FormComponent] No se encontró cliente con id:', id);
           }
@@ -69,6 +75,20 @@ export class FormComponent {
   }
 
   onSubmit() {
-    throw new Error('Method not implemented.');
+    
+    let usuario = this.clientesForm.value as ClientesInterface;
+
+    if(this.nuevoUsuario){
+      usuario._id = crypto.randomUUID();
+      usuario.id = this.servicio.getNumeroClientes();
+      usuario.id++;
+      this.servicio.guardarDatosUsuario(usuario);
+      this.clientesForm.reset();
+
+    }else{
+      this.servicio.actualizarDatosUsuario(usuario);
+      this.clientesForm.reset();
+      this.nuevoUsuario = true;
+    }
   }
 }

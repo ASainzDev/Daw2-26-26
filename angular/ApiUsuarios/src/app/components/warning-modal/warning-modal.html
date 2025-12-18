@@ -1,0 +1,22 @@
+
+
+<div class="modal" tabindex="-1"  [style.display]="servicioModal.modalDisplay()">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger">
+        <h5 class="modal-title fs-1 text-warning fw-bolder text-center">WARNING!!!</h5>
+      </div>
+      <div class="modal-body d-flex flex-column justify-content-center">
+        <img [src]="servicioModal.image()" class="card-img-top imagen-carta" [alt]="servicioModal.image()">
+        <h4 class="fw-bold fs-2 text-center">{{servicioModal.usuario()}}</h4>
+        <h5 class="fst-italic fw-bold text-bg-warning text-light">Está usted apunto de eliminar a este usuario</h5>
+      </div>
+      <div class="modal-footer justify-content-around">
+        <button type="button" class="btn btn-success" (click)="cerrarModal()" >Volver</button>
+        <button type="button" class="btn btn-danger" (click)="aniquilarUsuario()">Terminate</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -13,6 +13,7 @@ import { WarningModalService } from '../../services/warning-modal-service';
 })
 export class MainPage {
 
+
   servicio = inject(ClientesService)
 
   modalService = inject(WarningModalService);
@@ -21,8 +22,10 @@ export class MainPage {
 
   cliente! : ClientesInterface;
 
+  
+
   constructor(){
-    this.clientes = []
+    this.clientes = [];
 
   }
 
@@ -30,4 +33,23 @@ export class MainPage {
     this.clientes = await this.servicio.getClientes();
     console.log(this.clientes);
   }
+
+  async paginaPosterior() {
+    
+    this.servicio.increasePagina();
+
+    this.clientes = await this.servicio.getClientes();
+
+  }
+
+  async paginaAnterior() {
+    
+    if(this.servicio.getPaginaActual() > 1){
+      this.servicio.decreasePagina();
+
+      this.clientes = await this.servicio.getClientes();
+    }
+
+  }
+
 }

@@ -32,7 +32,7 @@
   <nav aria-label="Page navigation example">
     <ul class="pagination pagination-soft">
       <li class="page-item">
-        <a class="page-link">Previous</a>
+        <button class="page-link" (click)="paginaAnterior()" [disabled]="this.servicio.getPaginaActual() === 1">Previous</button>
       </li>
 
       
@@ -41,7 +41,7 @@
       <li class="page-item"><a class="page-link">3</a></li>
 
       <li class="page-item">
-        <a class="page-link">Next</a>
+        <button class="page-link" (click)="paginaPosterior()" [disabled]="this.servicio.getPaginaActual() === this.servicio.getTotalPaginas()">Next</button>
       </li>
     </ul>
   </nav>

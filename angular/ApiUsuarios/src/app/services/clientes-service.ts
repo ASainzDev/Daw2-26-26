@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { PeticionInterface } from '../interfaces/peticion-interface';
 import { lastValueFrom} from 'rxjs';
 import { ClientesInterface } from '../interfaces/clientes-interface';
@@ -34,9 +34,9 @@ export class ClientesService {
   constructor(){
     this.clientes = [];
     this.clienteOrden = 0;
-    this.pagina = 1;
     this.baseUrl = 'https://peticiones.online/api/users';
     this.totalPaginas = 0;
+    this.pagina = 1;
     this.variable = '?page=';
   }
 
@@ -79,16 +79,17 @@ export class ClientesService {
     return this.totalPaginas;
   }
 
-  setIncreasePagina(){
-    if(this.pagina < this.totalPaginas){
-      this.pagina++;
-    }
+  increasePagina(){
+    this.pagina++;
   }
 
-  setDecreasePagina(){
-    if(this.pagina > 1){
-      this.pagina--;
-    }
+  decreasePagina(){
+    this.pagina--;
   }
+
+  getPaginaActual() : number{
+    return this.pagina;
+  }
+
 
 }

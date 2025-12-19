@@ -1,7 +1,59 @@
-.imagen-carta{
-    width:10rem;
-    border-radius:50%;
-    margin:10px auto;
-    border:2px solid blue;
-    box-shadow: 2px 2px 2px darkgrey;
+
+.user-card {
+  border: 1px solid #dde3ea;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #ffffff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+
+.user-card-img {
+  height: 180px;
+  background-color: #f0f3f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-card-img img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+/* Botones */
+.btn-soft {
+  background-color: #5b7c99;
+  color: #fff;
+  border: none;
+}
+
+.btn-soft:hover {
+  background-color: #4a6a85;
+}
+
+.btn-soft-outline {
+  background-color: transparent;
+  border: 1px solid #5b7c99;
+  color: #5b7c99;
+}
+
+.btn-soft-outline:hover {
+  background-color: #e6edf3;
+}
+
+.btn-soft-danger {
+  background-color: #d16666;
+  color: #fff;
+  border: none;
+}
+
+.btn-soft-danger:hover {
+  background-color: #c05555;
 }

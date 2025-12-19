@@ -1,13 +1,23 @@
-<div class="container-fluid min-vh-100 bg-light-subtle">
-  <div class="row min-vh-100 d-flex">
+<div class="app-wrapper d-flex flex-column min-vh-100">
 
-    <aside class="col-12 col-md-1 col-lg-2 col-xl-2 bg-primary-subtle">
-      <app-sidebar-component></app-sidebar-component>
-    </aside>
+  
+  <header>
+    <app-sidebar-component></app-sidebar-component>
+  </header>
 
-    <main class="col-12 col-md-10 col-lg-10 bg-secondary-subtle">
+  
+  <main class="flex-grow-1 bg-app-soft py-4">
+    <div class="container-fluid px-4">
       <router-outlet></router-outlet>
-    </main>
-    
-  </div>
+    </div>
+  </main>
+
+  
+  <footer class="bg-app-footer text-center py-3">
+    <small class="text-muted">
+      © 2025 · Alejandro Sainz · Angular + Bootstrap
+    </small>
+  </footer>
+
 </div>
+

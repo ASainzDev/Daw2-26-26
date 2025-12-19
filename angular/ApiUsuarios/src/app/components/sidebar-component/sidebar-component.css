@@ -1,0 +1,34 @@
+
+.navbar-soft {
+  background-color: #eef3f7; /* azul grisáceo suave */
+  border-bottom: 1px solid #dbe2ea;
+}
+
+
+.navbar-soft .navbar-brand {
+  color: #2f3a45;
+}
+
+.navbar-soft .navbar-brand:hover {
+  color: #1f2933;
+}
+
+
+.navbar-soft .nav-link {
+  color: #4a5a6a;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  transition: background-color 0.2s ease;
+}
+
+.navbar-soft .nav-link:hover {
+  background-color: #e3eaf1;
+  color: #1f2933;
+}
+
+
+.navbar-soft .nav-link.active {
+  background-color: #d8e2ec;
+  color: #1f2933;
+  font-weight: 500;
+}

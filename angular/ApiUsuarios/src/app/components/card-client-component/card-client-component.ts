@@ -2,8 +2,6 @@ import { Component, inject, Input } from '@angular/core';
 import { ClientesInterface } from '../../interfaces/clientes-interface';
 import { Router } from '@angular/router';
 import { WarningModalService } from '../../services/warning-modal-service';
-import { WarningModal } from "../warning-modal/warning-modal";
-
 
 @Component({
   selector: 'app-card-client-component',
@@ -18,9 +16,7 @@ export class CardClientComponent {
 
   ruta = inject(Router);
 
-  servicioModal = inject(WarningModalService);
-
-  
+  modalService = inject(WarningModalService);
 
   constructor(){
     
@@ -31,14 +27,13 @@ export class CardClientComponent {
   }
 
   editUserData(_id: string) {
-    console.log('[CardClient] editUserData called with id:', _id);
     this.ruta.navigate(['form', _id]);
   }
 
-  eliminarUsuario(cliente : ClientesInterface){
-    this.servicioModal.setId(cliente._id);
-    this.servicioModal.setImage(cliente.image);
-    this.servicioModal.setUsuario(cliente.username);
-    this.servicioModal.setDisplayFlex();
+  eliminarUsuario(cliente: ClientesInterface) {
+    this.modalService.setDisplayFlex();
+    this.modalService.setId(cliente._id);
+    this.modalService.setImage(cliente.image);
+    this.modalService.setUsuario(cliente.username);
   }
 }

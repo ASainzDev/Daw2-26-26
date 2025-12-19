@@ -1,18 +1,52 @@
-<div class="container-fluid d-flex flex-column max-vh-100">
-    <div class="row d-flex flex-row justify-content-start mt-3">
-        
-            <span class="col-6 text-black-100 fw-bolder fs-1 text-decoration-underline">USUARIOS</span>
-        
-    </div>
+<div class="container-fluid">
 
-    <div class="container w-100 d-flex flex-wrap justify-content-evenly">
-        @for(cliente of clientes; track cliente._id){
-            <app-card-client-component [cliente]="cliente"></app-card-client-component>
-        }@empty {
-            <p>No exiten usuarios en la lista</p>
-        }
+  
+  <div class="row mb-4">
+    <div class="col">
+      <h1 class="page-title">Usuarios</h1>
     </div>
+  </div>
 
-    <app-warning-modal></app-warning-modal>
+  
+  <div class="row g-4">
+
+    @for (cliente of clientes; track cliente._id) {
+      <div class="col-12 col-sm-6 col-md-4 col-lg-custom">
+        <app-card-client-component
+          [cliente]="cliente">
+        </app-card-client-component>
+      </div>
+    } @empty {
+      <div class="col">
+        <p class="text-muted text-center mt-5">
+          No existen usuarios en la lista
+        </p>
+      </div>
+    }
+
+  </div>
+
+  <app-warning-modal></app-warning-modal>
+
+  <div class="row justify-content-center mt-4">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination pagination-soft">
+      <li class="page-item">
+        <a class="page-link">Previous</a>
+      </li>
+
+      
+      <li class="page-item"><a class="page-link">1</a></li>
+      <li class="page-item"><a class="page-link">2</a></li>
+      <li class="page-item"><a class="page-link">3</a></li>
+
+      <li class="page-item">
+        <a class="page-link">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
 
 </div>
+

@@ -1,103 +1,77 @@
-<div class="container-fluid vh-100 pt-5">
-  
+<div class="container-fluid pt-5 pb-5">
 
-  <div class="row justify-content-center align-items-start h-100">
+  <div class="row justify-content-center">
     <div class="col-12 col-md-8 col-lg-6">
 
-      <div class="card shadow-sm">
-        <div class="card-body">
+      <div class="card form-card shadow-sm p-4">
 
-          <h5 class="card-title mb-4 text-center">
-            Formulario de Cliente
-          </h5>
+        <h3 class="text-center fw-bold mb-4">Formulario de Cliente</h3>
 
-          <form [formGroup]="clientesForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="clientesForm" (ngSubmit)="onSubmit()">
+
+          <div class="row g-3">
 
             
-            <div class="mb-3">
-              <label class="form-label">Nombre</label>
-              <input
-                type="text"
-                class="form-control"
-                formControlName="first_name"
-                placeholder="Nombre">
+            <div class="col-12 col-md-6">
+              <label class="form-label fw-semibold">Nombre</label>
+              <input type="text" class="form-control form-control-soft" formControlName="first_name" placeholder="Nombre">
+              
             </div>
 
             
-            <div class="mb-3">
-              <label class="form-label">Apellido</label>
-              <input
-                type="text"
-                class="form-control"
-                formControlName="last_name"
-                placeholder="Apellido">
+            <div class="col-12 col-md-6">
+              <label class="form-label fw-semibold">Apellido</label>
+              <input type="text" class="form-control form-control-soft" formControlName="last_name" placeholder="Apellido">
+              
             </div>
 
             
-            <div class="mb-3">
-              <label class="form-label">Usuario</label>
-              <input
-                type="text"
-                class="form-control"
-                formControlName="username"
-                placeholder="Usuario">
+            <div class="col-12 col-md-6">
+              <label class="form-label fw-semibold">Usuario</label>
+              <input type="text" class="form-control form-control-soft" formControlName="username" placeholder="Usuario">
+              
             </div>
 
             
-            <div class="mb-3">
-              <label class="form-label">Email</label>
-              <input
-                type="email"
-                class="form-control"
-                formControlName="email"
-                placeholder="correo@ejemplo.com">
+            <div class="col-12 col-md-6">
+              <label class="form-label fw-semibold">Email</label>
+              <input type="email" class="form-control form-control-soft" formControlName="email" placeholder="correo@ejemplo.com">
+              
             </div>
 
             
-            <div class="mb-4">
-              <label class="form-label">Imagen (URL)</label>
-              <input
-                type="text"
-                class="form-control"
-                formControlName="image"
-                placeholder="https://...">
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label">Contraseña</label>
-              <input
-                type="password"
-                class="form-control"
-                formControlName="password"
-                placeholder="********">
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label">Confirmar contraseña</label>
-              <input
-                type="password"
-                class="form-control"
-                formControlName="confirmPassword"
-                placeholder="********">
+            <div class="col-12">
+              <label class="form-label fw-semibold">Imagen (URL)</label>
+              <input type="text" class="form-control form-control-soft" formControlName="image" placeholder="https://...">
+              
             </div>
 
             
-            <div class="d-flex justify-content-between">
-              <button type="button" class="btn btn-outline-secondary" routerLink="home">
-                Volver
-              </button>
-
-              <button type="submit" class="btn btn-primary" [disabled]="this.clientesForm.invalid">
-                Guardar
-              </button>
+            <div class="col-12 col-md-6">
+              <label class="form-label fw-semibold">Contraseña</label>
+              <input type="password" class="form-control form-control-soft" formControlName="password" placeholder="********">
+              
             </div>
 
-          </form>
+            
+            <div class="col-12 col-md-6">
+              <label class="form-label fw-semibold">Confirmar Contraseña</label>
+              <input type="password" class="form-control form-control-soft" formControlName="confirmPassword" placeholder="********">
+            </div>
 
-        </div>
+          </div>
+
+          
+          <div class="d-flex justify-content-between mt-4">
+            <button type="button" class="btn btn-soft-outline" routerLink="home">Volver</button>
+            <button type="submit" class="btn btn-soft" [disabled]="clientesForm.invalid">Guardar</button>
+          </div>
+
+        </form>
+
       </div>
 
     </div>
   </div>
-</div>
 
+</div>

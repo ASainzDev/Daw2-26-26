@@ -23,6 +23,7 @@ export class WarningModal {
 
   aniquilarUsuario() {
     this.servicio.eliminarDatosUsuario(this.servicioModal._id());
+    this.cerrarModal();
   }
 
 }

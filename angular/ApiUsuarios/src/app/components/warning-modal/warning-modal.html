@@ -1,22 +1,64 @@
+<div
+  class="modal fade"
+  tabindex="-1"
+  [class.show]="servicioModal.modalDisplay()"
+  [style.display]="servicioModal.modalDisplay()"
+>
+  <div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-content modal-soft">
+
+      
+      <div class="modal-header border-0 pb-0 justify-content-center">
+        <h5 class="modal-title text-danger fw-semibold">
+          Confirmar eliminación
+        </h5>
+      </div>
 
 
-<div class="modal" tabindex="-1"  [style.display]="servicioModal.modalDisplay()">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header bg-danger">
-        <h5 class="modal-title fs-1 text-warning fw-bolder text-center">WARNING!!!</h5>
+      
+      <div class="modal-body text-center px-4">
+
+        <div class="modal-avatar mb-3">
+          <img
+            [src]="servicioModal.image()"
+            [alt]="servicioModal.usuario()"
+          />
+        </div>
+
+        <h4 class="fw-semibold mb-1">
+          {{ servicioModal.usuario() }}
+        </h4>
+
+        <p class="text-muted mb-3">
+          Esta acción eliminará al usuario de forma permanente.
+        </p>
+
+        <p class="text-warning-emphasis small">
+          ¿Estás seguro de que deseas continuar?
+        </p>
+
       </div>
-      <div class="modal-body d-flex flex-column justify-content-center">
-        <img [src]="servicioModal.image()" class="card-img-top imagen-carta" [alt]="servicioModal.image()">
-        <h4 class="fw-bold fs-2 text-center">{{servicioModal.usuario()}}</h4>
-        <h5 class="fst-italic fw-bold text-bg-warning text-light">Está usted apunto de eliminar a este usuario</h5>
+
+     
+      <div class="modal-footer border-0 justify-content-center gap-3">
+        <button
+          type="button"
+          class="btn btn-soft-outline"
+          (click)="cerrarModal()">
+          Cancelar
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-soft-danger"
+          (click)="aniquilarUsuario()">
+          Eliminar usuario
+        </button>
       </div>
-      <div class="modal-footer justify-content-around">
-        <button type="button" class="btn btn-success" (click)="cerrarModal()" >Volver</button>
-        <button type="button" class="btn btn-danger" (click)="aniquilarUsuario()">Terminate</button>
-      </div>
+
     </div>
   </div>
 </div>
+
 
 

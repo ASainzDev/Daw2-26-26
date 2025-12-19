@@ -1,0 +1,48 @@
+
+.form-card {
+  border-radius: 16px;
+  background-color: #ffffff;
+  border: 1px solid #dde3ea;
+}
+
+
+.form-control-soft {
+  background-color: #f5f7fa;
+  border: 1px solid #cfd6de;
+  border-radius: 8px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control-soft:focus {
+  border-color: #5b7c99;
+  box-shadow: 0 0 0 0.2rem rgba(91, 124, 153, 0.25);
+}
+
+
+.form-label {
+  color: #2f3a45;
+}
+
+
+.btn-soft {
+  background-color: #5b7c99;
+  color: #fff;
+  border-radius: 8px;
+  padding: 0.5rem 1.25rem;
+}
+
+.btn-soft:hover {
+  background-color: #4a6a85;
+}
+
+.btn-soft-outline {
+  background-color: transparent;
+  border: 1px solid #5b7c99;
+  color: #5b7c99;
+  border-radius: 8px;
+  padding: 0.5rem 1.25rem;
+}
+
+.btn-soft-outline:hover {
+  background-color: #e6edf3;
+}

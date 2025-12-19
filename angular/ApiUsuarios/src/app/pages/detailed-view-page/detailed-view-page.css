@@ -1,15 +1,26 @@
-.full-view-card {
-    width: 120rem;
-    height:55rem;
-    margin: auto;
+
+.user-detail-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 2rem;
+  margin-top: 2rem;
+  border: 1px solid #dde3ea;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
 }
 
-.imagen-carta {
-    width: 25rem;
-    height: 25rem;
-    display: block;
-    margin: auto;
-    border-radius: 35%;
-    border:2px solid #9482823f;
-    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+
+.user-detail-avatar {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+  border: 4px solid #e6edf3;
+  background-color: #f0f3f6;
+}
+
+.user-detail-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

@@ -1,7 +1,27 @@
-.imagen-carta{
-    width:10rem;
-    border-radius:50%;
-    margin:10px auto;
-    border:2px solid blue;
-    box-shadow: 2px 2px 2px darkgrey;
+
+.modal-soft {
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+
+.modal-avatar {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #e6edf3;
+}
+
+.modal-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.text-warning-emphasis {
+  color: #b08900;
 }

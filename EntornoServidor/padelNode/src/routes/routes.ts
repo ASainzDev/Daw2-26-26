@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { listarPistas, agregarPista, reservarPista, cancelarReserva } from
-'../controllers/pistaController.ts';
+'../controllers/pistaController';
 
 export const router = Router();
 router.get('/pistas', listarPistas);

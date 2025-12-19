@@ -1,0 +1,16 @@
+
+.bg-app-soft {
+  background-color: #f4f6f8;
+}
+
+
+.bg-app-footer {
+  background-color: #eef1f4;
+  border-top: 1px solid #dde3ea;
+}
+
+
+body {
+  background-color: #f4f6f8;
+  color: #2f3a45;
+}

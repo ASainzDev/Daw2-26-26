@@ -15,7 +15,19 @@
             <div class="col-12 col-md-6">
               <label class="form-label fw-semibold">Nombre</label>
               <input type="text" class="form-control form-control-soft" formControlName="first_name" placeholder="Nombre">
+            
+              @if (clientesForm.get('first_name')?.touched && clientesForm.get('first_name')?.invalid) {
+            
+                @if (clientesForm.get('first_name')?.errors?.['required']) {
+                <small class="text-danger">El nombre es obligatorio</small>
+                }
               
+                @if (clientesForm.get('first_name')?.errors?.['minlength']) {
+                <small class="text-danger">Mínimo 3 caracteres</small>
+                }
+            
+              }
+
             </div>
 
             
@@ -23,6 +35,18 @@
               <label class="form-label fw-semibold">Apellido</label>
               <input type="text" class="form-control form-control-soft" formControlName="last_name" placeholder="Apellido">
               
+              @if (clientesForm.get('last_name')?.touched && clientesForm.get('last_name')?.invalid) {
+
+                @if (clientesForm.get('last_name')?.errors?.['required']) {
+                  <small class="text-danger">El/Los apellido/s es un campo obligatorio</small>
+                }
+
+                @if (clientesForm.get('last_name')?.errors?.['minlength']) {
+                  <small class="text-danger">Mínimo 3 caracteres</small>
+                }
+
+              }
+
             </div>
 
             
@@ -30,13 +54,36 @@
               <label class="form-label fw-semibold">Usuario</label>
               <input type="text" class="form-control form-control-soft" formControlName="username" placeholder="Usuario">
               
+
+              @if (clientesForm.get('username')?.touched && clientesForm.get('username')?.invalid) {
+
+                @if (clientesForm.get('username')?.errors?.['required']) {
+                  <small class="text-danger">El username es obligatorio</small>
+                }
+
+                @if (clientesForm.get('username')?.errors?.['minlength']) {
+                  <small class="text-danger">Mínimo 4 caracteres</small>
+                }
+
+              }
             </div>
 
             
             <div class="col-12 col-md-6">
               <label class="form-label fw-semibold">Email</label>
               <input type="email" class="form-control form-control-soft" formControlName="email" placeholder="correo@ejemplo.com">
-              
+
+              @if (clientesForm.get('email')?.touched && clientesForm.get('email')?.invalid) {
+
+                @if (clientesForm.get('email')?.errors?.['required']) {
+                  <small class="text-danger">El email es obligatorio</small>
+                }
+
+                @if (clientesForm.get('email')?.errors?.['pattern']) {
+                  <small class="text-danger">Formato de email inválido</small>
+                }
+
+              }
             </div>
 
             
@@ -44,6 +91,18 @@
               <label class="form-label fw-semibold">Imagen (URL)</label>
               <input type="text" class="form-control form-control-soft" formControlName="image" placeholder="https://...">
               
+              @if (clientesForm.get('image')?.touched && clientesForm.get('image')?.invalid) {
+              
+                @if (clientesForm.get('image')?.errors?.['required']) {
+                <small class="text-danger">La imagen es obligatoria</small>
+                }
+                
+                @if (clientesForm.get('image')?.errors?.['pattern']) {
+                <small class="text-danger">Debe ser una URL válida</small>
+                }
+              
+              }
+
             </div>
 
             
@@ -51,12 +110,29 @@
               <label class="form-label fw-semibold">Contraseña</label>
               <input type="password" class="form-control form-control-soft" formControlName="password" placeholder="********">
               
+              @if (
+              clientesForm.errors?.['passwordMismatch'] &&
+              clientesForm.get('confirmPassword')?.touched
+            ) {
+              <small class="text-danger">
+                Las contraseñas no coinciden
+              </small>
+            }
             </div>
 
             
             <div class="col-12 col-md-6">
               <label class="form-label fw-semibold">Confirmar Contraseña</label>
               <input type="password" class="form-control form-control-soft" formControlName="confirmPassword" placeholder="********">
+              
+              @if (
+              clientesForm.errors?.['passwordMismatch'] &&
+              clientesForm.get('confirmPassword')?.touched
+            ) {
+              <small class="text-danger">
+                Las contraseñas no coinciden
+              </small>
+            }
             </div>
 
           </div>

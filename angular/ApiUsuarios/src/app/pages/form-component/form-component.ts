@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from "@angular/router";
 import { ClientesService } from '../../services/clientes-service';
 import { ClientesInterface } from '../../interfaces/clientes-interface';
@@ -22,6 +22,7 @@ export class FormComponent {
   cliente! : ClientesInterface;
 
   nuevoUsuario : boolean;
+  
 
 
   constructor(){
@@ -29,16 +30,17 @@ export class FormComponent {
       _id: new FormControl(''),
       id: new FormControl(''),
       first_name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      last_name: new FormControl(''),
-      username: new FormControl(''),
-      email: new FormControl(''),
-      image: new FormControl(''),
-      password: new FormControl(''),
-      confirmPassword: new FormControl(''),
-    });
+      last_name: new FormControl('',[Validators.required, Validators.minLength(3)]),
+      username: new FormControl('',[Validators.required, Validators.minLength(4)]),
+      email: new FormControl('', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$')]),
+      image: new FormControl('', [Validators.required, Validators.pattern('https?://.+')]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      confirmPassword: new FormControl('', [Validators.required]),
+    }, [this.passwordValidator]);
 
     this.nuevoUsuario = true;
   }
+  
 
   ngOnInit(){
     this.rutaActiva.params.subscribe(async params=>{
@@ -90,5 +92,12 @@ export class FormComponent {
       this.clientesForm.reset();
       this.nuevoUsuario = true;
     }
+  }
+
+  passwordValidator(formValue: AbstractControl):any {
+    const password = formValue.get('password')?.value;
+    const confirmPassword = formValue.get('confirmPassword')?.value;
+
+    return (password === confirmPassword) ? null : { passwordMismatch: true };
   }
 }

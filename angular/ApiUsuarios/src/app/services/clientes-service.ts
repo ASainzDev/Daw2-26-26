@@ -30,6 +30,9 @@ export class ClientesService {
   // Variable para el parametro de la página
   variable : string;
 
+  //Defino un array para hacer la paginación
+  paginacion : number[];
+
   // Constructor
   constructor(){
     this.clientes = [];
@@ -38,6 +41,7 @@ export class ClientesService {
     this.totalPaginas = 0;
     this.pagina = 1;
     this.variable = '?page=';
+    this.paginacion = [];
   }
 
   // Petición getAllPaginated
@@ -50,8 +54,21 @@ export class ClientesService {
   this.clienteOrden = data.total;
   this.totalPaginas = data.total_pages;
 
+  this.crearArrayPaginacion(this.totalPaginas);
+
   return this.clientes;
 }
+
+  //Defino un método para modificar el array de la paginación
+  crearArrayPaginacion(totalPaginas : number){
+
+    this.paginacion = [];
+
+    for(let i = 1; i <= this.totalPaginas; i++){
+      this.paginacion.push(i);
+    }
+
+  }
 
   // Get all by _id
   getClienteById(_id : string) : Promise<ClientesInterface>{
@@ -87,8 +104,16 @@ export class ClientesService {
     this.pagina--;
   }
 
+  setPagina(nuevaPagina : number){
+    this.pagina = nuevaPagina;
+  }
+
   getPaginaActual() : number{
     return this.pagina;
+  }
+
+  getPaginacion():number[]{
+    return this.paginacion;
   }
 
 

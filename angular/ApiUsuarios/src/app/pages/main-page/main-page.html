@@ -35,10 +35,16 @@
         <button class="page-link" (click)="paginaAnterior()" [disabled]="this.servicio.getPaginaActual() === 1">Previous</button>
       </li>
 
+      @for(pagina of servicio.getPaginacion(); track $index){
+        
+        <li class="page-item"><button class="page-link" (click)="navegarAPagina($index + 1)">{{pagina}}</button></li>
+      }
       
+
+      <!--Estos eran los originales, los dejos simplemente comentados
       <li class="page-item"><a class="page-link">1</a></li>
       <li class="page-item"><a class="page-link">2</a></li>
-      <li class="page-item"><a class="page-link">3</a></li>
+      <li class="page-item"><a class="page-link">3</a></li> -->
 
       <li class="page-item">
         <button class="page-link" (click)="paginaPosterior()" [disabled]="this.servicio.getPaginaActual() === this.servicio.getTotalPaginas()">Next</button>

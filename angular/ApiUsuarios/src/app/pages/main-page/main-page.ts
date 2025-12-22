@@ -52,4 +52,10 @@ export class MainPage {
 
   }
 
+  async navegarAPagina(pagina : number) {
+    this.servicio.setPagina(pagina);
+
+    this.clientes = await this.servicio.getClientes();
+  }
+
 }

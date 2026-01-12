@@ -1,7 +1,11 @@
+type tipo = 'INDOOR' | 'OUTDOOR';
+
 export interface Pista {
-	id:number;
-	nombre:string;
-	reservada:boolean;
+	id: number;
+	nombre: string;
+	tipo?: tipo;
+	precioHora?: number;
+	reservada: boolean;
 }
 
 export const pistas: Pista[] = [

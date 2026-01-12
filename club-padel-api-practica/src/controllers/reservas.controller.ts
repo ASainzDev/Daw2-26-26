@@ -2,6 +2,11 @@ import {Request, Response} from 'express';
 import {pistas, Pista} from '../data/pistas.data';
 import {reservas, Reserva} from '../data/reservas.data';
 
+export function obtenerReservas(req: Request, res: Response) : void {
+	
+	res.status(200).json(reservas);
+}
+
 export function reservarPista(req: Request, res: Response): void {
 	
 	const id = Number(req.body.pistaId);
@@ -54,4 +59,35 @@ export function reservarPista(req: Request, res: Response): void {
 
 	res.status(201).json(nuevaReserva);
 
+}
+
+export function cancelarReserva(req: Request, res: Response): void{
+
+	const reservaId = Number(req.params.id);
+
+	if(Number.isNaN(reservaId)){
+		res.status(400).json({
+			error: 'La id de la pista o bien está vacia o no es un formato válido'
+		});
+		return;
+	}
+
+	const existe = reservas.some(reserva => reserva.id === reservaId);
+
+	if(!existe){
+		res.status(404).json({
+			error: 'No se encuentra una reserva con esa id'
+		});
+		return;
+	}
+
+	const indice = reservas.findIndex(reserva => reserva.id === reservaId);
+
+	const reserva = reservas[indice];
+
+	reservas.splice(indice, 1);
+
+	res.status(200).json(reserva);
+
+		
 }

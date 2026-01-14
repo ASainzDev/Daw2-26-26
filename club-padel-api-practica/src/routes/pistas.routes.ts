@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import {listarPistas, crearPista, modificarNombrePista, eliminarPista, obtenerPistaId } from '../controllers/pistas.controller';
+import {listarPistas, obtenerPistaId, crearPista, modificarNombrePista, eliminarPista } from '../controllers/pistas.controller';
 
 const router: Router = Router();
 

@@ -1,49 +1,63 @@
 import { Request, Response} from 'express';
-import { pistas, Pista} from '../data/pistas.data';
+import Pista from '../models/Pista';
 
-export function listarPistas(req: Request, res: Response): void {
-	res.json(pistas);
+export const listarPistas = async(req: Request, res: Response) => {
+	const listadoPistas = await Pista.findAll();
+	res.json(listadoPistas);
 }
 
-export function crearPista(req: Request, res: Response) : void {
 
-	const {nombre} = req.body;
+export async function crearPista(req: Request, res: Response) {
+
+	const nombre = req.body.nombre;
+	const tipo = req.body.tipo;
+	const precioHora = req.body.precioHora ?? 0.00;
 	
 
 	if(!nombre || typeof nombre !== 'string') {
 		res.status(400).json({
-		error: 'El campo nombre es obligatorio y debe de ser un string'
+		error: 'Se debe proporcionar un dato nombre con el formato correcto'
 		});
 		return;
 	}
 
-	const existe = pistas.some(pista => pista.nombre === nombre);
+	const pistaExistente = await Pista.findOne({ where: {nombre} });
 
-	if(existe) {
+	if(pistaExistente) {
 		res.status(409).json({
 			error: 'Ya existe una pista con ese nombre'
 		});
 		return;
 	}
 
-	const nuevaPista: Pista = {
-		id: pistas.length + 1,
-		nombre,
-		reservada: false
-	};
+	if(tipo !== 'INDOOR' && tipo !== 'OUTDOOR'){
+		res.status(400).json({
+		error: 'El parámetro tipo proporcionado no corresponde con los permitidos'
+		});
+		return;
+	}
 
-	pistas.push(nuevaPista);
+	if(typeof precioHora !== 'number' || precioHora < 0){
+		res.status(400).json({
+			error: 'El precio por hora debe ser un número positivo'
+		});
+		return;
+	}
+	
+	const nuevaPista = await Pista.create({
+		nombre,
+		tipo,
+		precioHora
+	});
 
 	res.status(201).json(nuevaPista);
 }
 
-export function modificarNombrePista(req: Request, res: Response) : void{
+export async function modificarNombrePista(req: Request, res: Response) {
 
-	const {nombre} = req.body;
+	const nombre = req.body.nombre;
 
 	const id = Number(req.params.id);
-
-	console.log(id);
 
 	if(Number.isNaN(id)){
 		res.status(400).json({
@@ -59,7 +73,7 @@ export function modificarNombrePista(req: Request, res: Response) : void{
 		return;
 	}
 
-	const existente = pistas.some(pista => pista.id === id);
+	const existente = await Pista.findByPk(id);
 
 	if(!existente){
 		res.status(404).json({
@@ -68,32 +82,26 @@ export function modificarNombrePista(req: Request, res: Response) : void{
 		return;
 	}
 
-	const duplicado = pistas.some(pista => pista.nombre === nombre && pista.id !== id);
+	const nombreDuplicado = await Pista.findOne({where: {nombre} });
 
-	if(duplicado){
+	if(nombreDuplicado && nombreDuplicado.id !== id){
 		res.status(409).json({
 		error: 'El nombre proporcinado coincide con un nombre ya existente o se está intentando dar el mismo nombre a una pista ya existente'
 		});
 		return;
 	}
-
-
-	const pista = pistas.find(pista => pista.id === id);
-
-	if(!pista){
-		res.status(404).json({
-			error: 'No existe una pista con la id seleccionada'
-		});
-		return;
-	}
-
-	pista.nombre = nombre;
-
 	
-	res.status(200).json(pista);		
+	 await Pista.update(
+		{nombre},
+		{where: {id} }
+	);
+	
+	const pistaActualizada = await Pista.findByPk(id);
+			
+	res.status(200).json(pistaActualizada);		
 }
 
-export function eliminarPista(req : Request, res: Response){
+export async function eliminarPista(req : Request, res: Response){
 	
 	const id = Number(req.params.id);
 
@@ -104,7 +112,7 @@ export function eliminarPista(req : Request, res: Response){
 		return;
 	}
 
-	const existe = pistas.some(pista => pista.id === id);
+	const existe = await Pista.findByPk(id);
 
 	if(!existe){
 		res.status(404).json({
@@ -113,23 +121,12 @@ export function eliminarPista(req : Request, res: Response){
 		return;
 	}
 
-	var index = pistas.findIndex(pista => pista.id === id);
+	await Pista.destroy({ where: {id} });
 
-	if(index === -1){
-		res.status(404).json({
-		error: 'Se ha producido un fallo al buscar el elemento en la colección'
-		});
-		return;
-	}
-
-	const pista = pistas[index];
-
-	pistas.splice(index, 1);
-
-	res.status(200).json(pista);
+	res.status(200).json(existe);
 }
 
-export function obtenerPistaId(req: Request, res: Response){
+export async function obtenerPistaId(req: Request, res: Response){
 	
 	const id = Number(req.params.id);
 
@@ -140,7 +137,7 @@ export function obtenerPistaId(req: Request, res: Response){
 		return;
 	}
 	
-	const pistaBuscada = pistas.find(pista => pista.id === id);
+	const pistaBuscada = await Pista.findByPk(id);
 
 	if(!pistaBuscada){
 		res.status(404).json({
@@ -151,3 +148,4 @@ export function obtenerPistaId(req: Request, res: Response){
 
 	res.status(200).json(pistaBuscada);
 }
+

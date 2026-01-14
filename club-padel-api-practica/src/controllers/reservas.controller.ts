@@ -1,17 +1,20 @@
 import {Request, Response} from 'express';
-import {pistas, Pista} from '../data/pistas.data';
-import {reservas, Reserva} from '../data/reservas.data';
+//import {pistas, Pista} from '../data/pistas.data';
+//import {reservas, Reserva} from '../data/reservas.data';
+import Reserva from '../models/Reserva'
+import Pista from '../models/Pista';
 
-export function obtenerReservas(req: Request, res: Response) : void {
-	
+export async function obtenerReservas(req: Request, res: Response) {
+	const reservas = await Reserva.findAll();
 	res.status(200).json(reservas);
 }
 
-export function reservarPista(req: Request, res: Response): void {
+export async function reservarPista(req: Request, res: Response) {
 	
-	const id = Number(req.body.pistaId);
+	const pistaId = Number(req.body.pistaId);
+	const {fecha, horaInicio, horaFin} = req.body;
 
-	if(Number.isNaN(id)){
+	if(Number.isNaN(pistaId)){
 		res.status(400).json({
 			error: 'El campo id es obligatorio y debe de ser un valor numérico'
 			});
@@ -19,14 +22,35 @@ export function reservarPista(req: Request, res: Response): void {
 		
 	}
 
-	if(req.body.horaFin < req.body.horaInicio){
+	if(!fecha || typeof fecha !== 'string'){
+		res.status(400).json({
+			error: 'El campo fecha es obligatorio'
+		});
+		return;
+	}
+
+	if(!horaInicio || typeof horaInicio !== 'string'){
+		res.status(400).json({
+			error: 'El campo hora de inicio es obligatiorio'
+		});
+		return;
+	}
+
+	if(!horaFin || typeof horaFin !== 'string'){
+		res.status(400).json({
+			error: 'El campo hora de fin es obligatorio'
+		});
+		return;
+	}
+
+	if(horaFin < horaInicio){
 		res.status(400).json({
 			error: 'La hora de fin debe de ser posterior a la hora de inicio'
 		});
 		return;
 	}
 
-	const pistaExistente = pistas.some(pista => pista.id === id);
+	const pistaExistente = await Pista.findByPk(pistaId);
 
 	if(!pistaExistente){
 	
@@ -36,7 +60,9 @@ export function reservarPista(req: Request, res: Response): void {
 		return;
 	}
 
-	const reservasPista = reservas.filter(reserva => reserva.pistaId === id && reserva.fecha === req.body.fecha);
+	const reservasPista = await Reserva.findAll(
+		{where: {pistaId,fecha}
+	});
 
 	const haySolape = reservasPista.some(reserva => req.body.horaInicio < reserva.horaFin && req.body.horaFin > reserva.horaInicio); 
 
@@ -47,21 +73,18 @@ export function reservarPista(req: Request, res: Response): void {
 		return;
 	}
 
-	const nuevaReserva: Reserva = {
-		id: reservas.length +1,
-		pistaId: id,
-		fecha: req.body.fecha,
-		horaInicio: req.body.horaInicio,
-		horaFin: req.body.horaFin
-	}	
-
-	reservas.push(nuevaReserva);
+	const nuevaReserva = await Reserva.create({
+		pistaId,
+		fecha,
+		horaInicio,
+		horaFin
+	});	
 
 	res.status(201).json(nuevaReserva);
 
 }
 
-export function cancelarReserva(req: Request, res: Response): void{
+export async function cancelarReserva(req: Request, res: Response){
 
 	const reservaId = Number(req.params.id);
 
@@ -72,7 +95,7 @@ export function cancelarReserva(req: Request, res: Response): void{
 		return;
 	}
 
-	const existe = reservas.some(reserva => reserva.id === reservaId);
+	const existe = await Reserva.findByPk(reservaId);
 
 	if(!existe){
 		res.status(404).json({
@@ -81,13 +104,25 @@ export function cancelarReserva(req: Request, res: Response): void{
 		return;
 	}
 
-	const indice = reservas.findIndex(reserva => reserva.id === reservaId);
+	await Reserva.destroy({ where: { id: reservaId } });
 
-	const reserva = reservas[indice];
-
-	reservas.splice(indice, 1);
-
-	res.status(200).json(reserva);
+	res.status(200).json(existe);
 
 		
+}
+
+export async function obtenerReservaPorFecha(req: Request, res: Response){
+
+	const fecha = req.params.fecha;
+
+	if(!fecha || typeof fecha !== 'string'){
+		res.status(400).json({
+			error: 'La fecha de la reserva está vacia o no es una fecha válida'
+		});
+		return;
+	}
+
+	const listadoFecha = await Reserva.findAll( {where: {fecha} });
+
+	res.status(200).json(listadoFecha);
 }

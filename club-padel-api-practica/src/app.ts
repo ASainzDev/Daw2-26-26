@@ -3,6 +3,8 @@ import pistasRoutes = require('./routes/pistas.routes');
 import reservasRoutes = require('./routes/reservas.routes')
 import sequelize from './config/database';
 import Pista from './models/Pista';
+import swaggerUi from 'swagger-ui-express';
+import swaggerSpec from './docs/swagger';
 
 
 const app = express();
@@ -28,6 +30,8 @@ Pista.findAll()
 		console.log('Error al cargar el modelo Pista:', error);
 	});
 
+
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.listen(3000, () => {
 	console.log('Servidor escuchando en http://localhost:3000');

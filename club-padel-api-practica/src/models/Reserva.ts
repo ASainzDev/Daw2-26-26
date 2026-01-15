@@ -1,6 +1,6 @@
 import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOptional } from 'sequelize';
 import sequelize from '../config/database';
-import Pista from '.Pista';
+import Pista from './Pista';
 
 class Reserva extends Model<InferAttributes<Reserva>, InferCreationAttributes<Reserva>>{
 	declare id: CreationOptional<number>;
@@ -45,7 +45,7 @@ Reserva.init(
 		tableName: 'reservas',
 		timestamps: false
 	}
-};
+);
 
 Pista.hasMany(Reserva, {
 	foreignKey: 'pistaId'

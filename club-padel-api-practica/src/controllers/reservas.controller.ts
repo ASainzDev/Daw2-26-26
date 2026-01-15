@@ -12,7 +12,7 @@ export async function obtenerReservas(req: Request, res: Response) {
 export async function reservarPista(req: Request, res: Response) {
 	
 	const pistaId = Number(req.body.pistaId);
-	const {fecha, horaInicio, horaFin} = req.body;
+	const {fechaString, horaInicio, horaFin} = req.body;
 
 	if(Number.isNaN(pistaId)){
 		res.status(400).json({
@@ -22,7 +22,7 @@ export async function reservarPista(req: Request, res: Response) {
 		
 	}
 
-	if(!fecha || typeof fecha !== 'string'){
+	if(!fechaString || typeof fechaString !== 'string'){
 		res.status(400).json({
 			error: 'El campo fecha es obligatorio'
 		});
@@ -43,7 +43,7 @@ export async function reservarPista(req: Request, res: Response) {
 		return;
 	}
 
-	if(horaFin < horaInicio){
+	if(horaFin <= horaInicio){
 		res.status(400).json({
 			error: 'La hora de fin debe de ser posterior a la hora de inicio'
 		});
@@ -60,11 +60,13 @@ export async function reservarPista(req: Request, res: Response) {
 		return;
 	}
 
+	const fecha = new Date(fechaString);
+	
 	const reservasPista = await Reserva.findAll(
 		{where: {pistaId,fecha}
 	});
 
-	const haySolape = reservasPista.some(reserva => req.body.horaInicio < reserva.horaFin && req.body.horaFin > reserva.horaInicio); 
+	const haySolape = reservasPista.some(reserva => horaInicio < reserva.horaFin && horaFin > reserva.horaInicio); 
 
 	if(haySolape){
 		res.status(409).json({
@@ -122,7 +124,34 @@ export async function obtenerReservaPorFecha(req: Request, res: Response){
 		return;
 	}
 
-	const listadoFecha = await Reserva.findAll( {where: {fecha} });
+	const fechaDate = new Date(fecha);
+
+	const listadoFecha = await Reserva.findAll( {where: { fecha: fechaDate } });
 
 	res.status(200).json(listadoFecha);
+}
+
+export async function obtenerReservaPorIdPista(req: Request, res: Response){
+	
+	const idPista =Number(req.params.pistaId);
+
+	if(Number.isNaN(idPista)){
+		res.status(400).json({
+			error: 'Se debe de proporcionar una id de pista'
+		});
+		return;
+	}
+
+	const existe = await Pista.findByPk(idPista);
+
+	if(!existe){
+		res.status(404).json({
+			error: 'La pista buscada no existe'
+		});
+		return;
+	}
+
+	const listadoReservasPista = await Reserva.findAll( {where: { pistaId: idPista } });
+
+	res.status(200).json(listadoReservasPista);
 }

@@ -1,0 +1,62 @@
+body {
+    background: #f2f2f2
+}
+
+html, body {
+    height: 100%
+}
+
+.widget {
+    background: #fff;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .2);
+}
+
+.foto {
+    width: 64px;
+    height: 64px;
+    border-radius: 100px;
+    overflow: hidden;
+    margin-right: 15px;
+}
+
+.foto img {
+    width: 100%
+}
+
+.botones button {
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px
+}
+
+.aprobar {
+    background: #35ae6b
+}
+
+.eliminar {
+    background: #b74848
+}
+
+.bloquear {
+    background: #aaa
+}
+
+.app-layout {
+    min-height: 100vh
+}
+
+.main-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.top-zone {
+    flex: 2
+}
+
+.bottom-zone {
+    flex: 1
+}

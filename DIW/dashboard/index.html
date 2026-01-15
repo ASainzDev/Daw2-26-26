@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Mi Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/estilos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row app-layout">
+
+        <aside class="col-12 col-md-3 col-lg-2 bg-dark text-white p-3 d-flex flex-column">
+            <h4 class="mb-4">SportsPanel</h4>
+            <a class="text-white mb-2" href="#">Dashboard</a>
+            <a class="text-white mb-2" href="#">Equipos</a>
+            <a class="text-white mb-2" href="#">Partidos</a>
+            <a class="text-white mb-2" href="#">Clasificación</a>
+            <a class="text-danger mt-auto" href="#">Salir</a>
+        </aside>
+
+
+        <main class="col main p-4 d-flex flex-column">
+            <div class="row flex-fill g-4">
+
+                <div class="col-12 col-lg-4">
+                    <div class="widget">
+                        <h5>Resultados de hoy</h5>
+                        <ul class="list-unstyled">
+                            <li>Madrid 14 - 1 Barça</li>
+                            <li>Valencia 0 - 0 Sevilla</li>
+                            <li>Betis 1 - 3 Villarreal</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-4">
+                    <div class="widget">
+                        <h5>Clasificación</h5>
+                        <ol>
+                            <li>Madrid – 200 pts</li>
+                            <li>Barça – 42 pts</li>
+                            <li>Atleti – 39 pts</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-4">
+                    <div class="widget">
+                        <h5>Próximo partido</h5>
+                        <p>Real Madrid vs Athletic</p>
+                        <p><strong>Sábado 18:30</strong></p>
+                        <button class="btn btn-success w-100">Comprar entradas</button>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-8">
+                    <div class="widget comentarios">
+                        <h5 class="titulo">Comentarios</h5>
+                        <div class="contenedor">
+
+                            <div class="comentario d-flex flex-wrap">
+                                <div class="foto">
+                                    <img src="img/user.png">
+                                </div>
+
+                                <div class="texto">
+                                    <strong>Juan</strong>
+                                    <p><a href="#">Partidazo ayer!</a></p>
+                                    <p class="texto-comentario">Gol en el último minuto, brutal.</p>
+                                </div>
+
+                                <div class="botones d-flex flex-wrap w-100">
+                                    <button class="aprobar">Aprobar</button>
+                                    <button class="eliminar">Eliminar</button>
+                                    <button class="bloquear">Bloquear</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+</body>
+</html>

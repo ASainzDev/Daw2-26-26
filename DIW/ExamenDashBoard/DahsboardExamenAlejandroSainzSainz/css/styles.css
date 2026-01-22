@@ -15,7 +15,7 @@ para que no quede espacio sin ocupar*/
 .sidebar {
     background-color: var(--purple);
     color: var(--gold);
-    height: 100vh;
+    min-height: 100vh;
 }
 
 /*Con esto lo que intento es que los enlaces se distribuyan uniformemente*/
@@ -88,5 +88,50 @@ la path, el fill y el stroke cuando haces hoover y lo puedes cambiar*/
 
 .bank-logo:hover .logo-text {
     fill: white;
+}
+
+/*Trabajo la clase banco*/
+.banco{
+    color: var(--gold);
+    background-color: var(--purple-dark);
+}
+
+/*Aquí trabajo un poco las barras de la card*/
+
+.bar-chart {
+    height: 160px;
+}
+
+.bar {
+    width: 28px;
+    height: 100%;
+    background-color: #e5e7eb;
+    display: flex;
+    align-items: flex-end;
+    border: 1px solid var(--gold);
+    border-radius: 6px;
+    box-shadow: 0 20px 40px darkslateblue;
+}
+
+.bar-fill {
+    width: 100%;
+    background-color: var(--dark-gold);
+}
+
+/*Trabajo los botones para que queden igual que el resto de elementos*/
+.boton-marca{
+    background-color: var(--purple-dark);
+    color: var(--gold);
+    border: none;
+
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.boton-marca:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    background-color: var(--gold);
+    color: var(--purple-dark);
 }
 

@@ -14,7 +14,7 @@
     <div class="row min-vh-100">
 
         <!-- Menú lateral -->
-        <nav class="col-12 col-md-3 col-lg-2 sidebar p-1">
+        <nav class="col-12 col-md-3 col-lg-2 sidebar p-1 min-vh-100">
 
 <!--            Aquí este botón para que se colapse en movil el menú -->
             <button class="btn btn-outline-light d-md-none mb-3"
@@ -23,7 +23,7 @@
                 ☰ Menú
             </button>
 
-
+<!--            Esta es la parte del navbar, es más larga por las coordenadas del logo en svg-->
             <div class="logo my-4 text-center">
 <!--                Yo no engaño, el logo le ha hecho la IA, tal cual.-->
                 <svg
@@ -34,23 +34,23 @@
                         role="img"
                         aria-label="Bank of Sainztander logo">
 
-                    <!-- Símbolo -->
+
                     <g class="logo-symbol" transform="translate(10,10)">
 
-                        <!-- Cabeza -->
+
                         <circle cx="30" cy="30" r="18" />
 
-                        <!-- Cuerno izquierdo -->
+
                         <path d="M18 12 C10 2, 4 2, 6 0" />
 
-                        <!-- Cuerno derecho -->
+
                         <path d="M42 12 C50 2, 56 2, 54 0" />
 
-                        <!-- Base -->
+
                         <rect x="18" y="48" width="24" height="6" rx="2" />
                     </g>
 
-                    <!-- Texto -->
+
                     <text x="80" y="48" class="logo-text">
                         Bank Sainztander
                     </text>
@@ -59,31 +59,185 @@
 
             </div>
 
-            <!-- Menú -->
+            <!-- Esto es el navbar pero orientado verticalmente. Si está bien hecho es responsive para móviles -->
             <div class="collapse d-md-block" id="sidebarMenu">
                 <ul class="nav flex-column sidebar-nav">
+<!--                    Esta parte es un poco larga porque, para que funcionen en local tengo que incluir los svgs de los iconos aquí-->
                     <li class="nav-item">
-                        <a class="nav-link" href="404.html">Dashboard</a>
+                        <a class="nav-link" href="404.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="m-2 bi bi-house" viewBox="0 0 16 16">
+                            <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
+                        </svg>Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="404.html">Cuentas</a>
+                        <a class="nav-link" href="404.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="m-2 bi bi-coin" viewBox="0 0 16 16">
+                            <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518z"/>
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                            <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11m0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12"/>
+                        </svg>Cuentas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="404.html">Movimientos</a>
+                        <a class="nav-link" href="404.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="m-2 bi bi-cash" viewBox="0 0 16 16">
+                            <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
+                            <path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2z"/>
+                        </svg>Movimientos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="404.html">Tarjetas</a>
+                        <a class="nav-link" href="404.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="m-2 bi bi-credit-card" viewBox="0 0 16 16">
+                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z"/>
+                            <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+                        </svg>Tarjetas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="404.html">Perfil</a>
+                        <a class="nav-link" href="404.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="m-2 bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                        </svg>Perfil</a>
                     </li>
                 </ul>
             </div>
         </nav>
 
-        <!-- Main -->
-        <main class="col-12 col-md-9 col-lg-10 p-4">
-            CONTENIDO
+        <!-- Uso la etiqueta main porque es semántica e indica al navegador que esta es la sección principal en todo lo que haga falta voy a añadir
+         una clase banco para que todo concuerde con el esquema de colores-->
+        <main class="col-12 col-md-9 col-lg-10 p-1 vh-100 overflow-scroll">
+<!--            Voy a intentar insertar 4 widgets. Espero hacerlo bien y que quede una row superior, 1 intermedia y 1 abajo-->
+
+<!--            primera fila y un gap de 2 entre elementos no se porque no se igualan en altura aunque use stretch-->
+            <div class="row m-2 d-flex justify-content-evenly align-items-stretch">
+<!--                Una card que en movil ocupe todo el ancho con col-12 y a partir de pantallas media col-6-->
+                <div class="card h-auto col-12 col-md-5 shadow-lg m-1 banco">
+                    <div class="card-body h-100 d-flex flex-column justify-content-evenly align-items-center">
+                        <h5 class="fs-6 fw-bolder">DINERO SUBSTRAIDO A NUESTROS CLIENTES</h5>
+                        <h5 class="fw-bolder fs-2 text-decoration-underline dinero">1.000.0000.0000 €</h5>
+                    </div>
+                </div>
+
+<!--                Segunda card de la parte superior-->
+                <div class="card h-100 col-12 col-md-5 shadow-lg m-1 banco">
+                    <div class="card-body">
+                        <h5 class="fs-6 fw-bolder">ACCIONES RECOMENDADAS ESTA SEMANA</h5>
+                        <h5 class="fw-bolder fs-2 text-decoration-underline dinero">Bank Sainztander</h5>
+
+                        <p>Progreso de las acciones</p>
+                        <div class="container mx-auto d-flex flex-row justify-content-evenly">
+                            <div class="bar-chart d-flex align-items-end gap-5">
+                                <div class="bar">
+                                    <div class="bar-fill" style="height: 40%"></div>
+                                </div>
+                                <div class="bar">
+                                    <div class="bar-fill" style="height: 70%"></div>
+                                </div>
+                                <div class="bar">
+                                    <div class="bar-fill" style="height: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container mx-auto d-flex flex-row justify-content-evenly mt-2">
+                            <button class="btn boton-marca">Comprar</button>
+                            <button class="btn boton-marca">Comprar más</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+<!--            Segunda fila para otro widget-->
+            <div class="row m-2 justify-content-evenly shadow-lg my-3 flex-column banco">
+<!--                Este va a ser un widget de toda la pantalla-->
+
+<!--                Voy a jugar con la clase progress que es de bootstrap para simular lineas de progreso. Juego con el width aquí
+ya que es más cómodo que llenar el archivo de css de un monton de clases, una por barra, para controlar el ancho-->
+                <h4 class="fw-bolder fs-3 text-lg-center text-sm-end">DINERO EXTRAIDO POR TIPOS DE CLIENTES</h4>
+                <div class="container mx-auto my-2">
+                    <div class="container-fluid mx-1 flex-column">
+                        <p>DESVALIDOS Y DESAMPARADOS</p>
+                        <div class="progress my-2">
+                            <div class="progress-bar bg-success" style="width: 43%"></div>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid mx-1 flex-column">
+                        <p>PERSONAS NECESITADAS</p>
+                        <div class="progress my-2">
+                            <div class="progress-bar bg-primary" style="width: 79%"></div>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid mx-1 flex-column">
+                        <p>OTRO TIPO DE GENTE</p>
+                        <div class="progress my-2">
+                            <div class="progress-bar bg-warning" style="width: 21%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<!--            Aquí va a ir el que creo que será el último widget, un pequeño carrusel sin controles y que vaya mostrando diferentes opiniones
+pero que vayan pasando de una a otra automáticamente-->
+            <div class="row m-2 justify-content-evenly shadow-lg my-3 flex-column banco">
+                <div class="bg-light">
+                    <div class="container py-5 banco">
+                        <h2 class="text-center mb-2">Que dice la gente de nosotros</h2>
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <div class="testimonial-card p-4 p-md-5">
+                                                <i class="bi bi-quote quote-icon position-absolute top-0 start-0 mt-3 ms-3"></i>
+                                                <div class="text-center mb-1">
+                                                    <img src="./recursos/foto1.jpg" alt="Avatar" class="avatar mb-2">
+                                                    <h5 class="mb-1">Julia Fernandez</h5>
+                                                    <p class="text-muted mb-0">Camarera</p>
+                                                </div>
+                                                <p class="lead text-center mb-0">"Desde que estoy con Bank Sainztander ya no tengo que preocuparme por mi dinero. Ya
+                                                    no me queda nada, así que una cosa menos"</p>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="testimonial-card p-4 p-md-5">
+                                                <i class="bi bi-quote quote-icon position-absolute top-0 start-0 mt-3 ms-3"></i>
+                                                <div class="text-center mb-4">
+                                                    <img src="./recursos/foto2.jpg" alt="Avatar" class="avatar mb-3">
+                                                    <h5 class="mb-1">Rodolfo Rodriguez</h5>
+                                                    <p class="text-muted mb-0">Trabajador de supermercado</p>
+                                                </div>
+                                                <p class="lead text-center mb-0">"Con los magníficos planes de inversiones de Bank Sainztander ganarán dinero ellos
+                                                    porque yo no he visto que mi cartera crezca mucho. Tu banco de confianza"</p>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="testimonial-card p-4 p-md-5">
+                                                <i class="bi bi-quote quote-icon position-absolute top-0 start-0 mt-3 ms-3"></i>
+                                                <div class="text-center mb-4">
+                                                    <img src="./recursos/foto3.jpg" alt="Avatar" class="avatar mb-3">
+                                                    <h5 class="mb-1">Sofia Rodriguez</h5>
+                                                    <p class="text-muted mb-0">Administrativa</p>
+                                                </div>
+                                                <p class="lead text-center mb-0">"Ni siquiera sabía que eran un banco, pensé que eran una ONG."</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                    <div class="carousel-indicators">
+                                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </main>
 
     </div>

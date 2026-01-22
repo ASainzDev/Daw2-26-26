@@ -1,0 +1,88 @@
+/*Hay que tocar algunas cosas del css de la 404 para que quede parecido
+a toda la página*/
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+/*Esto es un gradiente linear, pero con varios colores, para que el fondo
+no sea plano.*/
+body {
+    background: linear-gradient(
+            120deg,
+            #5b2b82,   /* morado principal */
+            #4a4f9c,   /* mezcla morado-azul. Simplemente para dar
+                        contraste y que se note*/
+            #1e2a4f,   /* azul oscuro profundo, también por contraste*/
+            #2a123f,   /* morado muy oscuro */
+            #5b2b82
+    );
+
+    /*Aquí lo que hago es darle un tamaño mas grande al background para así
+    poder hacer una animación de movimiento al fondo que es muy facil de hacer*/
+    background-size: 400% 400%;
+    animation: gradientMove 5s ease infinite;
+
+    color: #d4af37;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/*Esta es la animación del fondo. Lo único que hace es cambiar la posición
+del fonod y como el fondo es más grande que la pantalla parece que se mueve*/
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+
+
+
+.error-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/*Hay que dar los colores de marca, para que se vean en todas las páginas
+por eso el fondo morado y los bordes dorados*/
+.error-box {
+    background-color: rgba(63, 29, 92, 0.85);
+    border: 2px solid #d4af37;
+    border-radius: 16px;
+
+    padding: 30px 40px;
+    text-align: center;
+
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.error-box img {
+    max-height: 400px;
+    width: auto;
+    max-width: 100%;
+}
+
+.error-box .btn {
+    background-color: #d4af37;
+    color: #3f1d5c;
+    border: none;
+
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.error-box .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+

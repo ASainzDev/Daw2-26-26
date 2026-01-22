@@ -1,0 +1,92 @@
+/*Como siempre vamos a usar los mismos colores, lo mejor es definir variables*/
+:root {
+    --purple: #5b2b82;
+    --purple-dark: #3f1d5c;
+    --gold: #d4af37;
+    --gold-soft: #f1d97a;
+    --dark-gold: #634b21;
+}
+/*Estos elementos lo que hacen es dar un estilo distinto
+a la navbar, para que concuerde con los requisitos. Este es
+uno de los elementos que más se benefician de las variables*/
+
+/*Hago también que el sidebar ocupe todo el alto de la columna
+para que no quede espacio sin ocupar*/
+.sidebar {
+    background-color: var(--purple);
+    color: var(--gold);
+    height: 100vh;
+}
+
+/*Con esto lo que intento es que los enlaces se distribuyan uniformemente*/
+.sidebar-nav {
+    height: 100%;
+}
+
+
+.sidebar-nav .nav-link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 14px 16px;
+
+    color: var(--gold);
+    background-color: var(--purple);
+
+    border-radius: 6px;
+    margin-bottom: 6px;
+
+    transition:
+            background-color 0.2s ease,
+            color 0.2s ease;
+}
+
+
+.sidebar .nav-link:hover {
+    background-color: var(--gold);
+    color: var(--purple-dark);
+    box-shadow: 2px 2px 2px var(--dark-gold);
+}
+
+/*Esta es la parte del logo. Lo bueno de los svg es que puedes trabajar
+la path, el fill y el stroke cuando haces hoover y lo puedes cambiar*/
+.bank-logo {
+    max-width: 220px;
+    cursor: pointer;
+}
+
+/* Colores base */
+.logo-symbol circle,
+.logo-symbol path,
+.logo-symbol rect {
+    fill: var(--gold);
+}
+
+.logo-symbol path {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 3;
+    stroke-linecap: round;
+}
+
+.logo-text {
+    fill: var(--gold);
+    font-size: 20px;
+    font-weight: 600;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Cuando hago hoover, cambio los colores */
+.bank-logo:hover .logo-symbol circle,
+.bank-logo:hover .logo-symbol rect {
+    fill: white;
+}
+
+.bank-logo:hover .logo-symbol path {
+    stroke: var(--gold);
+}
+
+.bank-logo:hover .logo-text {
+    fill: white;
+}
+

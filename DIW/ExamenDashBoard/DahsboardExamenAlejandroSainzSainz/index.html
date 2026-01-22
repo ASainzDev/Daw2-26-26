@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Bank of Sainztander</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row min-vh-100">
+
+        <!-- Menú lateral -->
+        <nav class="col-12 col-md-3 col-lg-2 sidebar p-1">
+
+<!--            Aquí este botón para que se colapse en movil el menú -->
+            <button class="btn btn-outline-light d-md-none mb-3"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#sidebarMenu">
+                ☰ Menú
+            </button>
+
+
+            <div class="logo my-4 text-center">
+<!--                Yo no engaño, el logo le ha hecho la IA, tal cual.-->
+                <svg
+                        class="bank-logo"
+                        viewBox="0 0 260 80"
+                        width="100%"
+                        height="auto"
+                        role="img"
+                        aria-label="Bank of Sainztander logo">
+
+                    <!-- Símbolo -->
+                    <g class="logo-symbol" transform="translate(10,10)">
+
+                        <!-- Cabeza -->
+                        <circle cx="30" cy="30" r="18" />
+
+                        <!-- Cuerno izquierdo -->
+                        <path d="M18 12 C10 2, 4 2, 6 0" />
+
+                        <!-- Cuerno derecho -->
+                        <path d="M42 12 C50 2, 56 2, 54 0" />
+
+                        <!-- Base -->
+                        <rect x="18" y="48" width="24" height="6" rx="2" />
+                    </g>
+
+                    <!-- Texto -->
+                    <text x="80" y="48" class="logo-text">
+                        Bank Sainztander
+                    </text>
+
+                </svg>
+
+            </div>
+
+            <!-- Menú -->
+            <div class="collapse d-md-block" id="sidebarMenu">
+                <ul class="nav flex-column sidebar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="404.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="404.html">Cuentas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="404.html">Movimientos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="404.html">Tarjetas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="404.html">Perfil</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main -->
+        <main class="col-12 col-md-9 col-lg-10 p-4">
+            CONTENIDO
+        </main>
+
+    </div>
+</div>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -88,4 +88,12 @@ public class Characters {
     public void setImagen3(String imagen3) {
         this.imagen3 = imagen3;
     }
+
+    public Powerlevels getPowerlevels() {
+        return powerlevels;
+    }
+
+    public void setPowerlevels(Powerlevels powerlevels) {
+        this.powerlevels = powerlevels;
+    }
 }

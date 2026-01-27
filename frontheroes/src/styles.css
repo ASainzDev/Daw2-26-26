@@ -1,0 +1,23 @@
+body {
+  background: linear-gradient(180deg, darkgrey, lightcyan);
+  color: #e5e7eb;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+h1, h2, h3 {
+  color: #f9fafb;
+}
+
+a {
+  color: #60a5fa;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #93c5fd;
+}
+
+button {
+  cursor: pointer;
+}

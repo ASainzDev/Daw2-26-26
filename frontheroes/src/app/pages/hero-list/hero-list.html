@@ -1,0 +1,60 @@
+<div class="container my-4">
+
+  @if (loading()) {
+    <p class="text-center text-muted fs-5">
+      Cargando héroes...
+    </p>
+  }
+
+  @if (!loading() && error()) {
+    <p class="text-center text-danger fs-5">
+      Error cargando los héroes
+    </p>
+  }
+
+  @if (!loading() && !error() && heroList().length === 0) {
+    <p class="text-center text-muted fs-5">
+      No hay héroes disponibles
+    </p>
+  }
+
+  @if (!loading() && heroList().length > 0) {
+    <div class="row g-4">
+
+      @for (hero of heroList(); track hero.id) {
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="card h-100 hero-card">
+
+            <img
+              [src]="hero.imagen1"
+              class="card-img-top"
+              alt="{{ hero.heroName }}"
+            />
+
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title text-center">
+                {{ hero.heroName }}
+              </h5>
+
+              <p class="card-text text-center">
+                {{ hero.name }}
+              </p>
+
+              <div class="mt-auto d-grid">
+                <button
+                  class="btn btn-outline-dark"
+                  (click)="viewDetails(hero.id)"
+                >
+                  Ver detalles
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      }
+
+    </div>
+  }
+
+</div>

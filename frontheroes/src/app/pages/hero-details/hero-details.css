@@ -1,0 +1,34 @@
+.hero-details {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: rgba(15, 23, 42, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  text-align: center;
+  color: #1e293b;
+}
+
+.hero-details img {
+  width: 300px;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.hero-details ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+  color: #1e293b;
+}
+
+.hero-details li {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #1e293b;
+  color: #1e293b;
+}
+
+.hero-details button {
+  margin-top: 1.5rem;
+}
+

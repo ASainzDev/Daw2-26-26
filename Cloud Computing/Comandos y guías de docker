@@ -1,0 +1,321 @@
+GUÍA RÁPIDA DE DOCKER – EXAMEN
+Sistema: Debian 12
+Autor: Apuntes prácticos de clase y prácticas reales
+
+==================================================
+0. COMPROBACIÓN INICIAL
+==================================================
+
+docker --version
+docker compose version
+
+Sirve para comprobar que Docker y Docker Compose están instalados.
+
+--------------------------------------------------
+
+docker info
+
+Muestra información general del sistema Docker.
+
+==================================================
+1. CONCEPTOS BÁSICOS
+==================================================
+
+Imagen:
+Plantilla inmutable (ej: nginx:alpine, mariadb:11)
+
+Contenedor:
+Instancia en ejecución de una imagen
+
+Volumen:
+Almacenamiento persistente fuera del contenedor
+
+Puerto:
+Comunicación host ↔ contenedor
+
+Docker Compose:
+Herramienta para definir varios contenedores en un solo fichero
+
+==================================================
+2. DESCARGAR IMÁGENES
+==================================================
+
+docker pull nginx:alpine
+docker pull mariadb:11
+
+Descarga la imagen desde Docker Hub.
+
+--------------------------------------------------
+
+docker images
+
+Lista imágenes descargadas.
+
+==================================================
+3. CREAR CONTENEDOR SIMPLE (NGINX O CUALQUIERA)
+==================================================
+
+docker run -d --name web nginx:alpine
+
+-d            → segundo plano
+--name        → nombre del contenedor
+nginx:alpine → imagen
+
+--------------------------------------------------
+
+docker ps
+docker ps -a
+
+Ver contenedores en ejecución o todos.
+
+==================================================
+4. EXPONER PUERTOS
+==================================================
+
+docker run -d \
+  --name web \
+  -p 8080:80 \
+  nginx:alpine
+
+-p 8080:80
+Host:8080 → Contenedor:80
+
+Acceso desde navegador:
+http://localhost:8080
+
+==================================================
+5. ENTRAR EN UN CONTENEDOR
+==================================================
+
+docker exec -it web sh
+
+-it → modo interactivo
+sh  → shell disponible en imágenes ligeras
+
+==================================================
+6. VOLUMENES (PERSISTENCIA)
+==================================================
+
+docker volume create web_data
+
+--------------------------------------------------
+
+docker run -d \
+  --name web \
+  -p 8080:80 \
+  -v web_data:/usr/share/nginx/html \
+  nginx:alpine
+
+Todo lo que esté en /usr/share/nginx/html
+se guarda aunque el contenedor se borre.
+
+==================================================
+7. NGINX CON HTML Y CSS (CASO TÍPICO DE EXAMEN)
+==================================================
+
+Estructura en el HOST:
+
+/home/alumno/web/
+  ├── index.html
+  └── styles.css
+
+--------------------------------------------------
+CONTENIDO EJEMPLO index.html
+--------------------------------------------------
+
+<link rel="stylesheet" href="styles.css">
+
+--------------------------------------------------
+CONTENIDO EJEMPLO styles.css
+--------------------------------------------------
+
+body {
+  background-color: lightblue;
+}
+
+--------------------------------------------------
+CREAR CONTENEDOR USANDO EL DIRECTORIO
+--------------------------------------------------
+
+docker run -d \
+  --name web \
+  -p 8080:80 \
+  -v /home/alumno/web:/usr/share/nginx/html \
+  nginx:alpine
+
+--------------------------------------------------
+PROBLEMA TÍPICO: EL CSS NO CARGA
+--------------------------------------------------
+
+Causas habituales:
+
+1. Ruta incorrecta en index.html
+   (debe ser relativa: styles.css)
+
+2. El archivo no existe realmente en el volumen
+
+3. El navegador cachea el HTML antiguo
+   → abrir ventana privada
+
+4. Permisos incorrectos en el host
+
+Comprobar dentro del contenedor:
+
+docker exec -it web ls /usr/share/nginx/html
+
+==================================================
+8. BORRAR CONTENEDORES Y LIMPIEZA
+==================================================
+
+docker stop web
+docker rm web
+
+--------------------------------------------------
+
+docker volume ls
+docker volume rm web_data
+
+==================================================
+9. CONTENEDOR DE BASE DE DATOS (MARIADB)
+==================================================
+
+docker volume create mariadb_data
+
+--------------------------------------------------
+
+docker run -d \
+  --name mariadb \
+  -e MARIADB_ROOT_PASSWORD=rootpass \
+  -e MARIADB_DATABASE=appdb \
+  -e MARIADB_USER=appuser \
+  -e MARIADB_PASSWORD=apppass \
+  -v mariadb_data:/var/lib/mysql \
+  -p 3306:3306 \
+  mariadb:11
+
+==================================================
+10. ENTRAR EN LA BASE DE DATOS
+==================================================
+
+docker exec -it mariadb mariadb -u appuser -p appdb
+
+--------------------------------------------------
+
+docker exec -it mariadb mariadb -u root -p
+
+==================================================
+11. EXPORTAR E IMPORTAR DATOS (DUMP)
+==================================================
+
+CREAR DUMP EN HOST:
+
+mysqldump -u usuario -p basedatos > dump.sql
+
+--------------------------------------------------
+
+COPIAR DUMP AL CONTENEDOR:
+
+docker cp dump.sql mariadb:/dump.sql
+
+--------------------------------------------------
+
+IMPORTAR DENTRO DEL CONTENEDOR:
+
+docker exec -it mariadb mariadb -u appuser -p appdb < dump.sql
+
+==================================================
+12. DOCKER COMPOSE – CONCEPTOS CLAVE
+==================================================
+
+docker-compose.yml define:
+- Servicios (contenedores)
+- Volúmenes
+- Redes
+- Variables de entorno
+
+Compose crea una red automática entre servicios.
+
+==================================================
+13. ESTRUCTURA TÍPICA DE PROYECTO
+==================================================
+
+proyecto/
+  ├── docker-compose.yml
+  ├── backend/
+  │    └── Dockerfile
+  └── frontend/
+       └── Dockerfile
+
+==================================================
+14. DOCKER-COMPOSE.YML GENÉRICO
+==================================================
+
+services:
+  db:
+    image: mariadb:11
+    environment:
+      MARIADB_DATABASE: appdb
+      MARIADB_USER: appuser
+      MARIADB_PASSWORD: apppass
+      MARIADB_ROOT_PASSWORD: rootpass
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  app:
+    image: openjdk:17
+    depends_on:
+      - db
+
+volumes:
+  db_data:
+
+==================================================
+15. COMANDOS DE COMPOSE
+==================================================
+
+docker compose up -d
+docker compose down
+
+--------------------------------------------------
+
+docker compose ps
+docker compose logs servicio
+
+==================================================
+16. COMUNICACIÓN ENTRE CONTENEDORES
+==================================================
+
+INCORRECTO:
+jdbc:mariadb://localhost:3306/appdb
+
+CORRECTO:
+jdbc:mariadb://db:3306/appdb
+
+El nombre del servicio es el hostname.
+
+==================================================
+17. ERRORES TÍPICOS DE EXAMEN
+==================================================
+
+- Usar localhost entre contenedores
+- No usar volúmenes
+- Puertos en uso
+- BD no inicializada
+- Permisos incorrectos
+- CSS no cargando por rutas mal puestas
+
+==================================================
+18. FRASES CLAVE PARA JUSTIFICAR
+==================================================
+
+- Uso volúmenes para persistencia
+- Compose simplifica la orquestación
+- Variables de entorno desacoplan configuración
+- Los servicios se comunican por nombre
+- Los logs permiten depuración
+
+==================================================
+FIN DEL DOCUMENTO
+==================================================

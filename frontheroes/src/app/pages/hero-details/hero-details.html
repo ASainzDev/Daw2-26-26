@@ -1,0 +1,31 @@
+@if (loading()) {
+  <p>Cargando detalles del héroe...</p>
+}
+
+@if (!loading() && error()) {
+  <p>Error cargando el héroe</p>
+}
+
+@if (!loading() && hero()) {
+  <div class="hero-details container text-dark row">
+    <h2>{{ hero()!.heroName }}</h2>
+
+    <img class="col-3" [src]="hero()!.imagen1" alt="imagen del héroe"/>
+
+    <div class="col-8 m-3"><h3>Power stats</h3>
+
+      <ul>
+        <li>Overall: {{ hero()!.powerlevels?.overall }}</li>
+        <li>Strength: {{ hero()!.powerlevels?.strength }}</li>
+        <li>Speed: {{ hero()!.powerlevels?.speed }}</li>
+        <li>Endurance: {{ hero()!.powerlevels?.endurance }}</li>
+        <li>Stamina: {{ hero()!.powerlevels?.stamina }}</li>
+        <li>Intelligence: {{ hero()!.powerlevels?.intelligence }}</li>
+      </ul>
+    </div>
+
+    <button class="btn btn-secondary btn-sm my-5 mx-auto col-4" (click)="volver()">
+      Volver a la lista
+    </button>
+  </div>
+}

@@ -1,7 +1,6 @@
 package com.example.heroapiback.controllers;
 
-import com.example.heroapiback.entitys.Characters;
-import com.example.heroapiback.entitys.Powerlevels;
+import com.example.heroapiback.entitys.*;
 import com.example.heroapiback.services.CharactersService;
 import com.example.heroapiback.services.PowerlevelsService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -42,10 +41,20 @@ public class CharactersController {
             @ApiResponse(responseCode = "204", description = "Petición correcta pero no hay datos")
     })
     @GetMapping()
-    public ResponseEntity<List<Characters>> getAllCharacters() {
-        List<Characters> charactersList = this.charService.getAllCharacters();
+    public ResponseEntity<List<CharacterListDTO>> getAllCharacters() {
+        List<CharacterListDTO> result = charService.getAllCharacters()
+                .stream()
+                .map(c -> new CharacterListDTO(
+                        c.getId(),
+                        c.getHeroName(),
+                        c.getName(),
+                        c.getImagen1(),
+                        c.getImagen2(),
+                        c.getImagen3()
+                ))
+                .toList();
 
-        return ResponseEntity.ok(charactersList);
+        return ResponseEntity.ok(result);
     }
 
     @Operation(
@@ -73,14 +82,35 @@ public class CharactersController {
             @ApiResponse(responseCode = "200", description = "Encontrado character y powerlevels"),
             @ApiResponse(responseCode = "404", description = "No encontrada la ID del character")
     })
-    @GetMapping("/{id}/powerlevels")
-    public ResponseEntity<Powerlevels> getCharacterPowerlevelsByCharId(@PathVariable int id){
-        Optional<Powerlevels> powerlevel = this.powerlevService.getPowerLevelByCharId(id);
+    @GetMapping("/powerlevels/{id}")
+    public ResponseEntity<CharacterDetailDTO> getCharacterPowerlevelsByCharId(@PathVariable int id){
 
-        if(powerlevel.isEmpty()){
+        Optional<Characters> characterOpt = charService.getCharacterById(id);
+
+        if (characterOpt.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.ok(powerlevel.get());
+        Characters c = characterOpt.get();
+        Powerlevels p = c.getPowerlevels(); // o service separado
+
+        CharacterDetailDTO dto = new CharacterDetailDTO(
+                c.getId(),
+                c.getHeroName(),
+                c.getName(),
+                c.getImagen1(),
+                c.getImagen2(),
+                c.getImagen3(),
+                p == null ? null : new PowerlevelsDTO(
+                        p.getOverall(),
+                        p.getStrength(),
+                        p.getSpeed(),
+                        p.getEndurance(),
+                        p.getStamina(),
+                        p.getIntelligence()
+                )
+        );
+
+        return ResponseEntity.ok(dto);
     }
 }

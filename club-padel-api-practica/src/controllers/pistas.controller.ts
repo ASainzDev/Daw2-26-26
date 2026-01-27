@@ -1,151 +1,81 @@
-import { Request, Response} from 'express';
-import Pista from '../models/Pista';
+import { Request, Response } from "express";
+import { validationResult } from "express-validator";
+import { Pista } from "../models/Pista";
 
-export const listarPistas = async(req: Request, res: Response) => {
-	const listadoPistas = await Pista.findAll();
-	res.json(listadoPistas);
+function devolverErroresValidacion(req: Request, res: Response) {
+	const errors = validationResult(req);
+	if (!errors.isEmpty()) {
+		res.status(400).json({ errors: errors.array() });
+		return true;
+	}
+	return false;
 }
 
+function getIdParam(req: Request, res: Response): number | null {
+	const id = Number(req.params.id);
+	if (!Number.isInteger(id) || id < 1) {
+		res.status(400).json({ message: "ID inválido" });
+		return null;
+	}
+	return id;
+}
 
 export async function crearPista(req: Request, res: Response) {
+	if (devolverErroresValidacion(req, res)) return;
 
-	const nombre = req.body.nombre;
-	const tipo = req.body.tipo;
-	const precioHora = req.body.precioHora ?? 0.00;
-	
-
-	if(!nombre || typeof nombre !== 'string') {
-		res.status(400).json({
-		error: 'Se debe proporcionar un dato nombre con el formato correcto'
-		});
-		return;
+	try {
+		const pista = await Pista.create(req.body);
+		res.status(201).json(pista);
+	} catch (e: any) {
+		res.status(400).json({ message: "Error creando pista", detail: e.message });
 	}
+}
 
-	const pistaExistente = await Pista.findOne({ where: {nombre} });
+export async function listarPistas(_req: Request, res: Response) {
+	const pistas = await Pista.findAll();
+	res.json(pistas);
+}
 
-	if(pistaExistente) {
+export async function obtenerPista(req: Request, res: Response) {
+	if (devolverErroresValidacion(req, res)) return;
+
+	const id = getIdParam(req, res);
+	if (id === null) return;
+
+	const pista = await Pista.findByPk(id);
+	if (!pista) return res.status(404).json({ message: "Pista no encontrada" });
+	res.json(pista);
+}
+
+export async function actualizarPista(req: Request, res: Response) {
+	if (devolverErroresValidacion(req, res)) return;
+
+	const id = getIdParam(req, res);
+	if (id === null) return;
+
+	const pista = await Pista.findByPk(id);
+	if (!pista) return res.status(404).json({ message: "Pista no encontrada" });
+
+	await pista.update(req.body);
+	res.json(pista);
+}
+
+export async function eliminarPista(req: Request, res: Response) {
+	if (devolverErroresValidacion(req, res)) return;
+
+	const id = getIdParam(req, res);
+	if (id === null) return;
+
+	const pista = await Pista.findByPk(id);
+	if (!pista) return res.status(404).json({ message: "Pista no encontrada" });
+
+	try {
+		await pista.destroy();
+		res.json({ message: "Pista eliminada" });
+	} catch (e: any) {
 		res.status(409).json({
-			error: 'Ya existe una pista con ese nombre'
+			message: "No se puede borrar la pista: tiene reservas asociadas",
+			detail: e.message,
 		});
-		return;
 	}
-
-	if(tipo !== 'INDOOR' && tipo !== 'OUTDOOR'){
-		res.status(400).json({
-		error: 'El parámetro tipo proporcionado no corresponde con los permitidos'
-		});
-		return;
-	}
-
-	if(typeof precioHora !== 'number' || precioHora < 0){
-		res.status(400).json({
-			error: 'El precio por hora debe ser un número positivo'
-		});
-		return;
-	}
-	
-	const nuevaPista = await Pista.create({
-		nombre,
-		tipo,
-		precioHora
-	});
-
-	res.status(201).json(nuevaPista);
 }
-
-export async function modificarNombrePista(req: Request, res: Response) {
-
-	const nombre = req.body.nombre;
-
-	const id = Number(req.params.id);
-
-	if(Number.isNaN(id)){
-		res.status(400).json({
-		error: 'No se ha proporcionado una id o la adjuntada no esté en formato válido'
-		});
-		return;
-	}
-	
-	if(!nombre || typeof nombre !== 'string') {
-		res.status(400).json({
-		error: 'Se ha proporcionado una dato de nombre vacio o de formato incorrecto'
-		});
-		return;
-	}
-
-	const existente = await Pista.findByPk(id);
-
-	if(!existente){
-		res.status(404).json({
-		error: 'No existe una pista con la id proporcionada'
-		});
-		return;
-	}
-
-	const nombreDuplicado = await Pista.findOne({where: {nombre} });
-
-	if(nombreDuplicado && nombreDuplicado.id !== id){
-		res.status(409).json({
-		error: 'El nombre proporcinado coincide con un nombre ya existente o se está intentando dar el mismo nombre a una pista ya existente'
-		});
-		return;
-	}
-	
-	 await Pista.update(
-		{nombre},
-		{where: {id} }
-	);
-	
-	const pistaActualizada = await Pista.findByPk(id);
-			
-	res.status(200).json(pistaActualizada);		
-}
-
-export async function eliminarPista(req : Request, res: Response){
-	
-	const id = Number(req.params.id);
-
-	if(Number.isNaN(id)){
-		res.status(400).json({
-			error: 'La id proporcionada no es válida'
-		});
-		return;
-	}
-
-	const existe = await Pista.findByPk(id);
-
-	if(!existe){
-		res.status(404).json({
-		error: 'La pista buscada no existe'
-		});
-		return;
-	}
-
-	await Pista.destroy({ where: {id} });
-
-	res.status(200).json(existe);
-}
-
-export async function obtenerPistaId(req: Request, res: Response){
-	
-	const id = Number(req.params.id);
-
-	if(Number.isNaN(id)){
-		res.status(400).json({
-			error: 'La id proporcionada no es valida'
-		});
-		return;
-	}
-	
-	const pistaBuscada = await Pista.findByPk(id);
-
-	if(!pistaBuscada){
-		res.status(404).json({
-			error: 'La pista buscada no existe'
-		});
-		return;
-	}
-
-	res.status(200).json(pistaBuscada);
-}
-

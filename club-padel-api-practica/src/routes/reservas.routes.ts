@@ -1,17 +1,15 @@
-import {Router} from 'express';
-import {reservarPista, obtenerReservas, cancelarReserva, obtenerReservaPorFecha, obtenerReservaPorIdPista} from '../controllers/reservas.controller';
-
-
-const router: Router = Router();
-
-router.get('/reservas', obtenerReservas );
-
-router.post('/reservas', reservarPista );
-
-router.delete('/reservas/:id', cancelarReserva);
-
-router.get('/reservas/:fecha', obtenerReservaPorFecha);
-
-router.get('/reservas/:pistaId', obtenerReservaPorIdPista);
-
-export = router;
+import { Router } from "express";
+import {
+    crearReserva,
+    listarReservas,
+    eliminarReserva,
+} from "../controllers/reservas.controller";
+import {
+    validarCrearReserva,
+    validarIdReservaParam,
+} from "../validators/reservaValidators";const router = Router();
+// Endpoints del enunciado :contentReference[oaicite:8]{index=8}
+router.post("/", validarCrearReserva, crearReserva);
+router.get("/", listarReservas);
+router.delete("/:id", validarIdReservaParam, eliminarReserva);
+export default router;

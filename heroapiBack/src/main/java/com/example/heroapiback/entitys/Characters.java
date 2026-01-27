@@ -11,23 +11,32 @@ public class Characters {
     @Column(name="id")
     private int id;
 
-    @Column(name="hero_name", nullable = false)
+    @Column(name="heroname", nullable = false)
     private String heroName;
 
-    @Column(name="name", nullable = false)
+    @Column(name="fullname", nullable = false)
     private String name;
 
-    @Column(name="imagen1", nullable=false)
+    @Column(name="image1", nullable=false)
     private String imagen1;
 
-    @Column(name="imagen2", nullable = true)
+    @Column(name="image2", nullable = true)
     private String imagen2;
 
-    @Column(name="imagen3", nullable = true)
+    @Column(name="image3", nullable = true)
     private String imagen3;
 
+    @Column(name="gender")
+    private String gender;
+
+    @Column(name = "race")
+    private String race;
+
+    @Column(name = "alignment")
+    private String alignment;
+
     @OneToOne(mappedBy = "character")
-    private Powerlevels powerlevels;
+    private Powerstats powerlevels;
 
     public Characters() {
     }
@@ -89,11 +98,36 @@ public class Characters {
         this.imagen3 = imagen3;
     }
 
+<<<<<<< HEAD
     public Powerlevels getPowerlevels() {
         return powerlevels;
     }
 
     public void setPowerlevels(Powerlevels powerlevels) {
         this.powerlevels = powerlevels;
+=======
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getRace() {
+        return race;
+    }
+
+    public void setRace(String race) {
+        this.race = race;
+    }
+
+    public String getAlignment() {
+        return alignment;
+    }
+
+    public void setAlignment(String alignment) {
+        this.alignment = alignment;
+>>>>>>> 4570a0b (Docs)
     }
 }

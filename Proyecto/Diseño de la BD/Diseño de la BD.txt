@@ -1,0 +1,44 @@
+Tablas mínimas
+
+Usuarios{
+	id- String(preferible) o puede ser un BIGINT
+	username - String
+	email- String
+	password? -Aquí o quizá en una tabla aparte
+}
+
+Ligas{
+	cod_liga - String
+	Nombre-liga - String
+	
+	"Habrá que ver si según el código de liga identificamos si es pública o privada o si se hace con un boolean"
+}
+
+Hay que tener en cuenta si vamos a mantener las ligas en el tiempo hasta que se termine la temporada o si se seguirán usando para el año siguiente
+
+Quizá lo mejor será crear un usuario propio del sistema y luego con una tabla intermedia que asocie ligas y usuarios llamada creadores para saber quien es el propietario de la liga
+
+"ESTA HAY QUE ELIMINARLA Y MODIFICAR POR LA OPCIÓN QUE HE MARCADO ABAJO"
+creadores{
+	cod-liga
+	cod-usuario
+}
+
+Para resolver la relación N:M entre ligas y participantes(usuarios) deberemos de tener una tabla intermedia para relacionarlo en condiciones
+participantes_ligas{
+	cod_liga
+	cod_usuarios
+}
+
+El problema aquí es que re repite la tabla, así que mejor en ligas tendremos que incluir una FK de su creador, ya sea usuario o propia de la aplicación.
+
+
+Los usuarios pueden crear equipos, varios, pero sólo 1 por liga, pero pueden apuntarse a varias ligas
+equipos{
+	id_equipo
+	nombre_equipo
+	id_usuario FK
+	id_liga FK
+}
+
+Ahora el problema es ver que se hace con los diferentes jugadores. Sus datos tienen que venir de la api

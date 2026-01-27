@@ -1,157 +1,157 @@
-import {Request, Response} from 'express';
-//import {pistas, Pista} from '../data/pistas.data';
-//import {reservas, Reserva} from '../data/reservas.data';
-import Reserva from '../models/Reserva'
-import Pista from '../models/Pista';
+import { Request, Response } from "express";
 
-export async function obtenerReservas(req: Request, res: Response) {
-	const reservas = await Reserva.findAll();
-	res.status(200).json(reservas);
+import { validationResult } from "express-validator";
+
+import { Op } from "sequelize";
+
+import { Reserva } from "../models/Reserva";
+
+import { Pista } from "../models/Pista";
+
+function devolverErroresValidacion(req: Request, res: Response) {
+
+	const errors = validationResult(req);
+
+	if (!errors.isEmpty()) {
+
+		res.status(400).json({ errors: errors.array() });
+
+		return true;
+
+	}
+
+	return false;
+
 }
 
-export async function reservarPista(req: Request, res: Response) {
-	
-	const pistaId = Number(req.body.pistaId);
-	const {fechaString, horaInicio, horaFin} = req.body;
+function getIdParam(req: Request, res: Response): number | null {
 
-	if(Number.isNaN(pistaId)){
-		res.status(400).json({
-			error: 'El campo id es obligatorio y debe de ser un valor numérico'
-			});
-		return;
-		
+	const id = Number(req.params.id);
+
+	if (!Number.isInteger(id) || id < 1) {
+
+		res.status(400).json({ message: "ID inválido" });
+
+		return null;
+
 	}
 
-	if(!fechaString || typeof fechaString !== 'string'){
-		res.status(400).json({
-			error: 'El campo fecha es obligatorio'
-		});
-		return;
-	}
+	return id;
 
-	if(!horaInicio || typeof horaInicio !== 'string'){
-		res.status(400).json({
-			error: 'El campo hora de inicio es obligatiorio'
-		});
-		return;
-	}
+}
 
-	if(!horaFin || typeof horaFin !== 'string'){
-		res.status(400).json({
-			error: 'El campo hora de fin es obligatorio'
-		});
-		return;
-	}
+function getQueryString(value: unknown): string | undefined {
 
-	if(horaFin <= horaInicio){
-		res.status(400).json({
-			error: 'La hora de fin debe de ser posterior a la hora de inicio'
-		});
-		return;
-	}
+	return typeof value === "string" ? value : undefined;
 
-	const pistaExistente = await Pista.findByPk(pistaId);
+}
 
-	if(!pistaExistente){
-	
-		res.status(404).json({
-			error: 'No existe una pista con la id indicada'
-		});
-		return;
-	}
+function getQueryInt(value: unknown): number | undefined {
 
-	const fecha = new Date(fechaString);
-	
-	const reservasPista = await Reserva.findAll(
-		{where: {pistaId,fecha}
+	if (typeof value !== "string") return undefined;
+
+	const n = Number(value);
+
+	return Number.isInteger(n) && n >= 1 ? n : undefined;
+
+}
+
+export async function crearReserva(req: Request, res: Response) {
+
+	if (devolverErroresValidacion(req, res)) return;
+
+
+	const pista_id = Number(req.body.pista_id);
+
+	const fecha = String(req.body.fecha);
+
+	const hora_inicio = String(req.body.hora_inicio);
+
+	const hora_fin = String(req.body.hora_fin);
+
+
+	const pista = await Pista.findByPk(pista_id);
+
+	if (!pista) return res.status(404).json({ message: "La pista no existe" });
+
+
+	const solape = await Reserva.findOne({
+
+		where: {
+
+			pista_id,
+
+			fecha,
+
+			hora_inicio: { [Op.lt]: hora_fin },
+
+			hora_fin: { [Op.gt]: hora_inicio },
+
+		},
+
 	});
 
-	const haySolape = reservasPista.some(reserva => horaInicio < reserva.horaFin && horaFin > reserva.horaInicio); 
+	if (solape) {
 
-	if(haySolape){
-		res.status(409).json({
-			error: 'La pista solicitada esta ocupada en esa franja de tiempo'
+		return res.status(409).json({
+
+			message: "Reserva inválida: hay solape con otra reserva",
+
+			conflicto: solape,
+
 		});
-		return;
+
 	}
 
-	const nuevaReserva = await Reserva.create({
-		pistaId,
-		fecha,
-		horaInicio,
-		horaFin
-	});	
 
-	res.status(201).json(nuevaReserva);
+	try {
+
+		const reserva = await Reserva.create({ pista_id, fecha, hora_inicio, hora_fin });
+
+		res.status(201).json(reserva);
+
+	} catch (e: any) {
+
+		res.status(400).json({ message: "Error creando reserva", detail: e.message });
+
+	}
 
 }
 
-export async function cancelarReserva(req: Request, res: Response){
+export async function listarReservas(req: Request, res: Response) {
 
-	const reservaId = Number(req.params.id);
+	// filtros opcionales
 
-	if(Number.isNaN(reservaId)){
-		res.status(400).json({
-			error: 'La id de la pista o bien está vacia o no es un formato válido'
-		});
-		return;
-	}
+	const fecha = getQueryString(req.query.fecha);
 
-	const existe = await Reserva.findByPk(reservaId);
+	const pista_id = getQueryInt(req.query.pista_id);
 
-	if(!existe){
-		res.status(404).json({
-			error: 'No se encuentra una reserva con esa id'
-		});
-		return;
-	}
+	const where: any = {};
 
-	await Reserva.destroy({ where: { id: reservaId } });
+	if (fecha) where.fecha = fecha;
 
-	res.status(200).json(existe);
+	if (pista_id) where.pista_id = pista_id;
 
-		
+	const reservas = await Reserva.findAll({ where });
+
+	res.json(reservas);
+
 }
 
-export async function obtenerReservaPorFecha(req: Request, res: Response){
+export async function eliminarReserva(req: Request, res: Response) {
 
-	const fecha = req.params.fecha;
+	if (devolverErroresValidacion(req, res)) return;
 
-	if(!fecha || typeof fecha !== 'string'){
-		res.status(400).json({
-			error: 'La fecha de la reserva está vacia o no es una fecha válida'
-		});
-		return;
-	}
+	const id = getIdParam(req, res);
 
-	const fechaDate = new Date(fecha);
+	if (id === null) return;
 
-	const listadoFecha = await Reserva.findAll( {where: { fecha: fechaDate } });
+	const reserva = await Reserva.findByPk(id);
 
-	res.status(200).json(listadoFecha);
-}
+	if (!reserva) return res.status(404).json({ message: "Reserva no encontrada" });
 
-export async function obtenerReservaPorIdPista(req: Request, res: Response){
-	
-	const idPista =Number(req.params.pistaId);
+	await reserva.destroy();
 
-	if(Number.isNaN(idPista)){
-		res.status(400).json({
-			error: 'Se debe de proporcionar una id de pista'
-		});
-		return;
-	}
+	res.json({ message: "Reserva eliminada" });
 
-	const existe = await Pista.findByPk(idPista);
-
-	if(!existe){
-		res.status(404).json({
-			error: 'La pista buscada no existe'
-		});
-		return;
-	}
-
-	const listadoReservasPista = await Reserva.findAll( {where: { pistaId: idPista } });
-
-	res.status(200).json(listadoReservasPista);
 }

@@ -1,58 +1,21 @@
-import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOptional } from 'sequelize';
-import sequelize from '../config/database';
-import Pista from './Pista';
-
-class Reserva extends Model<InferAttributes<Reserva>, InferCreationAttributes<Reserva>>{
-	declare id: CreationOptional<number>;
-	declare pistaId: number;
-	declare fecha: Date;
-	declare horaInicio: string;
-	declare horaFin: string;
-}
-
-Reserva.init(
+import { DataTypes } from "sequelize";
+import { sequelize } from "../config/database";
+import { Pista } from "./Pista";
+export const Reserva = sequelize.define(
+	"Reserva",
 	{
-		id: {
-			type: DataTypes.INTEGER,
-			autoIncrement: true,
-			primaryKey: true
-		},
-		
-		pistaId: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
-			field: 'pista_id'
-		},
-
-		fecha: {
-			type: DataTypes.DATEONLY,
-			allowNull: false,
-		},
-		
-		horaInicio: {
-			type: DataTypes.TIME,
-			allowNull: false,
-			field: 'hora_inicio'
-		},
-		horaFin: {
-			type: DataTypes.TIME,
-			allowNull: false,
-			field: 'hora_fin'
-		}
+		id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+		pista_id: { type: DataTypes.INTEGER, allowNull: false },
+		fecha: { type: DataTypes.DATEONLY, allowNull: false },
+		hora_inicio: { type: DataTypes.TIME, allowNull: false },
+		hora_fin: { type: DataTypes.TIME, allowNull: false },
 	},
 	{
-		sequelize,
-		tableName: 'reservas',
-		timestamps: false
+		tableName: "reservas",
+		timestamps: true,
+		createdAt: "created_at",
+		updatedAt: "updated_at",
 	}
-);
-
-Pista.hasMany(Reserva, {
-	foreignKey: 'pistaId'
-});
-
-Reserva.belongsTo(Pista, {
-	foreignKey: 'pistaId'
-});
-
-export default Reserva;
+);// Relaciones (FK)
+Pista.hasMany(Reserva, { foreignKey: "pista_id" });
+Reserva.belongsTo(Pista, { foreignKey: "pista_id" });

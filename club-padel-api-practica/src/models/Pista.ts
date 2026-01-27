@@ -1,45 +1,17 @@
-import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOptional } from 'sequelize';
-import sequelize from '../config/database';
 
-export type TipoPista = 'INDOOR' | 'OUTDOOR';
-
-class Pista extends Model<InferAttributes<Pista>,InferCreationAttributes<Pista>> {
-	declare id: CreationOptional<number>;
-	declare nombre: string;
-	declare tipo: TipoPista;
-	declare precioHora: number;
-}
-
-Pista.init(
+import { DataTypes } from "sequelize";
+import  {sequelize}  from "../config/database";
+export const Pista = sequelize.define(
+	"Pista",
 	{
-		id: {
-			type: DataTypes.INTEGER,
-			autoIncrement: true,
-			primaryKey: true
-		},
-
-		nombre: {
-			type: DataTypes.STRING,
-			allowNull: false,
-			unique: true
-		},
-		
-		tipo: {
-			type: DataTypes.ENUM('INDOOR', 'OUTDOOR'),
-			allowNull: false
-		},
-
-		precioHora: {
-			type: DataTypes.DECIMAL(4,2).UNSIGNED,
-			allowNull: false,
-			field: 'precio_hora'
-		}
+		id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+		nombre: { type: DataTypes.STRING(60), allowNull: false, unique: true },
+		tipo: { type: DataTypes.ENUM("INDOOR", "OUTDOOR"), allowNull: false },
+		precio_hora: { type: DataTypes.DECIMAL(7, 2), allowNull: false },
 	},
 	{
-		sequelize,
-		tableName: 'pistas',
-		timestamps: false
+		tableName: "pistas",
+		timestamps: true,
+		createdAt: "created_at",updatedAt: "updated_at",
 	}
 );
-
-export default Pista;

@@ -1,39 +1,37 @@
-import express = require('express');
-import pistasRoutes = require('./routes/pistas.routes');
-import reservasRoutes = require('./routes/reservas.routes')
-import sequelize from './config/database';
-import Pista from './models/Pista';
-import swaggerUi from 'swagger-ui-express';
-import swaggerSpec from './docs/swagger';
-
-
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import { testDbConnection } from "./config/database";
+import pistasRoutes from "./routes/pistas.routes";
+import reservasRoutes from "./routes/reservas.routes";
+dotenv.config();
 const app = express();
-
-
-app.use(express.json());
-app.use('/api', pistasRoutes);
-app.use('/api', reservasRoutes);
-
-sequelize.authenticate()
-	.then(() => {
-		console.log('Conexión a la base de datos establecida correctamente');
+const port = process.env.PORT || 3000;
+/**
+ * MIDDLEWARE 1: express.json()
+ * - Permite leer JSON en req.body
+ * - Imprescindible para POST/PUT con body
+ */app.use(express.json());
+/**
+ * MIDDLEWARE 2: cors()
+ * - Cuando conectemos un front (React/Vue), el navegador bloquea si el origen es distinto.
+ * - Aquí permitimos SOLO el origen definido en FRONT_ORIGIN.
+ */
+app.use(
+	cors({
+		origin: process.env.FRONT_ORIGIN, // ej: http://localhost:5173
+		methods: ["GET", "POST", "PUT", "DELETE"],
+		allowedHeaders: ["Content-Type", "Authorization"],
 	})
-	.catch((error) => {
-		console.log('No se pudo conectar a la base de datos:', error);
-	});
-
-Pista.findAll()
-	.then(pistas => {
-		console.log('Modelo Pista cargado correctamente');
-	})
-	.catch(error => {
-		console.log('Error al cargar el modelo Pista:', error);
-	});
-
-
-app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
-app.listen(3000, () => {
-	console.log('Servidor escuchando en http://localhost:3000');
+);
+// Rutas
+app.use("/pistas", pistasRoutes);
+app.use("/reservas", reservasRoutes);
+// 404 básico
+app.use((_req, res) => {
+	res.status(404).json({ message: "Ruta no encontrada" });
 });
-
+async function start() {
+	await testDbConnection();app.listen(port, () => console.log(` API escuchando en puerto ${port}`));
+}
+start();

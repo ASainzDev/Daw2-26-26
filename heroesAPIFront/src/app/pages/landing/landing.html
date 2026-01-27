@@ -1,0 +1,13 @@
+<header>
+  <app-navbar></app-navbar>
+</header>
+
+<main>
+  @if(loginService.tryLogin()){
+    <app-login></app-login>
+  }
+</main>
+
+<footer>
+  <app-footer></app-footer>
+</footer>

@@ -1,0 +1,87 @@
+#Primeros Pasos
+
+mkdir api-examen
+cd api-examen
+npm init -y
+
+#Instalación de dependencias
+
+npm i express dotenv sequelize mysql2
+npm i -D typescript ts-node-dev @types/node @types/express
+
+
+#Typescript básico
+
+npx tsc --init
+
+#TsConfig.json mínimo
+
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "rootDir": "src",
+    "outDir": "dist",
+    "strict": true,
+    "esModuleInterop": true
+  }
+}
+
+
+# Estructura de carpetas básica
+
+src/
+ ├── config/
+ │    └── database.ts
+ ├── models/
+ ├── controllers/
+ ├── routes/
+ └── app.ts (o server.ts)
+.env
+
+#Archivo .env
+
+PORT=3000
+DB_HOST=localhost
+DB_USER=usuario
+DB_PASSWORD=password
+DB_NAME=nombre_bd
+
+#Conexión a BD
+
+import { Sequelize } from 'sequelize';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const sequelize = new Sequelize(
+  process.env.DB_NAME as string,
+  process.env.DB_USER as string,
+  process.env.DB_PASSWORD as string,
+  {
+    host: process.env.DB_HOST,
+    dialect: 'mysql',
+    logging: false
+  }
+);
+
+export default sequelize;
+
+#Incluir en app.ts para prueba de conexión
+
+sequelize.authenticate()
+  .then(() => console.log('Conectado a la BD'))
+  .catch(err => console.error(err));
+
+#Adaptar modelos a la BD, inprescindible.
+
+#Controllers. Fijarse en los ejemplos que tengo. Validar lo que se pueda
+
+#En los routes.ts crear bien las rutas, evitar endpoints confusos unos con otros
+
+#Arrancar Servidor
+
+npx ts-node-dev src/app.ts
+Como alternativa npm start si se tiene en el script
+
+

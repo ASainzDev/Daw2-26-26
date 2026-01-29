@@ -1,0 +1,15 @@
+import { Router } from "express";
+import {
+    crearReserva,
+    listarReservas,
+    eliminarReserva,
+} from "../controllers/reservas.controller";
+import {
+    validarCrearReserva,
+    validarIdReservaParam,
+} from "../validators/reservValidators";const router = Router();
+// Endpoints del enunciado :contentReference[oaicite:8]{index=8}
+router.post("/", validarCrearReserva, crearReserva);
+router.get("/", listarReservas);
+router.delete("/:id", validarIdReservaParam, eliminarReserva);
+export default router;

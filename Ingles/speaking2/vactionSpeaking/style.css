@@ -1,0 +1,60 @@
+/* Base general */
+.slidev-layout {
+    background-color: #f9fafb;
+    font-size: 1.3em;
+}
+
+/* TÍTULO NORMAL (todas las slides) */
+h1 {
+    font-size: 3.2em;
+    text-align: center;
+    color: #1e3a8a;
+}
+
+/* SOLO el título de la portada con bandera */
+.slidev-slide-0 h1 {
+    background-image: url("/unionjack.jpeg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    border: 4px solid #1e3a8a;
+    padding: 0.3em;
+}
+
+/* Subtítulos */
+h2, h3 {
+    text-align: center;
+    color: #1e3a8a;
+}
+
+/* Bloque imagen + texto */
+.photo-text {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+/* Imagen con relieve */
+.photo-text img {
+    height: 300px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* Texto */
+.photo-text p {
+    font-size: 1.3em;
+    color: #111;
+    max-width: 500px;
+}
+
+.thanks {
+    margin-top: 2em;
+    font-size: 2em;
+    text-align: center;
+    color: #1e3a8a;
+}
+
